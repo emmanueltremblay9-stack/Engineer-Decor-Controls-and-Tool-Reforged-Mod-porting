@@ -503,6 +503,7 @@ public final class ControlRedstoneGameTests {
       Block block = control(name);
       BlockState offState = (BlockState)((BlockState)block.defaultBlockState().setValue(ControlsBlockTypes.FACING, Direction.NORTH))
          .setValue(ControlsBlockTypes.POWERED, false);
+      helper.setBlock(pos.relative(Direction.SOUTH), Blocks.STONE.defaultBlockState());
       helper.setBlock(pos, offState);
       helper.useBlock(pos, player);
       helper.assertBlockProperty(pos, ControlsBlockTypes.POWERED, true);

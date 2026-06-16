@@ -154,6 +154,21 @@ public final class EngineerToolsGameTests {
    }
 
    @GameTest(template = "empty", timeoutTicks = 40)
+   public static void redia_tool_places_torch_into_replaceable_blocks(GameTestHelper helper) {
+      Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+      player.setShiftKeyDown(true);
+      ItemStack redia = new ItemStack((ItemLike)EngineerToolsModule.REDIA_TOOL.get());
+      player.getInventory().items.set(1, new ItemStack(Items.TORCH));
+      helper.setBlock(TEST_POS, Blocks.STONE);
+      helper.setBlock(TEST_POS.north(), Blocks.SHORT_GRASS);
+      ((Item)EngineerToolsModule.REDIA_TOOL.get()).useOn(context(helper, player, redia, TEST_POS, Direction.NORTH));
+      helper.assertTrue(helper.getBlockState(TEST_POS.north()).is(Blocks.WALL_TORCH), "REDIA Tool should replace short grass with a wall torch");
+      helper.assertValueEqual(0, countItem(player.getInventory(), Items.TORCH), "REDIA Tool should consume one carried torch");
+      helper.assertValueEqual(1, redia.getDamageValue(), "REDIA Tool should wear after placing a torch");
+      helper.succeed();
+   }
+
+   @GameTest(template = "empty", timeoutTicks = 40)
    public static void ariadne_coal_places_route_marker(GameTestHelper helper) {
       Player player = helper.makeMockPlayer(GameType.SURVIVAL);
       ItemStack marker = new ItemStack((ItemLike)EngineerToolsModule.ARIADNE_COAL.get(), 2);

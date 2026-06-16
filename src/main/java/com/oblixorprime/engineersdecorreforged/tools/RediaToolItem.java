@@ -64,7 +64,9 @@ public class RediaToolItem extends TooltipItem {
       BlockState marker = face == Direction.UP
          ? Blocks.TORCH.defaultBlockState()
          : (BlockState)Blocks.WALL_TORCH.defaultBlockState().setValue(WallTorchBlock.FACING, face);
-      if (level.isEmptyBlock(placePos) && level.getBlockState(context.getClickedPos()).isFaceSturdy(level, context.getClickedPos(), face)) {
+      if (level.getBlockState(placePos).canBeReplaced()
+         && level.getBlockState(context.getClickedPos()).isFaceSturdy(level, context.getClickedPos(), face)
+         && marker.canSurvive(level, placePos)) {
          ItemStack torch = findTorch(player.getInventory());
          if (torch.isEmpty() && !player.getAbilities().instabuild) {
             return fail(level, player, "item.engineers_decor_reforged.redia_tool.msg.notorch");
