@@ -21,4 +21,4 @@ Latest local validation before publishing:
 
 ## Notes
 
-See `README_RECONSTRUCTION.md` for reconstruction provenance and bug-fix notes.
+See `README_RECONSTRUCTION.md` for reconstruction provenance and `CHANGELOG.md` for release-style repair notes.
