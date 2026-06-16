@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PPP",
+    "PAO",
+    "PRP"
+  ],
+  "key": {
+    "O": {
+      "item": "minecraft:observer"
+    },
+    "P": {
+      "tag": "c:plates/steel"
+    },
+    "A": {
+      "item": "minecraft:iron_axe"
+    },
+    "R": {
+      "item": "minecraft:redstone_block"
+    }
+  },
+  "result": {
+    "id": "engineers_decor_reforged:small_tree_cutter",
+    "count": 1
+  }
+}
+
+

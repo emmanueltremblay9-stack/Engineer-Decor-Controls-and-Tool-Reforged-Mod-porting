@@ -1,0 +1,7 @@
+{
+  "render_type": "cutout",
+	"parent": "engineers_decor_reforged:block/switchlink/industrial/switchlink_pulsereceiver_cased_industrial_model_s00",
+	"textures": {
+    "side": "engineers_decor_reforged:block/switchlink/switchlink_pulsereceiver_cased_industrial_texture_s15"
+	}
+}

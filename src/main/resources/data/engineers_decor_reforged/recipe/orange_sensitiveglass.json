@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "engineers_decor_reforged:sensitive_glass_block"
+    },
+    {
+      "item": "minecraft:orange_dye"
+    }
+  ],
+  "result": {
+    "id": "engineers_decor_reforged:orange_sensitiveglass"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SS",
+    "SS"
+  ],
+  "key": {
+    "S": {
+      "item": "engineers_decor_reforged:steel_catwalk"
+    }
+  },
+  "result": {
+    "id": "engineers_decor_reforged:steel_floor_grating",
+    "count": 2
+  }
+}
+

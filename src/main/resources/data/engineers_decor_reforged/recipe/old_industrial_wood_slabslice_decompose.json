@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SS",
+    "SS"
+  ],
+  "key": {
+    "S": {
+      "item": "engineers_decor_reforged:old_industrial_wood_slabslice"
+    }
+  },
+  "result": {
+    "id": "engineers_decor_reforged:old_industrial_wood_slab",
+    "count": 1
+  }
+}
+

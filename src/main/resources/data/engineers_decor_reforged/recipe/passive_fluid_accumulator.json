@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "engineers_decor_reforged_machines",
+  "pattern": [
+    "CFC",
+    "BCB",
+    "CFC"
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:copper_ingot"
+    },
+    "F": {
+      "item": "engineers_decor_reforged:small_fluid_funnel"
+    },
+    "B": {
+      "item": "minecraft:bucket"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "engineers_decor_reforged:passive_fluid_accumulator"
+  }
+}

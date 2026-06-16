@@ -1,0 +1,6 @@
+{
+  "render_type": "translucent",
+  "parent": "minecraft:block/cube_all",
+  "ambientocclusion": false,
+  "textures": { "all": "#side" }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "engineers_decor_reforged:industrial_contact_mat"
+    }
+  ],
+  "result": {
+    "id": "engineers_decor_reforged:industrial_shock_sensitive_contact_mat"
+  }
+}
+

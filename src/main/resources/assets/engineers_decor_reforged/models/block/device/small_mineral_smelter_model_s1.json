@@ -1,0 +1,6 @@
+{
+	"parent": "engineers_decor_reforged:block/device/small_mineral_smelter_model",
+	"textures": {
+		"front": "engineers_decor_reforged:block/furnace/small_mineral_smelter_front_s1"
+	}
+}

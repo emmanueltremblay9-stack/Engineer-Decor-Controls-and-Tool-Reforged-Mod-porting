@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SS",
+    "SS"
+  ],
+  "key": {
+    "S": {
+      "item": "engineers_decor_reforged:clinker_brick_slab"
+    }
+  },
+  "result": {
+    "id": "engineers_decor_reforged:halfslab_clinker_brick",
+    "count": 16
+  }
+}

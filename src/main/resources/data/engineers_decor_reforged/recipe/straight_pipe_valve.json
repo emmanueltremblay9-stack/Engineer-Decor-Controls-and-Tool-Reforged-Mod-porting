@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PMP"
+  ],
+  "key": {
+    "P": {
+      "item": "immersiveengineering:fluid_pipe"
+    },
+    "M": {
+      "item": "immersiveengineering:component_iron"
+    }
+  },
+  "result": {
+    "id": "engineers_decor_reforged:straight_pipe_valve",
+    "count": 2
+  }
+}
+

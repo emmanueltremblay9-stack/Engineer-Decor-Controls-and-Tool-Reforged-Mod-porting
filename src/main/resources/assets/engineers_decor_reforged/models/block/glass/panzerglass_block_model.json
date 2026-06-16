@@ -1,0 +1,5 @@
+{
+  "parent": "block/cube_all",
+  "render_type": "translucent",
+  "textures": { "all": "engineers_decor_reforged:block/glass/panzerglass_block_texture0" }
+}

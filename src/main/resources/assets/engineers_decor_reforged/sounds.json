@@ -1,0 +1,7 @@
+{
+  "alarm_siren": {
+    "category": "block",
+    "subtitle": "rsgauges.subtitle.soundindicator1",
+    "sounds": [ "engineers_decor_reforged:soundindicator1" ]
+  }
+}

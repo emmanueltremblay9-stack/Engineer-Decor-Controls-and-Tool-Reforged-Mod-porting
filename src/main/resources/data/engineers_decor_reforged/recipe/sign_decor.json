@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " P ",
+    "INI",
+    " P "
+  ],
+  "key": {
+    "P": {
+      "item": "minecraft:paper"
+    },
+    "I": {
+      "item": "minecraft:iron_nugget"
+    },
+    "N": {
+      "item": "minecraft:ink_sac"
+    }
+  },
+  "result": {
+    "id": "engineers_decor_reforged:sign_decor",
+    "count": 2
+  }
+}

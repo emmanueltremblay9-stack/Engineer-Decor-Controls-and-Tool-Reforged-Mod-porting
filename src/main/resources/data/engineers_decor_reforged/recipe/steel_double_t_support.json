@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PPP",
+    " P ",
+    "PPP"
+  ],
+  "key": {
+    "P": {
+      "item": "engineers_decor_reforged:thin_steel_pole"
+    }
+  },
+  "result": {
+    "id": "engineers_decor_reforged:steel_double_t_support",
+    "count": 6
+  }
+}
+

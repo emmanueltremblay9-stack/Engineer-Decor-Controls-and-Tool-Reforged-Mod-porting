@@ -1,0 +1,7 @@
+REDIA Tool
+Diamond-covered utility
+<&recipe>The REDIA Tool is a durable field utility for quick ground work around temporary sites and mine entrances.<br>
+<br>
+Usage: Use it on grass, dirt, coarse dirt, rooted dirt, or podzol with clear air above to till farmland. Sneak-use it against a stable side or top face while carrying torches to place one torch from your inventory.<br>
+<br>
+Each successful tilling or torch placement damages the tool.

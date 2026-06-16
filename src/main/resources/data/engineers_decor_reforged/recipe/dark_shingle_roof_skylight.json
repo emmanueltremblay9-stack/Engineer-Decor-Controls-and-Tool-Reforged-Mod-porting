@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "R ",
+    "PR"
+  ],
+  "key": {
+    "P": {
+      "item": "minecraft:glass_pane"
+    },
+    "R": {
+      "item": "engineers_decor_reforged:dark_shingle_roof"
+    }
+  },
+  "result": {
+    "id": "engineers_decor_reforged:dark_shingle_roof_skylight",
+    "count": 3
+  }
+}
+

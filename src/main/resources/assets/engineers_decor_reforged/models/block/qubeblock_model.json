@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "engineers_decor_reforged:block/qube/qube_f_texture",
+    "north": "engineers_decor_reforged:block/qube/qube_f_texture",
+    "south": "engineers_decor_reforged:block/qube/qube_b_texture",
+    "east": "engineers_decor_reforged:block/qube/qube_r_texture",
+    "west": "engineers_decor_reforged:block/qube/qube_l_texture",
+    "up": "engineers_decor_reforged:block/qube/qube_u_texture",
+    "down": "engineers_decor_reforged:block/qube/qube_d_texture"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "NN",
+    "RP"
+  ],
+  "key": {
+    "N": {
+      "item": "minecraft:iron_nugget"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "P": {
+      "tag": "engineers_decor_reforged:pressure_plates"
+    }
+  },
+  "result": {
+    "id": "engineers_decor_reforged:industrial_door_contact_mat"
+  }
+}
+

@@ -1,0 +1,88 @@
+package com.oblixorprime.engineersdecorreforged.tools;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Item.Properties;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
+
+public class CrushingHammerItem extends TooltipItem {
+   private static final int CRAFTING_DAMAGE = 10;
+
+   public CrushingHammerItem(Properties properties) {
+      super("crushing_hammer", properties);
+   }
+
+   public boolean hasCraftingRemainingItem(ItemStack stack) {
+      return true;
+   }
+
+   public ItemStack getCraftingRemainingItem(ItemStack stack) {
+      ItemStack remaining = stack.copyWithCount(1);
+      int nextDamage = remaining.getDamageValue() + 10;
+      if (nextDamage >= remaining.getMaxDamage()) {
+         return ItemStack.EMPTY;
+      }
+
+      remaining.setDamageValue(nextDamage);
+      return remaining;
+   }
+
+   public boolean isEnchantable(ItemStack stack) {
+      return false;
+   }
+
+   public boolean onLeftClickEntity(ItemStack stack, Player player, Entity target) {
+      if (target instanceof LivingEntity living) {
+         Level level = player.level();
+         if (level.isClientSide) {
+            return false;
+         }
+
+         boolean hard = target instanceof Monster monster && monster.getTarget() != null;
+         living.knockback(hard ? 1.2F : 0.3F, Math.sin(Math.toRadians(player.getYRot())), -Math.cos(Math.toRadians(player.getYRot())));
+         if (hard) {
+            if (!player.getAbilities().instabuild) {
+               damage(stack, 1);
+            }
+
+            level.playSound(null, player.blockPosition(), SoundEvents.ANVIL_PLACE, player.getSoundSource(), 0.2F, 0.05F);
+         } else {
+            level.playSound(null, player.blockPosition(), SoundEvents.BAMBOO_HIT, player.getSoundSource(), 0.5F, 0.3F);
+         }
+
+         return false;
+      } else {
+         return false;
+      }
+   }
+
+   public boolean mineBlock(ItemStack stack, Level level, BlockState state, BlockPos pos, LivingEntity miningEntity) {
+      if (!level.isClientSide && state.getDestroySpeed(level, pos) > 0.5F) {
+         if (miningEntity instanceof Player player && player.getAbilities().instabuild) {
+            return true;
+         }
+
+         stack.hurtAndBreak(1, miningEntity, EquipmentSlot.MAINHAND);
+      }
+
+      return true;
+   }
+
+   private static void damage(ItemStack stack, int amount) {
+      if (stack.isDamageableItem()) {
+         int nextDamage = stack.getDamageValue() + amount;
+         if (nextDamage >= stack.getMaxDamage()) {
+            stack.shrink(1);
+         } else {
+            stack.setDamageValue(nextDamage);
+         }
+      }
+   }
+}

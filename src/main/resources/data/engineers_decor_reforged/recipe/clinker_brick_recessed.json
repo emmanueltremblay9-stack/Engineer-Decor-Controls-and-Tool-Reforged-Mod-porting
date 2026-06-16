@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "engineers_decor_reforged:clinker_brick_vertically_slit"
+    }
+  ],
+  "result": {
+    "id": "engineers_decor_reforged:clinker_brick_recessed"
+  }
+}
+

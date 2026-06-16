@@ -1,0 +1,17 @@
+.gradle/
+build/
+run/
+out/
+
+*.log
+hs_err_pid*
+replay_pid*
+
+.classpath
+.project
+.settings/
+.idea/
+*.iml
+
+.DS_Store
+Thumbs.db

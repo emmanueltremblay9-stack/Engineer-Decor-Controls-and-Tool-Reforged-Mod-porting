@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "engineers_decor_reforged:glass_touch_button"
+    }
+  ],
+  "result": {
+    "id": "engineers_decor_reforged:glass_button"
+  }
+}
+

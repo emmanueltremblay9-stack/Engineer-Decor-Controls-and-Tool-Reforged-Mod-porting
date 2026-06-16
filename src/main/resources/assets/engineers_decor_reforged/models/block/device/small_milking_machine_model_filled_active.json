@@ -1,0 +1,4 @@
+{
+	"parent": "engineers_decor_reforged:block/device/small_milking_machine_model_active",
+  "textures": { "f":"engineers_decor_reforged:block/device/small_milking_machine_front_filled" }
+}

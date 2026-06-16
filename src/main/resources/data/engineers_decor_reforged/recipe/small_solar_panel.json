@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "QQQ",
+    " S ",
+    "LRL"
+  ],
+  "key": {
+    "Q": {
+      "item": "minecraft:quartz"
+    },
+    "R": {
+      "item": "minecraft:redstone_block"
+    },
+    "S": {
+      "tag": "c:plates/steel"
+    },
+    "L": {
+      "tag": "c:storage_blocks/lead"
+    }
+  },
+  "result": {
+    "id": "engineers_decor_reforged:small_solar_panel",
+    "count": 1
+  }
+}
+
+

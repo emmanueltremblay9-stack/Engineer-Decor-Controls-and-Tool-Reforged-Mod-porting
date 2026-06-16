@@ -1,0 +1,14 @@
+{
+  "variants": {
+    "": [
+      { "model": "engineers_decor_reforged:block/brick/slag_brick_model0" },
+      { "model": "engineers_decor_reforged:block/brick/slag_brick_model1" },
+      { "model": "engineers_decor_reforged:block/brick/slag_brick_model2" },
+      { "model": "engineers_decor_reforged:block/brick/slag_brick_model3" },
+      { "model": "engineers_decor_reforged:block/brick/slag_brick_model4" },
+      { "model": "engineers_decor_reforged:block/brick/slag_brick_model5" },
+      { "model": "engineers_decor_reforged:block/brick/slag_brick_model6" },
+      { "model": "engineers_decor_reforged:block/brick/slag_brick_model7" }
+    ]
+  }
+}

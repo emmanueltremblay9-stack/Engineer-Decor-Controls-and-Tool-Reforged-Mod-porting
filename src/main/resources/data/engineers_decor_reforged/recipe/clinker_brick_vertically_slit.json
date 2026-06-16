@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BS",
+    "BS",
+    "BS"
+  ],
+  "key": {
+    "B": {
+      "item": "engineers_decor_reforged:clinker_brick_block"
+    },
+    "S": {
+      "item": "engineers_decor_reforged:clinker_brick_vertical_slab_structured"
+    }
+  },
+  "result": {
+    "id": "engineers_decor_reforged:clinker_brick_vertically_slit",
+    "count": 3
+  }
+}
+

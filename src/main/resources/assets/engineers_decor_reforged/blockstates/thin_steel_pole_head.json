@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "facing=north": { "model": "engineers_decor_reforged:block/pole/thin_steel_pole_head_model"          },
+    "facing=south": { "model": "engineers_decor_reforged:block/pole/thin_steel_pole_head_model", "y":180 },
+    "facing=west":  { "model": "engineers_decor_reforged:block/pole/thin_steel_pole_head_model", "y":270 },
+    "facing=east":  { "model": "engineers_decor_reforged:block/pole/thin_steel_pole_head_model", "y":90  },
+    "facing=up":    { "model": "engineers_decor_reforged:block/pole/thin_steel_pole_head_model", "x":270 },
+    "facing=down":  { "model": "engineers_decor_reforged:block/pole/thin_steel_pole_head_model", "x":90  }
+  }
+}

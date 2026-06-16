@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PPP",
+    "P P",
+    "P P"
+  ],
+  "key": {
+    "P": {
+      "tag": "c:plates/steel"
+    }
+  },
+  "result": {
+    "id": "engineers_decor_reforged:steel_railing",
+    "count": 4
+  }
+}
+
+

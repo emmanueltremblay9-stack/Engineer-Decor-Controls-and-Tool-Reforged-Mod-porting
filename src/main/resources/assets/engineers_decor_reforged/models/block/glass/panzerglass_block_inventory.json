@@ -1,0 +1,4 @@
+{
+  "parent": "engineers_decor_reforged:block/glass/panzerglass_block_model",
+  "textures": { "all": "engineers_decor_reforged:block/glass/panzerglass_block_texture_inventory" }
+}

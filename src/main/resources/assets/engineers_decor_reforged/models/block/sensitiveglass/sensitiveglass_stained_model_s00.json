@@ -1,0 +1,7 @@
+{
+  "render_type": "translucent",
+	"parent": "engineers_decor_reforged:block/sensitiveglass/sensitiveglass_stained_base_model",
+	"textures": {
+    "side": "engineers_decor_reforged:block/sensitiveglass/sensitiveglass_stained_s00"
+	}
+}

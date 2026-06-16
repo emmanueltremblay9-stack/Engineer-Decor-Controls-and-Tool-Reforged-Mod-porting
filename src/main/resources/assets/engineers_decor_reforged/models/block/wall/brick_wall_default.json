@@ -1,0 +1,9 @@
+{
+	"textures": {
+    "wall": "engineers_decor_reforged:block/clinker_brick/clinker_brick_texture0",
+    "particle": "engineers_decor_reforged:block/clinker_brick/clinker_brick_texture0"
+	},
+	"elements": [{
+    "from": [7.9, 7.9, 7.9], "to": [8, 8, 8], "faces": { "down": {"texture": "#wall"} }
+  }]
+}

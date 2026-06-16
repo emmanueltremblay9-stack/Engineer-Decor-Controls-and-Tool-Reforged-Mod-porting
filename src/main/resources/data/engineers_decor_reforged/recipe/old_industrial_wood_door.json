@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PP",
+    "PP",
+    "PP"
+  ],
+  "key": {
+    "P": {
+      "item": "engineers_decor_reforged:old_industrial_wood_planks"
+    }
+  },
+  "result": {
+    "id": "engineers_decor_reforged:old_industrial_wood_door",
+    "count": 2
+  }
+}
+

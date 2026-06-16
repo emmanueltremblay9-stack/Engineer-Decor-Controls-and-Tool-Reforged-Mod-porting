@@ -1,0 +1,7 @@
+{
+  "render_type": "cutout",
+	"parent": "engineers_decor_reforged:block/knockswitch/industrial/industrial_knock_switch_model_s00",
+	"textures": {
+    "side": "engineers_decor_reforged:block/knockswitch/industrial_knock_button_texture_s15"
+	}
+}

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " C ",
+    "HFH"
+  ],
+  "key": {
+    "F": {
+      "item": "engineers_decor_reforged:small_lab_furnace"
+    },
+    "C": {
+      "tag": "c:plates/steel"
+    },
+    "H": {
+      "item": "minecraft:hopper"
+    }
+  },
+  "result": {
+    "id": "engineers_decor_reforged:small_electrical_furnace",
+    "count": 1
+  }
+}
+
+

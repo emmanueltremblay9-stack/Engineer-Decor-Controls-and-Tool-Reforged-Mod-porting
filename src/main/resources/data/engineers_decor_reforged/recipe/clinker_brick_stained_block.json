@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "engineers_decor_reforged:clinker_brick_block"
+    },
+    {
+      "item": "minecraft:dirt"
+    }
+  ],
+  "result": {
+    "id": "engineers_decor_reforged:clinker_brick_stained_block"
+  }
+}
+

@@ -1,0 +1,14 @@
+{
+  "variants": {
+    "": [
+      { "model": "engineers_decor_reforged:block/concrete/rebar_concrete_tile_model0" },
+      { "model": "engineers_decor_reforged:block/concrete/rebar_concrete_tile_model1" },
+      { "model": "engineers_decor_reforged:block/concrete/rebar_concrete_tile_model2" },
+      { "model": "engineers_decor_reforged:block/concrete/rebar_concrete_tile_model3" },
+      { "model": "engineers_decor_reforged:block/concrete/rebar_concrete_tile_model4" },
+      { "model": "engineers_decor_reforged:block/concrete/rebar_concrete_tile_model5" },
+      { "model": "engineers_decor_reforged:block/concrete/rebar_concrete_tile_model6" },
+      { "model": "engineers_decor_reforged:block/concrete/rebar_concrete_tile_model7" }
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "S",
+    "S",
+    "S"
+  ],
+  "key": {
+    "S": {
+      "tag": "c:plates/steel"
+    }
+  },
+  "result": {
+    "id": "engineers_decor_reforged:thin_steel_pole",
+    "count": 4
+  }
+}
+
+

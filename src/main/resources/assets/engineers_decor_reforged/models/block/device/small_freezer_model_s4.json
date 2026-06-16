@@ -1,0 +1,6 @@
+{
+	"parent": "engineers_decor_reforged:block/device/small_freezer_model",
+	"textures": {
+		"front": "engineers_decor_reforged:block/furnace/small_freezer_front_s4"
+	}
+}

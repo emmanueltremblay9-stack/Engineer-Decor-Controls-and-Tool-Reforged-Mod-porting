@@ -1,0 +1,89 @@
+Engineer's Tools
+Portable workshop gear
+The Engineer's Tools set adds handheld equipment, mine markers, emergency consumables, field food, and small material-processing aids to the same manual that covers the decor and control blocks.<br>
+<br>
+These tools are meant for work away from a fully equipped shop: mark the route, carry supplies, recover from mistakes, and finish small processing jobs on site.
+<np>
+REDIA Tool
+Diamond-covered utility
+<&redia_tool>The REDIA Tool is a durable field utility for quick ground work. Use it on workable soil to till farmland.<br>
+<br>
+Sneak-use it against a stable face while carrying torches to place a torch marker from your inventory. Each successful operation wears the tool.
+<np>
+Ore Crushing Hammer
+Hand crushing tool
+<&crushing_hammer>The Ore Crushing Hammer crushes raw iron, raw gold, iron ore, deepslate iron ore, gold ore, and deepslate gold ore into coarse grit through crafting recipes.<br>
+<br>
+The hammer takes durability damage and returns to the grid until it breaks. It also wears from hard mining and can shove close threats away.
+<np>
+Tracker
+Stored position marker
+<&tracker>Click a block with the Tracker to store that block position and dimension in the item. Sneak-use the Tracker to clear the stored target.<br>
+<br>
+The tooltip reports the saved coordinates, which makes it useful for marking machines, shafts, or cable endpoints before returning with materials.
+<np>
+Ariadne Coal
+Mine route marker
+<&ariadne_coal>Ariadne Coal places quick black arrow route markers on stable mine faces. Use it on a solid face to mark the next turn, exit, or branch point; the marker supports eight clicked-face directions, including diagonals.<br>
+<br>
+One marker consumes one Ariadne Coal in survival. It refuses unsupported faces instead of wasting the item.
+<np>
+Auto Stim Pack
+Emergency injector
+<&stimpack>The Auto Stim Pack heals and briefly boosts movement when used manually. It can also trigger from inventory when health is low, then goes on cooldown.<br>
+<br>
+Keep one in your kit for emergency recovery during mine or factory work.
+<np>
+Sleeping Bag
+Portable rest kit
+<&sleeping_bag>The Sleeping Bag lets an engineer rest through the night in the Overworld without setting a spawn point.<br>
+<br>
+Use it at night in a safe area. It refuses daytime use, unsafe monster-filled surroundings, and dimensions where a field rest would not be stable.
+<np>
+Material Storage Box
+Construction supply box
+<&material_box>The Material Storage Box stores one plain, unmodified stackable material type for construction runs.<br>
+<br>
+Hold the box in the main hand and a plain material stack in the offhand to store that material. Use the box again with an empty offhand to retrieve a stack. It holds up to 512 items and refuses mixed or modified stacks.
+<np>
+Diving Air Capsule
+Emergency air reserve
+<&diving_capsule>The Diving Air Capsule restores air when used manually. It can also trigger from inventory when air is nearly gone, then goes on cooldown.<br>
+<br>
+Carry it for underwater repairs, flooded mines, or compact pump rooms.
+<np>
+Muslee Bar Press
+Food press
+<&musli_bar_press>The Muslee Bar Press makes field rations from compact ingredients.<br>
+<br>
+Use it with bread, an apple, and wheat seeds in your inventory to press four Muslee Melange Power Bars. The press consumes the ingredients atomically, checks for output space, and wears with each batch.
+<np>
+Muslee Melange Power Bar
+Fast shop snack
+<&musli_bar>The Muslee Melange Power Bar is a fast food item made from bread, seeds, and fruit.<br>
+<br>
+Use it as compact field food while installing long cable runs, pipes, and factory fixtures.
+<np>
+Mind Squeezer
+Experience condenser
+<&charged_lapis_squeezer>The Mind Squeezer converts one lapis lazuli and one experience level from your inventory into Charged Lapis.<br>
+<br>
+The process hurts the user and damages the squeezer on every successful conversion. It refuses to run without lapis, without XP, or when the user is too close to death.
+<np>
+Charged Lapis
+Stored experience
+<&charged_lapis>Charged Lapis stores one experience level. Consume it to restore the level, clear active effects, and recover a small amount of health.<br>
+<br>
+Craft a Mind Squeezer first; Charged Lapis is produced by using that tool with lapis and XP available.
+<np>
+Coarse Iron Grit
+Crushed iron feed
+<&iron_grit>Use the Ore Crushing Hammer with raw iron or iron ore variants to make Coarse Iron Grit.<br>
+<br>
+Smelt or blast the grit into iron ingots.
+<np>
+Coarse Gold Grit
+Crushed gold feed
+<&gold_grit>Use the Ore Crushing Hammer with raw gold or gold ore variants to make Coarse Gold Grit.<br>
+<br>
+Smelt or blast the grit into gold ingots.

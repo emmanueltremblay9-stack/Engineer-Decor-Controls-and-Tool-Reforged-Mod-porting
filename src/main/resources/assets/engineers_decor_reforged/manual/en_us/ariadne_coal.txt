@@ -1,0 +1,7 @@
+Ariadne Coal
+Mine route marker
+<&recipe>Ariadne Coal is a quick route marker for shafts, branch mines, and temporary underground work.<br>
+<br>
+Usage: Use it on a stable block face to place a black arrow marker on that border. The marker reads the clicked point on the face and supports eight directions, including diagonals, helping mark turns, exits, dead ends, and supply routes without carrying separate signposts.<br>
+<br>
+One Ariadne Coal places one marker in survival. Unsupported faces are rejected without consuming the item.

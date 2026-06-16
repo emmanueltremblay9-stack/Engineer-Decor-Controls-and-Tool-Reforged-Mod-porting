@@ -1,0 +1,14 @@
+{"variants":{
+ "facing=down,powered=false": { "model":"engineers_decor_reforged:block/pulseswitch/misc/arrowtarget_model", "x":90 },
+ "facing=down,powered=true": { "model":"engineers_decor_reforged:block/pulseswitch/misc/arrowtarget_model", "x":90 },
+ "facing=east,powered=false": { "model":"engineers_decor_reforged:block/pulseswitch/misc/arrowtarget_model", "y":90 },
+ "facing=east,powered=true": { "model":"engineers_decor_reforged:block/pulseswitch/misc/arrowtarget_model", "y":90 },
+ "facing=north,powered=false": { "model":"engineers_decor_reforged:block/pulseswitch/misc/arrowtarget_model" },
+ "facing=north,powered=true": { "model":"engineers_decor_reforged:block/pulseswitch/misc/arrowtarget_model" },
+ "facing=south,powered=false": { "model":"engineers_decor_reforged:block/pulseswitch/misc/arrowtarget_model", "y":180 },
+ "facing=south,powered=true": { "model":"engineers_decor_reforged:block/pulseswitch/misc/arrowtarget_model", "y":180 },
+ "facing=up,powered=false":  { "model":"engineers_decor_reforged:block/pulseswitch/misc/arrowtarget_model", "x":-90 },
+ "facing=up,powered=true":   { "model":"engineers_decor_reforged:block/pulseswitch/misc/arrowtarget_model", "x":-90 },
+ "facing=west,powered=false": { "model":"engineers_decor_reforged:block/pulseswitch/misc/arrowtarget_model", "y":-90 },
+ "facing=west,powered=true": { "model":"engineers_decor_reforged:block/pulseswitch/misc/arrowtarget_model", "y":-90 }
+}}

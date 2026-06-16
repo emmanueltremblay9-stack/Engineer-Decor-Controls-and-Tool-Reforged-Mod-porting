@@ -1,0 +1,7 @@
+{
+  "render_type": "translucent",
+	"parent": "engineers_decor_reforged:block/indicator/industrial/alarm_lamp_model_s00",
+	"textures": {
+    "lamp": "engineers_decor_reforged:block/indicator/indicator_fg_red_blink_texture"
+	}
+}

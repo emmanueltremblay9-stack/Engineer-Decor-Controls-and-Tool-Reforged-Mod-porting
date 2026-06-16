@@ -1,0 +1,431 @@
+package com.oblixorprime.engineersdecorreforged.gametest;
+
+import com.oblixorprime.engineersdecorreforged.ModBlocks;
+import com.oblixorprime.engineersdecorreforged.block.PortedBlocks;
+import com.oblixorprime.engineersdecorreforged.tools.EngineerToolsModule;
+import com.oblixorprime.engineersdecorreforged.tools.MaterialBoxItem;
+import com.oblixorprime.engineersdecorreforged.tools.TooltipItem;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.gametest.framework.GameTest;
+import net.minecraft.gametest.framework.GameTestHelper;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.animal.Pig;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.component.CustomData;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.GameType;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.gametest.GameTestHolder;
+import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
+
+@GameTestHolder("engineers_decor_reforged")
+@PrefixGameTestTemplate(false)
+public final class EngineerToolsGameTests {
+   private static final String TEMPLATE = "empty";
+   private static final BlockPos TEST_POS = new BlockPos(1, 1, 1);
+
+   private EngineerToolsGameTests() {
+   }
+
+   @GameTest(template = "empty", timeoutTicks = 40)
+   public static void charged_lapis_squeezer_converts_lapis_xp_and_damages_tool(GameTestHelper helper) {
+      Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+      ItemStack squeezer = new ItemStack((ItemLike)EngineerToolsModule.CHARGED_LAPIS_SQUEEZER.get());
+      player.setItemInHand(InteractionHand.MAIN_HAND, squeezer);
+      player.experienceLevel = 1;
+      player.getInventory().add(new ItemStack(Items.LAPIS_LAZULI));
+      float healthBefore = player.getHealth();
+      squeezer.use(helper.getLevel(), player, InteractionHand.MAIN_HAND);
+      helper.assertValueEqual(0, countItem(player.getInventory(), Items.LAPIS_LAZULI), "squeezer should consume one lapis");
+      helper.assertValueEqual(0, player.experienceLevel, "squeezer should consume one XP level");
+      helper.assertValueEqual(1, countItem(player.getInventory(), (Item)EngineerToolsModule.CHARGED_LAPIS.get()), "squeezer should create one charged lapis");
+      helper.assertValueEqual(1, squeezer.getDamageValue(), "squeezer should lose durability on success");
+      helper.assertTrue(player.getHealth() < healthBefore, "squeezer should hurt the user on success");
+      helper.succeed();
+   }
+
+   @GameTest(template = "empty", timeoutTicks = 40)
+   public static void charged_lapis_squeezer_without_lapis_keeps_xp_and_durability(GameTestHelper helper) {
+      Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+      ItemStack squeezer = new ItemStack((ItemLike)EngineerToolsModule.CHARGED_LAPIS_SQUEEZER.get());
+      player.setItemInHand(InteractionHand.MAIN_HAND, squeezer);
+      player.experienceLevel = 1;
+      squeezer.use(helper.getLevel(), player, InteractionHand.MAIN_HAND);
+      helper.assertValueEqual(1, player.experienceLevel, "missing lapis should not consume XP");
+      helper.assertValueEqual(0, squeezer.getDamageValue(), "missing lapis should not damage the squeezer");
+      helper.assertValueEqual(
+         0, countItem(player.getInventory(), (Item)EngineerToolsModule.CHARGED_LAPIS.get()), "missing lapis should not create charged lapis"
+      );
+      helper.succeed();
+   }
+
+   @GameTest(template = "empty", timeoutTicks = 40)
+   public static void charged_lapis_squeezer_without_xp_keeps_lapis_and_durability(GameTestHelper helper) {
+      Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+      ItemStack squeezer = new ItemStack((ItemLike)EngineerToolsModule.CHARGED_LAPIS_SQUEEZER.get());
+      player.setItemInHand(InteractionHand.MAIN_HAND, squeezer);
+      player.getInventory().add(new ItemStack(Items.LAPIS_LAZULI));
+      squeezer.use(helper.getLevel(), player, InteractionHand.MAIN_HAND);
+      helper.assertValueEqual(1, countItem(player.getInventory(), Items.LAPIS_LAZULI), "missing XP should not consume lapis");
+      helper.assertValueEqual(0, squeezer.getDamageValue(), "missing XP should not damage the squeezer");
+      helper.assertValueEqual(0, countItem(player.getInventory(), (Item)EngineerToolsModule.CHARGED_LAPIS.get()), "missing XP should not create charged lapis");
+      helper.succeed();
+   }
+
+   @GameTest(template = "empty", timeoutTicks = 40)
+   public static void charged_lapis_squeezer_breaks_cleanly_after_final_success(GameTestHelper helper) {
+      Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+      ItemStack squeezer = new ItemStack((ItemLike)EngineerToolsModule.CHARGED_LAPIS_SQUEEZER.get());
+      squeezer.setDamageValue(63);
+      player.setItemInHand(InteractionHand.MAIN_HAND, squeezer);
+      player.experienceLevel = 1;
+      player.getInventory().add(new ItemStack(Items.LAPIS_LAZULI));
+      squeezer.use(helper.getLevel(), player, InteractionHand.MAIN_HAND);
+      helper.assertTrue(player.getMainHandItem().isEmpty(), "near-broken squeezer should break after the successful conversion");
+      helper.assertValueEqual(
+         1, countItem(player.getInventory(), (Item)EngineerToolsModule.CHARGED_LAPIS.get()), "final successful use should create exactly one charged lapis"
+      );
+      helper.succeed();
+   }
+
+   @GameTest(template = "empty", timeoutTicks = 40)
+   public static void charged_lapis_squeezer_creative_use_does_not_damage_tool(GameTestHelper helper) {
+      Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+      player.getAbilities().instabuild = true;
+      ItemStack squeezer = new ItemStack((ItemLike)EngineerToolsModule.CHARGED_LAPIS_SQUEEZER.get());
+      player.setItemInHand(InteractionHand.MAIN_HAND, squeezer);
+      squeezer.use(helper.getLevel(), player, InteractionHand.MAIN_HAND);
+      helper.assertValueEqual(0, squeezer.getDamageValue(), "creative squeezer use should not damage the tool");
+      helper.assertValueEqual(
+         1, countItem(player.getInventory(), (Item)EngineerToolsModule.CHARGED_LAPIS.get()), "creative squeezer use should create charged lapis"
+      );
+      helper.succeed();
+   }
+
+   @GameTest(template = "empty", timeoutTicks = 40)
+   public static void redia_tool_tills_workable_soil(GameTestHelper helper) {
+      Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+      ItemStack redia = new ItemStack((ItemLike)EngineerToolsModule.REDIA_TOOL.get());
+      helper.setBlock(TEST_POS, Blocks.DIRT);
+      helper.setBlock(TEST_POS.above(), Blocks.AIR);
+      ((Item)EngineerToolsModule.REDIA_TOOL.get()).useOn(context(helper, player, redia, TEST_POS, Direction.UP));
+      helper.assertTrue(helper.getBlockState(TEST_POS).is(Blocks.FARMLAND), "REDIA Tool should till workable soil");
+      helper.assertValueEqual(1, redia.getDamageValue(), "REDIA Tool should wear on successful tilling");
+      helper.succeed();
+   }
+
+   @GameTest(template = "empty", timeoutTicks = 40)
+   public static void redia_tool_creative_tilling_does_not_damage_tool(GameTestHelper helper) {
+      Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+      player.getAbilities().instabuild = true;
+      ItemStack redia = new ItemStack((ItemLike)EngineerToolsModule.REDIA_TOOL.get());
+      helper.setBlock(TEST_POS, Blocks.DIRT);
+      helper.setBlock(TEST_POS.above(), Blocks.AIR);
+      ((Item)EngineerToolsModule.REDIA_TOOL.get()).useOn(context(helper, player, redia, TEST_POS, Direction.UP));
+      helper.assertTrue(helper.getBlockState(TEST_POS).is(Blocks.FARMLAND), "creative REDIA Tool should still till workable soil");
+      helper.assertValueEqual(0, redia.getDamageValue(), "creative REDIA Tool use should not damage the tool");
+      helper.succeed();
+   }
+
+   @GameTest(template = "empty", timeoutTicks = 40)
+   public static void redia_tool_rejects_unworkable_target_without_damage(GameTestHelper helper) {
+      Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+      ItemStack redia = new ItemStack((ItemLike)EngineerToolsModule.REDIA_TOOL.get());
+      helper.setBlock(TEST_POS, Blocks.STONE);
+      ((Item)EngineerToolsModule.REDIA_TOOL.get()).useOn(context(helper, player, redia, TEST_POS, Direction.UP));
+      helper.assertTrue(helper.getBlockState(TEST_POS).is(Blocks.STONE), "REDIA Tool should leave unworkable blocks unchanged");
+      helper.assertValueEqual(0, redia.getDamageValue(), "failed REDIA use should not damage the tool");
+      helper.succeed();
+   }
+
+   @GameTest(template = "empty", timeoutTicks = 40)
+   public static void ariadne_coal_places_route_marker(GameTestHelper helper) {
+      Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+      ItemStack marker = new ItemStack((ItemLike)EngineerToolsModule.ARIADNE_COAL.get(), 2);
+      helper.setBlock(TEST_POS, Blocks.STONE);
+      helper.setBlock(TEST_POS.north(), Blocks.AIR);
+      ((Item)EngineerToolsModule.ARIADNE_COAL.get()).useOn(context(helper, player, marker, TEST_POS, Direction.NORTH, 0.95, 0.95, 0.0));
+      BlockState placed = helper.getBlockState(TEST_POS.north());
+      helper.assertTrue(placed.is((Block)ModBlocks.ARIADNE_MARKER.get()), "Ariadne Coal should place a black arrow route marker");
+      helper.assertTrue(placed.getValue(PortedBlocks.FACING) == Direction.NORTH, "Ariadne Coal marker should point toward the clicked border");
+      helper.assertValueEqual(
+         3, (Integer)placed.getValue(PortedBlocks.ARIADNE_MARKER_ROTATION), "Ariadne Coal marker should support original diagonal clicked face directions"
+      );
+      helper.assertValueEqual(1, marker.getCount(), "Ariadne Coal should consume one item per marker");
+      helper.succeed();
+   }
+
+   @GameTest(template = "empty", timeoutTicks = 40)
+   public static void ariadne_coal_rejects_unsupported_face_without_consuming(GameTestHelper helper) {
+      Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+      ItemStack marker = new ItemStack((ItemLike)EngineerToolsModule.ARIADNE_COAL.get(), 2);
+      helper.setBlock(TEST_POS, Blocks.STONE);
+      helper.setBlock(TEST_POS.north(), Blocks.STONE);
+      ((Item)EngineerToolsModule.ARIADNE_COAL.get()).useOn(context(helper, player, marker, TEST_POS, Direction.NORTH));
+      helper.assertValueEqual(2, marker.getCount(), "failed Ariadne Coal use should not consume the item");
+      helper.assertTrue(helper.getBlockState(TEST_POS.north()).is(Blocks.STONE), "failed Ariadne Coal use should not replace occupied blocks");
+      helper.succeed();
+   }
+
+   @GameTest(template = "empty", timeoutTicks = 40)
+   public static void sleeping_bag_skips_night_without_setting_spawn(GameTestHelper helper) {
+      Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+      ItemStack bag = new ItemStack((ItemLike)EngineerToolsModule.SLEEPING_BAG.get());
+      player.setItemInHand(InteractionHand.MAIN_HAND, bag);
+      helper.getLevel().setDayTime(13000L);
+      bag.use(helper.getLevel(), player, InteractionHand.MAIN_HAND);
+      helper.assertValueEqual(0L, Math.floorMod(helper.getLevel().getDayTime(), 24000L), "sleeping bag should advance night to morning");
+      helper.assertValueEqual(1, bag.getDamageValue(), "sleeping bag should wear after a successful rest");
+      helper.succeed();
+   }
+
+   @GameTest(template = "empty", timeoutTicks = 40)
+   public static void sleeping_bag_rejects_daytime_without_damage(GameTestHelper helper) {
+      Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+      ItemStack bag = new ItemStack((ItemLike)EngineerToolsModule.SLEEPING_BAG.get());
+      player.setItemInHand(InteractionHand.MAIN_HAND, bag);
+      helper.getLevel().setDayTime(1000L);
+      bag.use(helper.getLevel(), player, InteractionHand.MAIN_HAND);
+      helper.assertValueEqual(0, bag.getDamageValue(), "daytime sleeping bag use should not damage the item");
+      helper.succeed();
+   }
+
+   @GameTest(template = "empty", timeoutTicks = 40)
+   public static void material_box_stores_and_retrieves_one_material_stack(GameTestHelper helper) {
+      Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+      ItemStack box = new ItemStack((ItemLike)EngineerToolsModule.MATERIAL_BOX.get());
+      player.setItemInHand(InteractionHand.MAIN_HAND, box);
+      player.setItemInHand(InteractionHand.OFF_HAND, new ItemStack(Items.COBBLESTONE, 64));
+      box.use(helper.getLevel(), player, InteractionHand.MAIN_HAND);
+      helper.assertValueEqual(64, MaterialBoxItem.storedCount(box), "material box should store the offhand stack");
+      helper.assertTrue(player.getOffhandItem().isEmpty(), "material box should empty the offhand source stack");
+      box.use(helper.getLevel(), player, InteractionHand.MAIN_HAND);
+      helper.assertValueEqual(0, MaterialBoxItem.storedCount(box), "material box should reduce stored count after retrieval");
+      helper.assertTrue(player.getOffhandItem().is(Items.COBBLESTONE), "material box should retrieve the stored material to the offhand");
+      helper.assertValueEqual(64, player.getOffhandItem().getCount(), "material box should retrieve one full stack");
+      helper.succeed();
+   }
+
+   @GameTest(template = "empty", timeoutTicks = 40)
+   public static void material_box_rejects_mixed_materials_without_deleting_items(GameTestHelper helper) {
+      Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+      ItemStack box = new ItemStack((ItemLike)EngineerToolsModule.MATERIAL_BOX.get());
+      player.setItemInHand(InteractionHand.MAIN_HAND, box);
+      player.setItemInHand(InteractionHand.OFF_HAND, new ItemStack(Items.COBBLESTONE, 16));
+      box.use(helper.getLevel(), player, InteractionHand.MAIN_HAND);
+      player.setItemInHand(InteractionHand.OFF_HAND, new ItemStack(Items.DIRT, 16));
+      box.use(helper.getLevel(), player, InteractionHand.MAIN_HAND);
+      helper.assertValueEqual(16, MaterialBoxItem.storedCount(box), "material box should keep existing stored material after mismatch");
+      helper.assertTrue(player.getOffhandItem().is(Items.DIRT), "mismatched offhand stack should remain untouched");
+      helper.assertValueEqual(16, player.getOffhandItem().getCount(), "mismatched offhand count should remain untouched");
+      helper.succeed();
+   }
+
+   @GameTest(template = "empty", timeoutTicks = 40)
+   public static void material_box_rejects_modified_stacks_without_deleting_items(GameTestHelper helper) {
+      Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+      ItemStack box = new ItemStack((ItemLike)EngineerToolsModule.MATERIAL_BOX.get());
+      ItemStack namedCobble = new ItemStack(Items.COBBLESTONE, 16);
+      namedCobble.set(DataComponents.CUSTOM_NAME, Component.literal("Named Cobble"));
+      player.setItemInHand(InteractionHand.MAIN_HAND, box);
+      player.setItemInHand(InteractionHand.OFF_HAND, namedCobble);
+      box.use(helper.getLevel(), player, InteractionHand.MAIN_HAND);
+      helper.assertValueEqual(0, MaterialBoxItem.storedCount(box), "material box should not store modified stacks");
+      helper.assertTrue(player.getOffhandItem().is(Items.COBBLESTONE), "rejected modified stack should remain in the offhand");
+      helper.assertValueEqual(16, player.getOffhandItem().getCount(), "rejected modified stack count should remain untouched");
+      helper.assertTrue(player.getOffhandItem().has(DataComponents.CUSTOM_NAME), "rejected modified stack should keep its custom data");
+      helper.succeed();
+   }
+
+   @GameTest(template = "empty", timeoutTicks = 40)
+   public static void material_box_clamps_tampered_stored_count_to_capacity(GameTestHelper helper) {
+      Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+      ItemStack box = new ItemStack((ItemLike)EngineerToolsModule.MATERIAL_BOX.get());
+      CompoundTag tag = new CompoundTag();
+      tag.putString("stored_item", "minecraft:cobblestone");
+      tag.putInt("stored_count", MaterialBoxItem.CAPACITY + 100);
+      box.set(DataComponents.CUSTOM_DATA, CustomData.of(tag));
+      player.setItemInHand(InteractionHand.MAIN_HAND, box);
+      helper.assertValueEqual(MaterialBoxItem.CAPACITY, MaterialBoxItem.storedCount(box), "material box should clamp malformed stored counts to capacity");
+      box.use(helper.getLevel(), player, InteractionHand.MAIN_HAND);
+      helper.assertTrue(player.getOffhandItem().is(Items.COBBLESTONE), "material box should retrieve the clamped stored material");
+      helper.assertValueEqual(64, player.getOffhandItem().getCount(), "material box should retrieve one normal stack from clamped storage");
+      helper.assertValueEqual(
+         MaterialBoxItem.CAPACITY - 64, MaterialBoxItem.storedCount(box), "material box should keep the remaining count within capacity after retrieval"
+      );
+      helper.succeed();
+   }
+
+   @GameTest(template = "empty", timeoutTicks = 40)
+   public static void musli_bar_press_converts_ingredients_atomically(GameTestHelper helper) {
+      Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+      ItemStack press = new ItemStack((ItemLike)EngineerToolsModule.MUSLI_BAR_PRESS.get());
+      player.setItemInHand(InteractionHand.MAIN_HAND, press);
+      player.getInventory().add(new ItemStack(Items.BREAD));
+      player.getInventory().add(new ItemStack(Items.APPLE));
+      player.getInventory().add(new ItemStack(Items.WHEAT_SEEDS));
+      press.use(helper.getLevel(), player, InteractionHand.MAIN_HAND);
+      helper.assertValueEqual(4, countItem(player.getInventory(), (Item)EngineerToolsModule.MUSLI_BAR.get()), "press should create four Muslee bars");
+      helper.assertValueEqual(0, countItem(player.getInventory(), Items.BREAD), "press should consume bread on success");
+      helper.assertValueEqual(0, countItem(player.getInventory(), Items.APPLE), "press should consume apple on success");
+      helper.assertValueEqual(0, countItem(player.getInventory(), Items.WHEAT_SEEDS), "press should consume seeds on success");
+      helper.assertValueEqual(1, press.getDamageValue(), "press should wear after a successful batch");
+      helper.succeed();
+   }
+
+   @GameTest(template = "empty", timeoutTicks = 40)
+   public static void musli_bar_press_missing_ingredient_consumes_nothing(GameTestHelper helper) {
+      Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+      ItemStack press = new ItemStack((ItemLike)EngineerToolsModule.MUSLI_BAR_PRESS.get());
+      player.setItemInHand(InteractionHand.MAIN_HAND, press);
+      player.getInventory().add(new ItemStack(Items.BREAD));
+      player.getInventory().add(new ItemStack(Items.APPLE));
+      press.use(helper.getLevel(), player, InteractionHand.MAIN_HAND);
+      helper.assertValueEqual(0, countItem(player.getInventory(), (Item)EngineerToolsModule.MUSLI_BAR.get()), "failed press should not create bars");
+      helper.assertValueEqual(1, countItem(player.getInventory(), Items.BREAD), "failed press should keep bread");
+      helper.assertValueEqual(1, countItem(player.getInventory(), Items.APPLE), "failed press should keep apple");
+      helper.assertValueEqual(0, press.getDamageValue(), "failed press should not wear");
+      helper.succeed();
+   }
+
+   @GameTest(template = "empty", timeoutTicks = 40)
+   public static void musli_bar_press_uses_space_freed_by_consumed_ingredients(GameTestHelper helper) {
+      Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+      Inventory inventory = player.getInventory();
+      fillMainInventory(inventory, Items.COBBLESTONE);
+      ItemStack press = new ItemStack((ItemLike)EngineerToolsModule.MUSLI_BAR_PRESS.get());
+      inventory.selected = 0;
+      inventory.items.set(0, press);
+      inventory.items.set(1, new ItemStack(Items.BREAD));
+      inventory.items.set(2, new ItemStack(Items.APPLE));
+      inventory.items.set(3, new ItemStack(Items.WHEAT_SEEDS));
+      press.use(helper.getLevel(), player, InteractionHand.MAIN_HAND);
+      helper.assertValueEqual(4, countItem(inventory, (Item)EngineerToolsModule.MUSLI_BAR.get()), "press should use slots freed by consumed ingredients");
+      helper.assertValueEqual(0, countItem(inventory, Items.BREAD), "press should consume the single bread stack");
+      helper.assertValueEqual(0, countItem(inventory, Items.APPLE), "press should consume the single apple stack");
+      helper.assertValueEqual(0, countItem(inventory, Items.WHEAT_SEEDS), "press should consume the single seed stack");
+      helper.assertValueEqual(1, press.getDamageValue(), "press should wear after crafting into freed ingredient space");
+      helper.succeed();
+   }
+
+   @GameTest(template = "empty", timeoutTicks = 40)
+   public static void musli_bar_press_fills_split_existing_bar_stacks(GameTestHelper helper) {
+      Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+      Inventory inventory = player.getInventory();
+      fillMainInventory(inventory, Items.COBBLESTONE);
+      ItemStack press = new ItemStack((ItemLike)EngineerToolsModule.MUSLI_BAR_PRESS.get());
+      inventory.selected = 0;
+      inventory.items.set(0, press);
+      inventory.items.set(1, new ItemStack(Items.BREAD, 64));
+      inventory.items.set(2, new ItemStack(Items.APPLE, 64));
+      inventory.items.set(3, new ItemStack(Items.WHEAT_SEEDS, 64));
+      inventory.items.set(4, new ItemStack((ItemLike)EngineerToolsModule.MUSLI_BAR.get(), 62));
+      inventory.items.set(5, new ItemStack((ItemLike)EngineerToolsModule.MUSLI_BAR.get(), 62));
+      press.use(helper.getLevel(), player, InteractionHand.MAIN_HAND);
+      helper.assertValueEqual(128, countItem(inventory, (Item)EngineerToolsModule.MUSLI_BAR.get()), "press should fill split matching output stacks");
+      helper.assertValueEqual(63, ((ItemStack)inventory.items.get(1)).getCount(), "press should consume one bread from a full stack");
+      helper.assertValueEqual(63, ((ItemStack)inventory.items.get(2)).getCount(), "press should consume one apple from a full stack");
+      helper.assertValueEqual(63, ((ItemStack)inventory.items.get(3)).getCount(), "press should consume one seed from a full stack");
+      helper.assertValueEqual(64, ((ItemStack)inventory.items.get(4)).getCount(), "first partial bar stack should be filled");
+      helper.assertValueEqual(64, ((ItemStack)inventory.items.get(5)).getCount(), "second partial bar stack should be filled");
+      helper.assertValueEqual(1, press.getDamageValue(), "press should wear after crafting into split stacks");
+      helper.succeed();
+   }
+
+   @GameTest(template = "empty", timeoutTicks = 40)
+   public static void musli_bar_press_does_not_count_offhand_as_output_space(GameTestHelper helper) {
+      Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+      Inventory inventory = player.getInventory();
+      fillMainInventory(inventory, Items.COBBLESTONE);
+      ItemStack press = new ItemStack((ItemLike)EngineerToolsModule.MUSLI_BAR_PRESS.get());
+      inventory.selected = 0;
+      inventory.items.set(0, press);
+      inventory.items.set(1, new ItemStack(Items.BREAD, 64));
+      inventory.items.set(2, new ItemStack(Items.APPLE, 64));
+      inventory.items.set(3, new ItemStack(Items.WHEAT_SEEDS, 64));
+      inventory.offhand.set(0, new ItemStack((ItemLike)EngineerToolsModule.MUSLI_BAR.get(), 60));
+      press.use(helper.getLevel(), player, InteractionHand.MAIN_HAND);
+      helper.assertValueEqual(60, countItem(inventory, (Item)EngineerToolsModule.MUSLI_BAR.get()), "press should not craft into offhand-only output space");
+      helper.assertValueEqual(64, ((ItemStack)inventory.items.get(1)).getCount(), "failed offhand-space press should keep bread");
+      helper.assertValueEqual(64, ((ItemStack)inventory.items.get(2)).getCount(), "failed offhand-space press should keep apple");
+      helper.assertValueEqual(64, ((ItemStack)inventory.items.get(3)).getCount(), "failed offhand-space press should keep seeds");
+      helper.assertValueEqual(0, press.getDamageValue(), "failed offhand-space press should not wear");
+      helper.succeed();
+   }
+
+   @GameTest(template = "empty", timeoutTicks = 40)
+   public static void passive_grits_stay_registered_as_recipe_materials(GameTestHelper helper) {
+      helper.assertTrue(EngineerToolsModule.IRON_GRIT.get() instanceof TooltipItem, "iron grit should remain a passive material item");
+      helper.assertTrue(EngineerToolsModule.GOLD_GRIT.get() instanceof TooltipItem, "gold grit should remain a passive material item");
+      assertRecipe(helper, "iron_grit_smelting");
+      assertRecipe(helper, "iron_grit_blasting");
+      assertRecipe(helper, "gold_grit_smelting");
+      assertRecipe(helper, "gold_grit_blasting");
+      helper.succeed();
+   }
+
+   @GameTest(template = "empty", timeoutTicks = 40)
+   public static void crushing_hammer_entity_hit_keeps_vanilla_attack(GameTestHelper helper) {
+      Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+      ItemStack hammer = new ItemStack((ItemLike)EngineerToolsModule.CRUSHING_HAMMER.get());
+      Pig target = (Pig)EntityType.PIG.create(helper.getLevel());
+      helper.assertTrue(target != null, "pig test target should be creatable");
+      boolean cancelled = hammer.getItem().onLeftClickEntity(hammer, player, target);
+      helper.assertFalse(cancelled, "crushing hammer knockback hook should not cancel vanilla attack damage");
+      helper.succeed();
+   }
+
+   private static UseOnContext context(GameTestHelper helper, Player player, ItemStack stack, BlockPos localPos, Direction face) {
+      return context(helper, player, stack, localPos, face, 0.5, 0.5, 0.5);
+   }
+
+   private static UseOnContext context(
+      GameTestHelper helper, Player player, ItemStack stack, BlockPos localPos, Direction face, double hitX, double hitY, double hitZ
+   ) {
+      BlockPos absolutePos = helper.absolutePos(localPos);
+      player.setItemInHand(InteractionHand.MAIN_HAND, stack);
+      Vec3 hit = new Vec3(absolutePos.getX() + hitX, absolutePos.getY() + hitY, absolutePos.getZ() + hitZ);
+      return new UseOnContext(player, InteractionHand.MAIN_HAND, new BlockHitResult(hit, face, absolutePos, false));
+   }
+
+   private static int countItem(Inventory inventory, Item item) {
+      int count = 0;
+
+      for (int i = 0; i < inventory.getContainerSize(); i++) {
+         ItemStack stack = inventory.getItem(i);
+         if (stack.is(item)) {
+            count += stack.getCount();
+         }
+      }
+
+      return count;
+   }
+
+   private static void fillMainInventory(Inventory inventory, Item item) {
+      int maxStackSize = item.getDefaultInstance().getMaxStackSize();
+
+      for (int i = 0; i < inventory.items.size(); i++) {
+         inventory.items.set(i, new ItemStack(item, maxStackSize));
+      }
+   }
+
+   private static void assertRecipe(GameTestHelper helper, String name) {
+      ResourceLocation id = ResourceLocation.fromNamespaceAndPath("engineers_decor_reforged", name);
+      helper.assertTrue(helper.getLevel().getRecipeManager().byKey(id).isPresent(), "missing recipe " + id);
+   }
+}

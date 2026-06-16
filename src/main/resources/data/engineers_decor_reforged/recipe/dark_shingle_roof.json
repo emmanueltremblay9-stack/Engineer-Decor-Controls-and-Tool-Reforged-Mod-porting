@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "D  ",
+    "BD ",
+    "BBD"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:brick"
+    },
+    "D": {
+      "item": "minecraft:deepslate_tile_stairs"
+    }
+  },
+  "result": {
+    "id": "engineers_decor_reforged:dark_shingle_roof",
+    "count": 8
+  }
+}
+

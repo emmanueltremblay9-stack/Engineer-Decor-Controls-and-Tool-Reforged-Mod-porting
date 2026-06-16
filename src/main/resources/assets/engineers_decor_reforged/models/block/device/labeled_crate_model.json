@@ -1,0 +1,31 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "immersiveengineering:block/wooden_device/crate",
+    "crate": "immersiveengineering:block/wooden_device/crate",
+    "label": "immersiveengineering:block/metal_decoration/sign/base_front"
+  },
+  "elements": [
+    {
+      "name": "crate_body",
+      "from": [0, 0, 0],
+      "to": [16, 16, 16],
+      "faces": {
+        "down": { "uv": [0, 0, 16, 16], "texture": "#crate" },
+        "up": { "uv": [0, 0, 16, 16], "texture": "#crate" },
+        "north": { "uv": [0, 0, 16, 16], "texture": "#crate" },
+        "south": { "uv": [0, 0, 16, 16], "texture": "#crate" },
+        "east": { "uv": [0, 0, 16, 16], "texture": "#crate" },
+        "west": { "uv": [0, 0, 16, 16], "texture": "#crate" }
+      }
+    },
+    {
+      "name": "front_label_plate",
+      "from": [2.5, 4, -0.04],
+      "to": [13.5, 11.5, 0],
+      "faces": {
+        "north": { "uv": [3, 3, 13, 13], "texture": "#label" }
+      }
+    }
+  ]
+}

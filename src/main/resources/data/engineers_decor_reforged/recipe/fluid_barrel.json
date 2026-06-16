@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PPP",
+    "PBP",
+    "PPP"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:barrel"
+    },
+    "P": {
+      "tag": "c:plates/steel"
+    }
+  },
+  "result": {
+    "id": "engineers_decor_reforged:fluid_barrel",
+    "count": 1
+  }
+}
+
+

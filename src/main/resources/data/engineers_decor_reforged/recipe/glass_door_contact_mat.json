@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "engineers_decor_reforged:glass_contact_mat"
+    }
+  ],
+  "result": {
+    "id": "engineers_decor_reforged:glass_door_contact_mat"
+  }
+}
+

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "ingredient": {
+    "item": "engineers_decor_reforged:gold_grit"
+  },
+  "result": {
+    "id": "minecraft:gold_ingot"
+  },
+  "experience": 1.0,
+  "cookingtime": 200
+}

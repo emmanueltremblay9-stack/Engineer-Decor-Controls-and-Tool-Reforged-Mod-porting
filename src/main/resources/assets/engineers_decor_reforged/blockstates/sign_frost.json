@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "facing=north": { "model": "engineers_decor_reforged:block/sign/sign_frost_model", "y":180 },
+    "facing=south": { "model": "engineers_decor_reforged:block/sign/sign_frost_model"          },
+    "facing=west":  { "model": "engineers_decor_reforged:block/sign/sign_frost_model", "y":90  },
+    "facing=east":  { "model": "engineers_decor_reforged:block/sign/sign_frost_model", "y":270 },
+    "facing=up":    { "model": "engineers_decor_reforged:block/sign/sign_frost_model"          },
+    "facing=down":  { "model": "engineers_decor_reforged:block/sign/sign_frost_model"          }
+  }
+}

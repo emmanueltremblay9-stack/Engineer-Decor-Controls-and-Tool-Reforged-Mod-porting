@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PPP",
+    "PAO",
+    "PBC"
+  ],
+  "key": {
+    "P": {
+      "tag": "c:plates/steel"
+    },
+    "O": {
+      "item": "minecraft:observer"
+    },
+    "A": {
+      "item": "minecraft:milk_bucket"
+    },
+    "B": {
+      "item": "engineers_decor_reforged:fluid_barrel"
+    },
+    "C": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "result": {
+    "id": "engineers_decor_reforged:small_milking_machine",
+    "count": 1
+  }
+}
+
+

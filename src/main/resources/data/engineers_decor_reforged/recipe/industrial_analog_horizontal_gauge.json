@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "engineers_decor_reforged:industrial_tube_gauge"
+    }
+  ],
+  "result": {
+    "id": "engineers_decor_reforged:industrial_analog_horizontal_gauge"
+  }
+}
+

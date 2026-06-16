@@ -1,0 +1,8 @@
+{
+  "parent":"engineers_decor_reforged:block/wall/brick_wall_side",
+	"textures": {
+		"wall": "engineers_decor_reforged:block/clinker_brick/clinker_brick_wall0",
+		"top": "engineers_decor_reforged:block/clinker_brick/clinker_brick_top",
+		"particle": "engineers_decor_reforged:block/clinker_brick/clinker_brick_top"
+	}
+}

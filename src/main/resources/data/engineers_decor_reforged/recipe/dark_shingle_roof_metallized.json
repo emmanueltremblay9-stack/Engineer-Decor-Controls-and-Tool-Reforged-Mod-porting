@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "NNN",
+    "RRR"
+  ],
+  "key": {
+    "N": {
+      "tag": "c:plates/steel"
+    },
+    "R": {
+      "item": "engineers_decor_reforged:dark_shingle_roof"
+    }
+  },
+  "result": {
+    "id": "engineers_decor_reforged:dark_shingle_roof_metallized",
+    "count": 4
+  }
+}
+
+

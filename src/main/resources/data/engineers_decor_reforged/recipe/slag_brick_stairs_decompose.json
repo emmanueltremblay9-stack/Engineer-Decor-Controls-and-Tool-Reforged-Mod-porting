@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SS",
+    "SS"
+  ],
+  "key": {
+    "S": {
+      "item": "engineers_decor_reforged:slag_brick_stairs"
+    }
+  },
+  "result": {
+    "id": "engineers_decor_reforged:slag_brick_block",
+    "count": 4
+  }
+}
+

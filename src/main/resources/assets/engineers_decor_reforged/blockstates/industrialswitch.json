@@ -1,0 +1,17 @@
+{
+  "variants": {
+    "facing=north,powered=false": { "model": "engineers_decor_reforged:block/industrialswitch/industrialswitch", "y": 180 },
+    "facing=east,powered=false":  { "model": "engineers_decor_reforged:block/industrialswitch/industrialswitch", "y": 270 },
+    "facing=south,powered=false": { "model": "engineers_decor_reforged:block/industrialswitch/industrialswitch" },
+    "facing=west,powered=false":  { "model": "engineers_decor_reforged:block/industrialswitch/industrialswitch", "y": 90 },
+    "facing=up,powered=false":    { "model": "engineers_decor_reforged:block/industrialswitch/industrialswitch" },
+    "facing=down,powered=false":  { "model": "engineers_decor_reforged:block/industrialswitch/industrialswitch" },
+
+    "facing=north,powered=true":  { "model": "engineers_decor_reforged:block/industrialswitch/industrialswitchon", "y": 180 },
+    "facing=east,powered=true":   { "model": "engineers_decor_reforged:block/industrialswitch/industrialswitchon", "y": 270 },
+    "facing=south,powered=true":  { "model": "engineers_decor_reforged:block/industrialswitch/industrialswitchon" },
+    "facing=west,powered=true":   { "model": "engineers_decor_reforged:block/industrialswitch/industrialswitchon", "y": 90 },
+    "facing=up,powered=true":     { "model": "engineers_decor_reforged:block/industrialswitch/industrialswitchon" },
+    "facing=down,powered=true":   { "model": "engineers_decor_reforged:block/industrialswitch/industrialswitchon" }
+  }
+}

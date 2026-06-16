@@ -1,0 +1,395 @@
+{
+  "arrow_target": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:arrow_target"
+  },
+  "door_sensor_switch": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:door_sensor_switch"
+  },
+  "elevator_button": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:elevator_button"
+  },
+  "glass_button": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:glass_button"
+  },
+  "glass_small_button": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:glass_small_button"
+  },
+  "glass_touch_button": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:glass_touch_button"
+  },
+  "industrial_button": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_button"
+  },
+  "industrial_double_pole_button": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_double_pole_button"
+  },
+  "industrial_fenced_button": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_fenced_button"
+  },
+  "industrial_knock_button": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_knock_button"
+  },
+  "oldfancy_button": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:oldfancy_button"
+  },
+  "oldfancy_small_button": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:oldfancy_small_button"
+  },
+  "oldfancy_spring_reset_chain": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:oldfancy_spring_reset_chain"
+  },
+  "rustic_button": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:rustic_button"
+  },
+  "rustic_nail_button": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:rustic_nail_button"
+  },
+  "rustic_small_button": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:rustic_small_button"
+  },
+  "rustic_spring_reset_chain": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:rustic_spring_reset_chain"
+  },
+  "glass_contact_mat": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:glass_contact_mat"
+  },
+  "glass_door_contact_mat": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:glass_door_contact_mat"
+  },
+  "industrial_contact_mat": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_contact_mat"
+  },
+  "industrial_door_contact_mat": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_door_contact_mat"
+  },
+  "industrial_fallthrough_detector": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_fallthrough_detector"
+  },
+  "industrial_foot_button": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_foot_button"
+  },
+  "industrial_high_sensitive_trapdoor": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_high_sensitive_trapdoor"
+  },
+  "industrial_shock_sensitive_contact_mat": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_shock_sensitive_contact_mat"
+  },
+  "industrial_shock_sensitive_trapdoor": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_shock_sensitive_trapdoor"
+  },
+  "red_power_plant": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:red_power_plant"
+  },
+  "rustic_contact_plate": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:rustic_contact_plate"
+  },
+  "rustic_door_contact_plate": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:rustic_door_contact_plate"
+  },
+  "rustic_fallthrough_detector": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:rustic_fallthrough_detector"
+  },
+  "rustic_high_sensitive_trapdoor": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:rustic_high_sensitive_trapdoor"
+  },
+  "rustic_shock_sensitive_plate": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:rustic_shock_sensitive_plate"
+  },
+  "rustic_shock_sensitive_trapdoor": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:rustic_shock_sensitive_trapdoor"
+  },
+  "yellow_power_plant": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:yellow_power_plant"
+  },
+  "glass_day_timer": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:glass_day_timer"
+  },
+  "glass_entity_detector": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:glass_entity_detector"
+  },
+  "glass_interval_timer": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:glass_interval_timer"
+  },
+  "glass_linear_entity_detector": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:glass_linear_entity_detector"
+  },
+  "industrial_block_detector": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_block_detector"
+  },
+  "industrial_day_timer": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_day_timer"
+  },
+  "industrial_entity_detector": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_entity_detector"
+  },
+  "industrial_interval_timer": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_interval_timer"
+  },
+  "industrial_light_sensor": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_light_sensor"
+  },
+  "industrial_lightning_sensor": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_lightning_sensor"
+  },
+  "industrial_linear_entity_detector": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_linear_entity_detector"
+  },
+  "industrial_rain_sensor": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_rain_sensor"
+  },
+  "glass_rotary_switch": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:glass_rotary_switch"
+  },
+  "glass_touch_switch": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:glass_touch_switch"
+  },
+  "orange_sensitiveglass": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:orange_sensitiveglass"
+  },
+  "sensitive_glass_block": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:sensitive_glass_block"
+  },
+  "stained_sensitiveglass": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:stained_sensitiveglass"
+  },
+  "glass_vertical_bar_gauge": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:glass_vertical_bar_gauge"
+  },
+  "industrial_analog_angular_gauge": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_analog_angular_gauge"
+  },
+  "industrial_analog_horizontal_gauge": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_analog_horizontal_gauge"
+  },
+  "industrial_small_digital_gauge": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_small_digital_gauge"
+  },
+  "industrial_tube_gauge": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_tube_gauge"
+  },
+  "industrial_vertical_bar_gauge": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_vertical_bar_gauge"
+  },
+  "industrial_alarm_lamp": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_alarm_lamp"
+  },
+  "industrial_alarm_siren": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_alarm_siren"
+  },
+  "industrial_blinking_led": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_blinking_led"
+  },
+  "industrial_green_blinking_led": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_green_blinking_led"
+  },
+  "industrial_green_led": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_green_led"
+  },
+  "industrial_red_blinking_led": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_red_blinking_led"
+  },
+  "industrial_red_led": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_red_led"
+  },
+  "industrial_white_blinking_led": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_white_blinking_led"
+  },
+  "industrial_white_led": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_white_led"
+  },
+  "industrial_yellow_blinking_led": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_yellow_blinking_led"
+  },
+  "industrial_yellow_led": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_yellow_led"
+  },
+  "rustic_semaphore": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:rustic_semaphore"
+  },
+  "industrial_comparator_switch": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_comparator_switch"
+  },
+  "industrial_dimmer": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_dimmer"
+  },
+  "industrial_estop_switch": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_estop_switch"
+  },
+  "industrial_hopper_switch": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_hopper_switch"
+  },
+  "industrial_knock_switch": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_knock_switch"
+  },
+  "industrial_lever": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_lever"
+  },
+  "industrial_machine_switch": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_machine_switch"
+  },
+  "industrial_pull_handle": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_pull_handle"
+  },
+  "industrial_rotary_lever": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_rotary_lever"
+  },
+  "industrial_rotary_machine_switch": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_rotary_machine_switch"
+  },
+  "industrial_small_lever": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_small_lever"
+  },
+  "industrialswitch": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrialswitch"
+  },
+  "light_switch": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:light_switch"
+  },
+  "valve_wheel_switch": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:valve_wheel_switch"
+  },
+  "industrial_switchlink_cased_pulse_receiver": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_switchlink_cased_pulse_receiver"
+  },
+  "industrial_switchlink_cased_receiver": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_switchlink_cased_receiver"
+  },
+  "industrial_switchlink_pulse_receiver": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_switchlink_pulse_receiver"
+  },
+  "industrial_switchlink_pulse_relay": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_switchlink_pulse_relay"
+  },
+  "industrial_switchlink_receiver": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_switchlink_receiver"
+  },
+  "industrial_switchlink_receiver_analog": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_switchlink_receiver_analog"
+  },
+  "industrial_switchlink_relay": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_switchlink_relay"
+  },
+  "industrial_switchlink_relay_analog": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:industrial_switchlink_relay_analog"
+  },
+  "switchlink_pearl": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:switchlink_pearl"
+  },
+  "oldfancy_bistableswitch1": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:oldfancy_bistableswitch1"
+  },
+  "oldfancy_bistableswitch2": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:oldfancy_bistableswitch2"
+  },
+  "rustic_angular_lever": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:rustic_angular_lever"
+  },
+  "rustic_lever": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:rustic_lever"
+  },
+  "rustic_nail_lever": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:rustic_nail_lever"
+  },
+  "rustic_two_hinge_lever": {
+    "type": "crafting",
+    "recipe": "engineers_decor_reforged:rustic_two_hinge_lever"
+  }
+}
+

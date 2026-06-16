@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "engineers_decor_reforged_machines",
+  "pattern": [
+    "PPP",
+    " S ",
+    "S S"
+  ],
+  "key": {
+    "P": {
+      "item": "engineers_decor_reforged:old_industrial_wood_planks"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "engineers_decor_reforged:treated_wood_table"
+  }
+}

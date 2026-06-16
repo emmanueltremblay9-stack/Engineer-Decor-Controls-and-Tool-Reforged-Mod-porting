@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "FPI",
+    "FGA",
+    " N "
+  ],
+  "key": {
+    "F": {
+      "tag": "minecraft:carpets"
+    },
+    "P": {
+      "item": "minecraft:water_bucket"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "G": {
+      "item": "minecraft:glistering_melon_slice"
+    },
+    "A": {
+      "item": "minecraft:golden_apple"
+    },
+    "N": {
+      "item": "minecraft:iron_nugget"
+    }
+  },
+  "result": {
+    "id": "engineers_decor_reforged:stimpack",
+    "count": 1
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PFP"
+  ],
+  "key": {
+    "P": {
+      "item": "engineers_decor_reforged:thin_steel_pole"
+    },
+    "F": {
+      "item": "engineers_decor_reforged:steel_mesh_fence"
+    }
+  },
+  "result": {
+    "id": "engineers_decor_reforged:steel_mesh_fence_gate",
+    "count": 2
+  }
+}
+

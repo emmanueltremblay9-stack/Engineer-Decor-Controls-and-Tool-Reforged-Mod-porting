@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "B",
+    "B"
+  ],
+  "key": {
+    "B": {
+      "item": "engineers_decor_reforged:clinker_brick_stained_slab"
+    }
+  },
+  "result": {
+    "id": "engineers_decor_reforged:clinker_brick_stained_block",
+    "count": 1
+  }
+}
+

@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "RCR",
+    "ICI",
+    "RER"
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:clock"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "E": {
+      "item": "minecraft:ender_pearl"
+    }
+  },
+  "result": {
+    "id": "engineers_decor_reforged:tracker",
+    "count": 1
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "render_type": "cutout",
+	"parent": "engineers_decor_reforged:block/autoswitch/industrial/entitydetector_industrial_model_s00",
+	"textures": {
+    "led": "engineers_decor_reforged:block/indicator/indicator_fg_red_on_texture"
+	}
+}

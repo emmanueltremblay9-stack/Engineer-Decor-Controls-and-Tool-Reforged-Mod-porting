@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "C  ",
+    "CC ",
+    "CCC"
+  ],
+  "key": {
+    "C": {
+      "item": "engineers_decor_reforged:old_industrial_wood_planks"
+    }
+  },
+  "result": {
+    "id": "engineers_decor_reforged:old_industrial_wood_stairs",
+    "count": 6
+  }
+}
+

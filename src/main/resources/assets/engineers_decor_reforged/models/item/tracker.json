@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "engineers_decor_reforged:item/tracker"
+  }
+}

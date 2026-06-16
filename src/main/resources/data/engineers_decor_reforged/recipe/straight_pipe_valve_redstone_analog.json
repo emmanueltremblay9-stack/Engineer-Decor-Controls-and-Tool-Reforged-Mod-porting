@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "engineers_decor_reforged:straight_pipe_valve_redstone"
+    }
+  ],
+  "result": {
+    "id": "engineers_decor_reforged:straight_pipe_valve_redstone_analog",
+    "count": 1
+  }
+}
+

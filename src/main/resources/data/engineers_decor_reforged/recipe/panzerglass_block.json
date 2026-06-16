@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SGS",
+    "GSG",
+    "SGS"
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:glass"
+    },
+    "S": {
+      "tag": "c:plates/steel"
+    }
+  },
+  "result": {
+    "id": "engineers_decor_reforged:panzerglass_block",
+    "count": 8
+  }
+}
+
+

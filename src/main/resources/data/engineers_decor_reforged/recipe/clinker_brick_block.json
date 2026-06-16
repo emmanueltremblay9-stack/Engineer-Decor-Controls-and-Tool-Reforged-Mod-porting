@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BAB",
+    "ANA",
+    "BAB"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:brick"
+    },
+    "A": {
+      "tag": "engineers_decor_reforged:brick_ingots"
+    },
+    "N": {
+      "item": "minecraft:bricks"
+    }
+  },
+  "result": {
+    "id": "engineers_decor_reforged:clinker_brick_block",
+    "count": 8
+  }
+}
+

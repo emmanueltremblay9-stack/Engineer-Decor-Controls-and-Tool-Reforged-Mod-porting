@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "NNN",
+    "NSO",
+    "NRN"
+  ],
+  "key": {
+    "O": {
+      "item": "minecraft:observer"
+    },
+    "N": {
+      "item": "minecraft:iron_nugget"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "S": {
+      "tag": "engineers_decor_reforged:buttons"
+    }
+  },
+  "result": {
+    "id": "engineers_decor_reforged:industrial_knock_button"
+  }
+}
+

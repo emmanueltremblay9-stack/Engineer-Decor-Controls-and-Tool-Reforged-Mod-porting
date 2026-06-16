@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SG",
+    "DD"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:sand"
+    },
+    "G": {
+      "item": "minecraft:gravel"
+    },
+    "D": {
+      "item": "minecraft:dirt"
+    }
+  },
+  "result": {
+    "id": "engineers_decor_reforged:dense_grit_sand_block",
+    "count": 4
+  }
+}
+

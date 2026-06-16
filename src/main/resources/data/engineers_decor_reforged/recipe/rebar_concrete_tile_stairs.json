@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "C  ",
+    "CC ",
+    "CCC"
+  ],
+  "key": {
+    "C": {
+      "item": "engineers_decor_reforged:rebar_concrete_tile"
+    }
+  },
+  "result": {
+    "id": "engineers_decor_reforged:rebar_concrete_tile_stairs",
+    "count": 6
+  }
+}
+

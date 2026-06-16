@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "engineers_decor_reforged:sign_radioactive"
+    }
+  ],
+  "result": {
+    "id": "engineers_decor_reforged:sign_laser"
+  }
+}
+

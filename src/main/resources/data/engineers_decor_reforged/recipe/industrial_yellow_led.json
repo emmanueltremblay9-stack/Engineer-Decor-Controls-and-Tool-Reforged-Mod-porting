@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "engineers_decor_reforged:industrial_green_led"
+    }
+  ],
+  "result": {
+    "id": "engineers_decor_reforged:industrial_yellow_led"
+  }
+}
+
