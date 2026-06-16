@@ -1278,7 +1278,7 @@ public class MachineBlockEntity extends BaseContainerBlockEntity {
          this.manualTrigger = false;
          this.redstoneUpdated = false;
          Direction direction = this.facing(this.getBlockState());
-         if (redstoneAllowed || manual) {
+         if (trigger) {
             this.collectNearbyItems(direction);
          }
 

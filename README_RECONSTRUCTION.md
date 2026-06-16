@@ -29,7 +29,7 @@ Automation I/O fix:
 - Small electrical furnace input slots are insertion-only for automation.
 - Automation extraction is limited to layout result slots when a machine layout defines result slots.
 - Regression coverage was added to `MachineGuiGameTests`.
-- `runGameTestServer` now completes successfully; the latest local run passed 127 required GameTests.
+- `runGameTestServer` now completes successfully; the latest local run passed 128 required GameTests.
 
 Additional bug hunt fixes:
 
@@ -56,3 +56,5 @@ Additional bug hunt fixes:
 - Material boxes recover from invalid stored item IDs in custom data and can accept valid materials again.
 - REDIA Tool torch placement now accepts replaceable blocks such as short grass and validates the resulting torch state before consuming a torch or durability.
 - Pulse-control GameTest fixtures now place valid backing support so scheduled reset coverage does not depend on unsupported floating controls.
+- Factory hopper pulse mode only collects loose world items when a manual, ignored-redstone, continuous, or fresh redstone-edge trigger actually fires.
+- The shared blank GameTest structure now declares an 8x8x16 footprint so multi-block fixtures are spaced correctly as the suite grows.

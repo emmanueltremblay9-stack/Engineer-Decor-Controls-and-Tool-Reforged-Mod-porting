@@ -1736,6 +1736,41 @@ public final class MachineGuiGameTests {
       helper.succeed();
    }
 
+   @GameTest(template = "empty", timeoutTicks = 160)
+   public static void factory_hopper_pulse_mode_requires_new_redstone_edge_before_collection(GameTestHelper helper) {
+      Player player = helper.makeMockPlayer(GameType.CREATIVE);
+      helper.setBlock(TEST_POS, Blocks.AIR);
+      helper.setBlock(TEST_POS.south(), Blocks.REDSTONE_BLOCK);
+      helper.setBlock(
+         TEST_POS,
+         (BlockState)((MachineBlocks.DirectionalMachineBlock)ModBlocks.FACTORY_HOPPER.get()).defaultBlockState().setValue(MachineBlocks.FACING, Direction.UP)
+      );
+      BlockEntity blockEntity = helper.getLevel().getBlockEntity(helper.absolutePos(TEST_POS));
+      helper.assertTrue(blockEntity instanceof MachineBlockEntity, "factory hopper should create a machine block entity");
+      MachineBlockEntity machine = (MachineBlockEntity)blockEntity;
+      MachineMenu menu = new MachineMenu(MachineKind.FACTORY_HOPPER, 7, player.getInventory(), machine, machine.dataAccessForTests());
+      menu.handleAction(player, 3, 0, 0);
+      tickMachine(helper, machine, 12);
+
+      BlockPos itemPos = helper.absolutePos(TEST_POS.above());
+      ItemEntity looseItem = new ItemEntity(
+         helper.getLevel(), itemPos.getX() + 0.5, itemPos.getY() + 0.5, itemPos.getZ() + 0.5, new ItemStack(Items.COBBLESTONE)
+      );
+      helper.getLevel().addFreshEntity(looseItem);
+      tickMachine(helper, machine, 20);
+      helper.assertTrue(machine.getItem(0).isEmpty(), "factory hopper pulse mode should ignore held redstone power without a new edge");
+      helper.assertTrue(looseItem.isAlive(), "held-power pulse hopper should leave the loose item in the world until the next edge");
+
+      helper.setBlock(TEST_POS.south(), Blocks.AIR);
+      tickMachine(helper, machine, 12);
+      helper.assertTrue(machine.getItem(0).isEmpty(), "factory hopper pulse mode should not collect on a redstone falling edge when non-inverted");
+      helper.setBlock(TEST_POS.south(), Blocks.REDSTONE_BLOCK);
+      tickMachine(helper, machine, 12);
+      helper.assertTrue(machine.getItem(0).is(Items.COBBLESTONE), "factory hopper pulse mode should collect loose items on the next rising edge");
+      helper.assertTrue(!looseItem.isAlive(), "factory hopper pulse mode should remove the collected loose item entity after a new edge");
+      helper.succeed();
+   }
+
    @GameTest(template = "empty", timeoutTicks = 80)
    public static void fluid_machines_expose_modded_fluid_handler_capability(GameTestHelper helper) {
       placeMachine(helper, ModBlocks.FLUID_BARREL, MachineKind.FLUID_BARREL);
