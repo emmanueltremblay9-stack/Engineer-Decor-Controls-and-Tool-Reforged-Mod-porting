@@ -133,6 +133,22 @@ public final class AccesswayBlockGameTests {
    }
 
    @GameTest(template = "empty", timeoutTicks = 40)
+   public static void powered_iron_hatch_stays_open_when_used(GameTestHelper helper) {
+      Player player = helper.makeMockPlayer(GameType.CREATIVE);
+      Block hatch = (Block)ModBlocks.IRON_HATCH.get();
+      helper.setBlock(
+         LOWER_POS,
+         (BlockState)((BlockState)((BlockState)hatch.defaultBlockState().setValue(PortedBlocks.HORIZONTAL_FACING, Direction.NORTH))
+               .setValue(PortedBlocks.POWERED, true))
+            .setValue(PortedBlocks.OPEN, true)
+      );
+      helper.useBlock(LOWER_POS, player);
+      helper.assertBlockProperty(LOWER_POS, PortedBlocks.POWERED, true);
+      helper.assertBlockProperty(LOWER_POS, PortedBlocks.OPEN, true);
+      helper.succeed();
+   }
+
+   @GameTest(template = "empty", timeoutTicks = 40)
    public static void surface_mounted_blocks_drop_when_support_is_removed(GameTestHelper helper) {
       BlockPos supportPos = new BlockPos(2, 2, 2);
       BlockPos lightPos = supportPos.north();

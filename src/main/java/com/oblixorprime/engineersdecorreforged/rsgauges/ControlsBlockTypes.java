@@ -23,7 +23,10 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
@@ -64,6 +67,16 @@ public final class ControlsBlockTypes {
          case DOWN -> Block.box(min, 16.0 - thickness, min, max, 16.0, max);
          default -> throw new MatchException(null, null);
       };
+   }
+
+   private static boolean hasAttachedSupport(BlockState state, LevelReader level, BlockPos pos) {
+      Direction facing = (Direction)state.getValue(FACING);
+      BlockPos supportPos = pos.relative(facing.getOpposite());
+      return level.getBlockState(supportPos).isFaceSturdy(level, supportPos, facing);
+   }
+
+   private static BlockState updateAttachedSupport(BlockState state, Direction direction, LevelAccessor level, BlockPos pos) {
+      return direction == ((Direction)state.getValue(FACING)).getOpposite() && !hasAttachedSupport(state, level, pos) ? Blocks.AIR.defaultBlockState() : state;
    }
 
    public static boolean triggerSwitchLinkTarget(Level level, BlockPos pos) {
@@ -114,6 +127,14 @@ public final class ControlsBlockTypes {
       public BlockState getStateForPlacement(BlockPlaceContext context) {
          BlockState state = (BlockState)this.defaultBlockState().setValue(FACING, context.getClickedFace());
          return (BlockState)state.setValue(ControlsBlockTypes.POWER_BOOL, this.readPower(context.getLevel(), context.getClickedPos(), state));
+      }
+
+      protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+         return ControlsBlockTypes.hasAttachedSupport(state, level, pos);
+      }
+
+      protected BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
+         return ControlsBlockTypes.updateAttachedSupport(state, direction, level, pos);
       }
 
       protected void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving) {
@@ -210,9 +231,25 @@ public final class ControlsBlockTypes {
          BlockState attachedState = level.getBlockState(attachedPos);
          int analog = attachedState.hasAnalogOutputSignal() ? attachedState.getAnalogOutputSignal(level, attachedPos) : 0;
          int inventory = level.getBlockEntity(attachedPos) instanceof Container container ? AbstractContainerMenu.getRedstoneSignalFromContainer(container) : 0;
-         int redstone = level.getSignal(attachedPos, facing);
-         int indirect = level.getBestNeighborSignal(attachedPos);
+         int redstone = attachedState.getSignal(level, attachedPos, facing);
+         int indirect = bestNeighborSignalExcept(level, attachedPos, pos);
          return Mth.clamp(Math.max(Math.max(Math.max(analog, inventory), redstone), indirect), 0, 15);
+      }
+
+      private static int bestNeighborSignalExcept(Level level, BlockPos pos, BlockPos excludedNeighbor) {
+         int signal = 0;
+
+         for (Direction direction : Direction.values()) {
+            BlockPos neighbor = pos.relative(direction);
+            if (!neighbor.equals(excludedNeighbor)) {
+               signal = Math.max(signal, level.getSignal(neighbor, direction));
+               if (signal >= 15) {
+                  return 15;
+               }
+            }
+         }
+
+         return signal;
       }
    }
 
@@ -304,6 +341,14 @@ public final class ControlsBlockTypes {
          return (BlockState)this.defaultBlockState().setValue(FACING, context.getClickedFace());
       }
 
+      protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+         return ControlsBlockTypes.hasAttachedSupport(state, level, pos);
+      }
+
+      protected BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
+         return ControlsBlockTypes.updateAttachedSupport(state, direction, level, pos);
+      }
+
       protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
          if (!level.isClientSide) {
             double localY = hit.getLocation().y - pos.getY();
@@ -386,6 +431,14 @@ public final class ControlsBlockTypes {
       public BlockState getStateForPlacement(BlockPlaceContext context) {
          BlockState state = (BlockState)this.defaultBlockState().setValue(FACING, context.getClickedFace());
          return (BlockState)state.setValue(ControlsBlockTypes.POWER, this.readPower(context.getLevel(), context.getClickedPos(), state));
+      }
+
+      protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+         return ControlsBlockTypes.hasAttachedSupport(state, level, pos);
+      }
+
+      protected BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
+         return ControlsBlockTypes.updateAttachedSupport(state, direction, level, pos);
       }
 
       protected void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving) {
@@ -689,6 +742,14 @@ public final class ControlsBlockTypes {
 
       public BlockState getStateForPlacement(BlockPlaceContext context) {
          return (BlockState)((BlockState)this.defaultBlockState().setValue(FACING, context.getClickedFace())).setValue(ControlsBlockTypes.POWERED, false);
+      }
+
+      protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+         return ControlsBlockTypes.hasAttachedSupport(state, level, pos);
+      }
+
+      protected BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
+         return ControlsBlockTypes.updateAttachedSupport(state, direction, level, pos);
       }
 
       protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {

@@ -29,7 +29,7 @@ Automation I/O fix:
 - Small electrical furnace input slots are insertion-only for automation.
 - Automation extraction is limited to layout result slots when a machine layout defines result slots.
 - Regression coverage was added to `MachineGuiGameTests`.
-- `runGameTestServer` now completes successfully; the latest local run passed 115 required GameTests.
+- `runGameTestServer` now completes successfully; the latest local run passed 126 required GameTests.
 
 Additional bug hunt fixes:
 
@@ -42,3 +42,15 @@ Additional bug hunt fixes:
   - Small Mineral Smelter: lava only.
   - Passive Fluid Accumulator: water only.
 - Restored processing-phase comparator output for the Small Mineral Smelter and Small Freezer.
+- Attached redstone controls now require their backing support and drop when that support is removed.
+- Loaded machine runtime timers are clamped during NBT load so malformed negative or oversized counters cannot survive into runtime behavior.
+- Powered iron hatches stay open when right-clicked while still powered.
+- Small block breakers and small tree cutters route harvested drops into their internal drop buffer instead of spawning them into the world.
+- Factory hopper pulse mode respects the redstone condition before collecting loose world items.
+- Small milking machine bucket output is no longer blocked by a full internal tank, and stale active state is cleared when no output/storage path exists.
+- Direct filled-bucket use updates the visible fluid block state immediately.
+- Small tree cutters clear their active visual state immediately when redstone disables them during cooldown.
+- Factory droppers handle duplicate filters atomically so a second matching filter cannot emit a partial duplicate stack.
+- Factory hopper world-item collection updates adjacent comparators after inventory changes.
+- Industrial comparator switches ignore their own output when reading the attached signal, avoiding self-latched power.
+- Material boxes recover from invalid stored item IDs in custom data and can accept valid materials again.

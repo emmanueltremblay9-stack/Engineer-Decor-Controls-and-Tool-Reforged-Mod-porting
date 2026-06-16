@@ -37,7 +37,9 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.ComparatorBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.ComparatorBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.AABB;
@@ -528,6 +530,35 @@ public final class MachineGuiGameTests {
    }
 
    @GameTest(template = "empty", timeoutTicks = 80)
+   public static void machine_load_clamps_negative_runtime_timers(GameTestHelper helper) {
+      MachineBlockEntity labFurnace = placeMachine(helper, ModBlocks.SMALL_LAB_FURNACE, MachineKind.SMALL_LAB_FURNACE);
+      CompoundTag labSave = labFurnace.saveWithFullMetadata(helper.getLevel().registryAccess());
+      labSave.putInt("TickCounter", -20);
+      labSave.putInt("FifoTimer", -20);
+      labSave.putInt("BurnTicks", -100);
+      labSave.putInt("FuelBurnTime", -100);
+      MachineBlockEntity loadedLabFurnace = new MachineBlockEntity(labFurnace.getBlockPos(), labFurnace.getBlockState());
+      loadedLabFurnace.loadWithComponents(labSave, helper.getLevel().registryAccess());
+      helper.assertValueEqual(0, loadedLabFurnace.dataAccessForTests().get(0), "loaded lab furnace should clamp negative burn time");
+      helper.assertValueEqual(0, loadedLabFurnace.dataAccessForTests().get(1), "loaded lab furnace should clamp negative fuel time");
+      CompoundTag normalizedLabSave = loadedLabFurnace.saveWithFullMetadata(helper.getLevel().registryAccess());
+      helper.assertValueEqual(0, normalizedLabSave.getInt("TickCounter"), "loaded machine should clamp negative tick counter before saving again");
+      helper.assertValueEqual(0, normalizedLabSave.getInt("FifoTimer"), "loaded machine should clamp negative FIFO timer before saving again");
+
+      MachineBlockEntity hopper = placeMachineAt(helper, TEST_POS.offset(3, 0, 0), ModBlocks.FACTORY_HOPPER, MachineKind.FACTORY_HOPPER);
+      CompoundTag hopperSave = hopper.saveWithFullMetadata(helper.getLevel().registryAccess());
+      hopperSave.putInt("Cooldown", -10);
+      MachineBlockEntity loadedLowCooldown = new MachineBlockEntity(hopper.getBlockPos(), hopper.getBlockState());
+      loadedLowCooldown.loadWithComponents(hopperSave, helper.getLevel().registryAccess());
+      helper.assertValueEqual(0, loadedLowCooldown.dataAccessForTests().get(4), "loaded factory hopper should clamp negative cooldown");
+      hopperSave.putInt("Cooldown", 9999);
+      MachineBlockEntity loadedHighCooldown = new MachineBlockEntity(hopper.getBlockPos(), hopper.getBlockState());
+      loadedHighCooldown.loadWithComponents(hopperSave, helper.getLevel().registryAccess());
+      helper.assertValueEqual(400, loadedHighCooldown.dataAccessForTests().get(4), "loaded factory hopper should clamp oversized cooldown");
+      helper.succeed();
+   }
+
+   @GameTest(template = "empty", timeoutTicks = 80)
    public static void factory_hopper_load_clamps_collection_range(GameTestHelper helper) {
       MachineBlockEntity source = placeMachine(helper, ModBlocks.FACTORY_HOPPER, MachineKind.FACTORY_HOPPER);
       CompoundTag saved = source.saveWithFullMetadata(helper.getLevel().registryAccess());
@@ -901,6 +932,27 @@ public final class MachineGuiGameTests {
    }
 
    @GameTest(template = "empty", timeoutTicks = 120)
+   public static void factory_dropper_duplicate_filters_do_not_emit_partial_matches(GameTestHelper helper) {
+      Player player = helper.makeMockPlayer(GameType.CREATIVE);
+      MachineBlockEntity machine = placeMachine(helper, ModBlocks.FACTORY_DROPPER, MachineKind.FACTORY_DROPPER);
+      MachineMenu menu = new MachineMenu(MachineKind.FACTORY_DROPPER, 5, player.getInventory(), machine, machine.dataAccessForTests());
+      machine.setItem(0, new ItemStack(Items.DIRT, 6));
+      machine.setItem(12, new ItemStack(Items.DIRT, 4));
+      machine.setItem(13, new ItemStack(Items.DIRT, 4));
+      menu.handleAction(player, 16, 1, 0);
+      tickMachine(helper, machine, 8);
+      helper.assertValueEqual(2, machine.getItem(0).getCount(), "factory dropper should leave stock that cannot satisfy a full duplicate filter");
+      AABB dropSearch = new AABB(helper.absolutePos(TEST_POS)).inflate(3.0);
+      int droppedDirt = helper.getLevel()
+         .getEntitiesOfClass(ItemEntity.class, dropSearch, item -> item.getItem().is(Items.DIRT))
+         .stream()
+         .mapToInt(item -> item.getItem().getCount())
+         .sum();
+      helper.assertValueEqual(4, droppedDirt, "factory dropper should only eject one full duplicate filter request");
+      helper.succeed();
+   }
+
+   @GameTest(template = "empty", timeoutTicks = 120)
    public static void factory_placer_manual_gui_trigger_places_next_block(GameTestHelper helper) {
       Player player = helper.makeMockPlayer(GameType.CREATIVE);
       helper.setBlock(TEST_POS, Blocks.AIR);
@@ -1129,6 +1181,58 @@ public final class MachineGuiGameTests {
       });
    }
 
+   @GameTest(template = "empty", timeoutTicks = 180)
+   public static void small_milking_machine_bucket_output_is_not_blocked_by_full_tank(GameTestHelper helper) {
+      helper.assertTrue(NeoForgeMod.MILK.isBound(), "NeoForge milk fluid should be enabled for milking machine tests");
+      helper.setBlock(TEST_POS, Blocks.AIR);
+      helper.setBlock(
+         TEST_POS,
+         (BlockState)((MachineBlocks.MilkingMachineBlock)ModBlocks.SMALL_MILKING_MACHINE.get())
+            .defaultBlockState()
+            .setValue(MachineBlocks.HORIZONTAL_FACING, Direction.EAST)
+      );
+      BlockEntity fullTankEntity = helper.getLevel().getBlockEntity(helper.absolutePos(TEST_POS));
+      helper.assertTrue(fullTankEntity instanceof MachineBlockEntity, "small milking machine should create a machine block entity");
+      MachineBlockEntity fullTankMachine = (MachineBlockEntity)fullTankEntity;
+      IFluidHandler fullTankHandler = fullTankMachine.fluidHandler(Direction.UP);
+      helper.assertTrue(fullTankHandler != null, "small milking machine should expose a fluid handler");
+      helper.assertValueEqual(
+         4000, fullTankHandler.fill(new FluidStack(NeoForgeMod.MILK.value(), 4000), FluidAction.EXECUTE), "test setup should fill the milk tank"
+      );
+      fullTankMachine.setItem(0, new ItemStack(Items.BUCKET));
+      helper.spawn(EntityType.COW, TEST_POS.east());
+      tickMachine(helper, fullTankMachine, 120);
+      helper.assertTrue(fullTankMachine.getItem(1).is(Items.MILK_BUCKET), "full tank should not block direct bucket milking");
+      helper.assertValueEqual(4000, fullTankHandler.getFluidInTank(0).getAmount(), "bucket milking should not overflow or drain the full tank");
+
+      BlockPos blockedPos = TEST_POS.offset(5, 0, 0);
+      helper.setBlock(blockedPos, Blocks.AIR);
+      helper.setBlock(
+         blockedPos,
+         (BlockState)((MachineBlocks.MilkingMachineBlock)ModBlocks.SMALL_MILKING_MACHINE.get())
+            .defaultBlockState()
+            .setValue(MachineBlocks.HORIZONTAL_FACING, Direction.EAST)
+      );
+      BlockEntity blockedTankEntity = helper.getLevel().getBlockEntity(helper.absolutePos(blockedPos));
+      helper.assertTrue(blockedTankEntity instanceof MachineBlockEntity, "small milking machine should create a second machine block entity");
+      MachineBlockEntity blockedTankMachine = (MachineBlockEntity)blockedTankEntity;
+      IFluidHandler blockedTankHandler = blockedTankMachine.fluidHandler(Direction.UP);
+      helper.assertTrue(blockedTankHandler != null, "second small milking machine should expose a fluid handler");
+      helper.assertValueEqual(
+         3500,
+         blockedTankHandler.fill(new FluidStack(NeoForgeMod.MILK.value(), 3500), FluidAction.EXECUTE),
+         "test setup should leave less than one bucket of tank space"
+      );
+      helper.spawn(EntityType.COW, blockedPos.east());
+      tickMachine(helper, blockedTankMachine, 120);
+      helper.assertValueEqual(3500, blockedTankHandler.getFluidInTank(0).getAmount(), "blocked tank should not accept a partial milk cycle");
+      helper.assertTrue(
+         !(Boolean)helper.getBlockState(blockedPos).getValue(MachineBlocks.ACTIVE),
+         "milking machine should not show active when no bucket or tank output can accept milk"
+      );
+      helper.succeed();
+   }
+
    @GameTest(template = "empty", timeoutTicks = 220)
    public static void small_milking_machine_automates_buckets_with_back_and_bottom_inventories(GameTestHelper helper) {
       helper.setBlock(TEST_POS, Blocks.AIR);
@@ -1307,6 +1411,52 @@ public final class MachineGuiGameTests {
    }
 
    @GameTest(template = "empty", timeoutTicks = 80)
+   public static void direct_filled_bucket_use_updates_fluid_block_state(GameTestHelper helper) {
+      helper.assertTrue(NeoForgeMod.MILK.isBound(), "NeoForge milk fluid should be enabled for fluid bucket state checks");
+      Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+      MachineBlockEntity barrel = placeMachine(helper, ModBlocks.FLUID_BARREL, MachineKind.FLUID_BARREL);
+      player.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.WATER_BUCKET));
+      helper.assertTrue(
+         barrel.handleItemUse(player.getItemInHand(InteractionHand.MAIN_HAND), player, InteractionHand.MAIN_HAND),
+         "fluid barrel should accept a directly used water bucket"
+      );
+      helper.assertTrue(player.getItemInHand(InteractionHand.MAIN_HAND).is(Items.BUCKET), "direct water insertion should return an empty bucket");
+      helper.assertValueEqual(
+         1,
+         helper.getBlockState(TEST_POS).getValue(MachineBlocks.LEVEL_0_4),
+         "fluid barrel direct bucket insertion should update the visible fluid level"
+      );
+
+      BlockPos funnelPos = TEST_POS.offset(3, 0, 0);
+      MachineBlockEntity funnel = placeMachineAt(helper, funnelPos, ModBlocks.SMALL_FLUID_FUNNEL, MachineKind.SMALL_FLUID_FUNNEL);
+      player.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.LAVA_BUCKET));
+      helper.assertTrue(
+         funnel.handleItemUse(player.getItemInHand(InteractionHand.MAIN_HAND), player, InteractionHand.MAIN_HAND),
+         "small fluid funnel should accept a directly used lava bucket"
+      );
+      helper.assertValueEqual(
+         1,
+         helper.getBlockState(funnelPos).getValue(MachineBlocks.LEVEL_0_3),
+         "small fluid funnel direct bucket insertion should update the visible fluid level"
+      );
+
+      BlockPos milkingPos = TEST_POS.offset(6, 0, 0);
+      MachineBlockEntity milkingMachine = placeMachineAt(
+         helper, milkingPos, ModBlocks.SMALL_MILKING_MACHINE, MachineKind.SMALL_MILKING_MACHINE
+      );
+      player.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.MILK_BUCKET));
+      helper.assertTrue(
+         milkingMachine.handleItemUse(player.getItemInHand(InteractionHand.MAIN_HAND), player, InteractionHand.MAIN_HAND),
+         "small milking machine should accept a directly used milk bucket"
+      );
+      helper.assertTrue(
+         (Boolean)helper.getBlockState(milkingPos).getValue(MachineBlocks.FILLED),
+         "small milking machine direct milk insertion should update the filled block state"
+      );
+      helper.succeed();
+   }
+
+   @GameTest(template = "empty", timeoutTicks = 80)
    public static void fluid_barrel_bucket_preview_matches_stored_fluid_state(GameTestHelper helper) {
       MachineBlockEntity machine = placeMachine(helper, ModBlocks.FLUID_BARREL, MachineKind.FLUID_BARREL);
       IFluidHandler fluidHandler = machine.fluidHandler(Direction.UP);
@@ -1344,6 +1494,16 @@ public final class MachineGuiGameTests {
       helper.setBlock(target, Blocks.DIRT);
       tickMachine(helper, machine, 30);
       helper.assertTrue(helper.getBlockState(target).isAir(), "small block breaker should finish soft targets quickly");
+      helper.assertValueEqual(
+         1,
+         countItems(machine, Items.DIRT, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9),
+         "small block breaker should route block drops into its internal drop buffer"
+      );
+      AABB dropSearch = new AABB(helper.absolutePos(TEST_POS)).inflate(3.0);
+      helper.assertTrue(
+         helper.getLevel().getEntitiesOfClass(ItemEntity.class, dropSearch, item -> item.getItem().is(Items.DIRT)).isEmpty(),
+         "small block breaker should not spawn buffered drops into the world"
+      );
       helper.setBlock(target, Blocks.STONE);
       tickMachine(helper, machine, 35);
       helper.assertTrue(
@@ -1351,6 +1511,41 @@ public final class MachineGuiGameTests {
       );
       tickMachine(helper, machine, 30);
       helper.assertTrue(helper.getBlockState(target).isAir(), "small block breaker should break harder targets after the hardness-scaled work time");
+      helper.succeed();
+   }
+
+   @GameTest(template = "empty", timeoutTicks = 120)
+   public static void small_tree_cutter_routes_log_drops_into_internal_buffer(GameTestHelper helper) {
+      helper.setBlock(TEST_POS, Blocks.AIR);
+      helper.setBlock(
+         TEST_POS,
+         (BlockState)((MachineBlocks.ActiveHorizontalMachineBlock)ModBlocks.SMALL_TREE_CUTTER.get())
+            .defaultBlockState()
+            .setValue(MachineBlocks.HORIZONTAL_FACING, Direction.EAST)
+      );
+      BlockEntity blockEntity = helper.getLevel().getBlockEntity(helper.absolutePos(TEST_POS));
+      helper.assertTrue(blockEntity instanceof MachineBlockEntity, "small tree cutter should create a machine block entity");
+      MachineBlockEntity machine = (MachineBlockEntity)blockEntity;
+      BlockPos target = TEST_POS.east();
+      helper.setBlock(target, Blocks.OAK_LOG);
+      helper.setBlock(target.above(), Blocks.OAK_LOG);
+      tickMachine(helper, machine, 41);
+      helper.assertTrue(helper.getBlockState(target).isAir(), "small tree cutter should remove the first log");
+      helper.assertTrue(helper.getBlockState(target.above()).isAir(), "small tree cutter should remove connected logs above the first one");
+      helper.assertValueEqual(
+         2,
+         countItems(machine, Items.OAK_LOG, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9),
+         "small tree cutter should route log drops into its internal drop buffer"
+      );
+      AABB dropSearch = new AABB(helper.absolutePos(TEST_POS)).inflate(4.0);
+      helper.assertTrue(
+         helper.getLevel().getEntitiesOfClass(ItemEntity.class, dropSearch, item -> item.getItem().is(Items.OAK_LOG)).isEmpty(),
+         "small tree cutter should not spawn buffered log drops into the world"
+      );
+      helper.assertBlockProperty(TEST_POS, MachineBlocks.ACTIVE, true);
+      helper.setBlock(TEST_POS.south(), Blocks.REDSTONE_BLOCK);
+      tickMachine(helper, machine, 1);
+      helper.assertBlockProperty(TEST_POS, MachineBlocks.ACTIVE, false);
       helper.succeed();
    }
 
@@ -1476,6 +1671,68 @@ public final class MachineGuiGameTests {
          remaining == 0,
          "factory hopper should not lose or retain items from a legal snowball stack transfer; slot0=" + targetSlot0 + ", remaining=" + remaining
       );
+      helper.succeed();
+   }
+
+   @GameTest(template = "empty", timeoutTicks = 120)
+   public static void factory_hopper_collection_updates_adjacent_comparator(GameTestHelper helper) {
+      BlockPos comparatorPos = TEST_POS.east();
+      helper.setBlock(TEST_POS, Blocks.AIR);
+      helper.setBlock(comparatorPos.below(), Blocks.STONE);
+      helper.setBlock(comparatorPos, (BlockState)Blocks.COMPARATOR.defaultBlockState().setValue(ComparatorBlock.FACING, Direction.WEST));
+      helper.setBlock(
+         TEST_POS,
+         (BlockState)((MachineBlocks.DirectionalMachineBlock)ModBlocks.FACTORY_HOPPER.get()).defaultBlockState().setValue(MachineBlocks.FACING, Direction.UP)
+      );
+      BlockEntity blockEntity = helper.getLevel().getBlockEntity(helper.absolutePos(TEST_POS));
+      helper.assertTrue(blockEntity instanceof MachineBlockEntity, "factory hopper should create a machine block entity");
+      MachineBlockEntity machine = (MachineBlockEntity)blockEntity;
+      helper.assertValueEqual(
+         0,
+         helper.getLevel().getSignal(helper.absolutePos(comparatorPos), Direction.EAST),
+         "empty factory hopper should start with no comparator signal"
+      );
+      BlockPos itemPos = helper.absolutePos(TEST_POS.above());
+      ItemEntity looseItem = new ItemEntity(
+         helper.getLevel(), itemPos.getX() + 0.5, itemPos.getY() + 0.5, itemPos.getZ() + 0.5, new ItemStack(Items.COBBLESTONE)
+      );
+      helper.getLevel().addFreshEntity(looseItem);
+      tickMachine(helper, machine, 10);
+      helper.assertTrue(machine.getItem(0).is(Items.COBBLESTONE), "factory hopper should collect the loose item into inventory");
+      helper.runAfterDelay(4L, () -> {
+         helper.assertTrue(machine.getItem(0).is(Items.COBBLESTONE), "factory hopper should collect the loose item into inventory");
+         BlockEntity comparatorEntity = helper.getLevel().getBlockEntity(helper.absolutePos(comparatorPos));
+         helper.assertTrue(comparatorEntity instanceof ComparatorBlockEntity, "factory hopper test comparator should keep its block entity");
+         helper.assertTrue(((ComparatorBlockEntity)comparatorEntity).getOutputSignal() > 0, "factory hopper collection should refresh adjacent comparator output");
+         helper.succeed();
+      });
+   }
+
+   @GameTest(template = "empty", timeoutTicks = 120)
+   public static void factory_hopper_pulse_mode_respects_redstone_before_collecting_items(GameTestHelper helper) {
+      Player player = helper.makeMockPlayer(GameType.CREATIVE);
+      helper.setBlock(TEST_POS, Blocks.AIR);
+      helper.setBlock(
+         TEST_POS,
+         (BlockState)((MachineBlocks.DirectionalMachineBlock)ModBlocks.FACTORY_HOPPER.get()).defaultBlockState().setValue(MachineBlocks.FACING, Direction.UP)
+      );
+      BlockEntity blockEntity = helper.getLevel().getBlockEntity(helper.absolutePos(TEST_POS));
+      helper.assertTrue(blockEntity instanceof MachineBlockEntity, "factory hopper should create a machine block entity");
+      MachineBlockEntity machine = (MachineBlockEntity)blockEntity;
+      MachineMenu menu = new MachineMenu(MachineKind.FACTORY_HOPPER, 7, player.getInventory(), machine, machine.dataAccessForTests());
+      menu.handleAction(player, 3, 0, 0);
+      BlockPos itemPos = helper.absolutePos(TEST_POS.above());
+      ItemEntity looseItem = new ItemEntity(
+         helper.getLevel(), itemPos.getX() + 0.5, itemPos.getY() + 0.5, itemPos.getZ() + 0.5, new ItemStack(Items.COBBLESTONE)
+      );
+      helper.getLevel().addFreshEntity(looseItem);
+      tickMachine(helper, machine, 20);
+      helper.assertTrue(machine.getItem(0).isEmpty(), "factory hopper pulse mode should not collect loose items while redstone is inactive");
+      helper.assertTrue(looseItem.isAlive(), "redstone-disabled pulse hopper should leave the loose item in the world");
+      menu.handleAction(player, 5, 1, 0);
+      tickMachine(helper, machine, 12);
+      helper.assertTrue(machine.getItem(0).is(Items.COBBLESTONE), "factory hopper manual trigger should collect loose items before transfer");
+      helper.assertTrue(!looseItem.isAlive(), "factory hopper manual trigger should remove the collected loose item entity");
       helper.succeed();
    }
 

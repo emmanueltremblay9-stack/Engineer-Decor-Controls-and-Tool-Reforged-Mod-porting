@@ -102,12 +102,20 @@ public class MaterialBoxItem extends TooltipItem {
    }
 
    public static int storedCount(ItemStack stack) {
-      return Math.min(CAPACITY, Math.max(0, data(stack).getInt("stored_count")));
+      MaterialBoxItem.StoredContent content = storedContent(stack);
+      return content.item() == Items.AIR ? 0 : content.count();
    }
 
    public static Item storedItem(ItemStack stack) {
-      ResourceLocation id = ResourceLocation.tryParse(data(stack).getString("stored_item"));
-      return id == null ? Items.AIR : (Item)BuiltInRegistries.ITEM.get(id);
+      return storedContent(stack).item();
+   }
+
+   private static MaterialBoxItem.StoredContent storedContent(ItemStack stack) {
+      CompoundTag tag = data(stack);
+      ResourceLocation id = ResourceLocation.tryParse(tag.getString("stored_item"));
+      Item item = id == null ? Items.AIR : (Item)BuiltInRegistries.ITEM.get(id);
+      int count = Math.min(CAPACITY, Math.max(0, tag.getInt("stored_count")));
+      return item == Items.AIR ? new MaterialBoxItem.StoredContent(Items.AIR, 0) : new MaterialBoxItem.StoredContent(item, count);
    }
 
    private static void setStored(ItemStack stack, Item item, int count) {
@@ -123,6 +131,9 @@ public class MaterialBoxItem extends TooltipItem {
 
    private static CompoundTag data(ItemStack stack) {
       return ((CustomData)stack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY)).copyTag();
+   }
+
+   private record StoredContent(Item item, int count) {
    }
 
    private static InteractionResultHolder<ItemStack> fail(Level level, Player player, ItemStack box, String key) {

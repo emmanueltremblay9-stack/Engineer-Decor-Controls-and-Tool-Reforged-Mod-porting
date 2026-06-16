@@ -124,6 +124,23 @@ public final class ControlRedstoneGameTests {
       helper.succeed();
    }
 
+   @GameTest(template = "empty", timeoutTicks = 40)
+   public static void attached_control_blocks_drop_when_support_is_removed(GameTestHelper helper) {
+      assertAttachedControlDrops(helper, "industrial_lever", new BlockPos(2, 2, 2), Direction.EAST);
+      assertAttachedControlDrops(helper, "industrial_small_digital_gauge", new BlockPos(2, 2, 5), Direction.EAST);
+      assertAttachedControlDrops(helper, "industrial_red_led", new BlockPos(2, 2, 8), Direction.EAST);
+      assertAttachedControlDrops(helper, "industrial_dimmer", new BlockPos(2, 2, 11), Direction.EAST);
+      assertAttachedControlDrops(helper, "industrial_contact_mat", new BlockPos(5, 1, 2), Direction.UP);
+      helper.runAfterDelay(1L, () -> {
+         assertAttachedControlMissing(helper, new BlockPos(3, 2, 2), "industrial lever");
+         assertAttachedControlMissing(helper, new BlockPos(3, 2, 5), "industrial small digital gauge");
+         assertAttachedControlMissing(helper, new BlockPos(3, 2, 8), "industrial red LED");
+         assertAttachedControlMissing(helper, new BlockPos(3, 2, 11), "industrial dimmer");
+         assertAttachedControlMissing(helper, new BlockPos(5, 2, 2), "industrial contact mat");
+         helper.succeed();
+      });
+   }
+
    @GameTest(template = "empty", timeoutTicks = 80)
    public static void gauge_and_indicator_follow_attached_block_redstone(GameTestHelper helper) {
       Block gauge = control("industrial_small_digital_gauge");
@@ -229,6 +246,30 @@ public final class ControlRedstoneGameTests {
             signal(helper, switchPos),
             "industrial comparator switch should emit when its attached block receives indirect redstone power"
          );
+      });
+   }
+
+   @GameTest(template = "empty", timeoutTicks = 120)
+   public static void comparator_switch_does_not_latch_from_own_output(GameTestHelper helper) {
+      Block comparatorSwitch = control("industrial_comparator_switch");
+      BlockPos switchPos = TEST_POS;
+      BlockPos backingPos = switchPos.west();
+      BlockPos powerSourcePos = backingPos.west();
+      helper.setBlock(backingPos, Blocks.STONE.defaultBlockState());
+      helper.setBlock(powerSourcePos, Blocks.REDSTONE_BLOCK.defaultBlockState());
+      helper.setBlock(
+         switchPos,
+         (BlockState)((BlockState)comparatorSwitch.defaultBlockState().setValue(ControlsBlockTypes.FACING, Direction.EAST))
+            .setValue(ControlsBlockTypes.POWERED, false)
+      );
+      helper.runAfterDelay(25L, () -> {
+         helper.assertBlockProperty(switchPos, ControlsBlockTypes.POWERED, true);
+         helper.setBlock(powerSourcePos, Blocks.AIR.defaultBlockState());
+         helper.runAfterDelay(30L, () -> {
+            helper.assertBlockProperty(switchPos, ControlsBlockTypes.POWERED, false);
+            helper.assertValueEqual(0, signal(helper, switchPos), "industrial comparator switch should turn off after the external backing signal is removed");
+            helper.succeed();
+         });
       });
    }
 
@@ -472,6 +513,19 @@ public final class ControlRedstoneGameTests {
       helper.assertValueEqual(
          0, helper.getLevel().getSignal(helper.absolutePos(pos), Direction.NORTH), name + " should return to redstone output 0 after scheduled pulse reset"
       );
+   }
+
+   private static void assertAttachedControlDrops(GameTestHelper helper, String name, BlockPos supportPos, Direction facing) {
+      Block block = control(name);
+      BlockPos controlPos = supportPos.relative(facing);
+      helper.setBlock(supportPos, Blocks.STONE.defaultBlockState());
+      helper.setBlock(controlPos, (BlockState)block.defaultBlockState().setValue(ControlsBlockTypes.FACING, facing));
+      helper.assertTrue(helper.getBlockState(controlPos).is(block), name + " should start attached to its support");
+      helper.setBlock(supportPos, Blocks.AIR.defaultBlockState());
+   }
+
+   private static void assertAttachedControlMissing(GameTestHelper helper, BlockPos pos, String name) {
+      helper.assertTrue(helper.getBlockState(pos).isAir(), name + " should drop when its supporting face is removed");
    }
 
    private static void assertThinFullPanel(GameTestHelper helper, BlockState state, String name) {

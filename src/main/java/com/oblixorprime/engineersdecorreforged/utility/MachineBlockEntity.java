@@ -46,9 +46,11 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.item.crafting.SmeltingRecipe;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
@@ -1271,11 +1273,12 @@ public class MachineBlockEntity extends BaseContainerBlockEntity {
       if (this.level != null && this.tickCounter % 10 == 0) {
          boolean redstoneAllowed = this.logicAllowsTrigger(this.hopperLogic, powered);
          boolean pulseMode = (this.hopperLogic & 6) == 0;
-         boolean trigger = (this.hopperLogic & 4) != 0 || this.manualTrigger || redstoneAllowed && (this.redstoneUpdated || !pulseMode);
+         boolean manual = this.manualTrigger;
+         boolean trigger = (this.hopperLogic & 4) != 0 || manual || redstoneAllowed && (this.redstoneUpdated || !pulseMode);
          this.manualTrigger = false;
          this.redstoneUpdated = false;
          Direction direction = this.facing(this.getBlockState());
-         if (redstoneAllowed || pulseMode) {
+         if (redstoneAllowed || manual) {
             this.collectNearbyItems(direction);
          }
 
@@ -1457,15 +1460,36 @@ public class MachineBlockEntity extends BaseContainerBlockEntity {
                if (this.progress < this.processTimeNeeded) {
                   this.setChanged();
                } else {
-                  this.level.destroyBlock(target, true, null, 512);
-                  this.progress = 0;
-                  this.processTimeNeeded = 0;
-                  this.cooldown = 12;
-                  this.setChanged();
+                  if (this.destroyBlockIntoDropBuffer(target, targetState)) {
+                     this.progress = 0;
+                     this.processTimeNeeded = 0;
+                     this.cooldown = 12;
+                     this.setChanged();
+                     this.updateComparator();
+                  }
                }
             }
          }
       }
+   }
+
+   private boolean destroyBlockIntoDropBuffer(BlockPos target, BlockState targetState) {
+      if (!(this.level instanceof ServerLevel serverLevel) || targetState.isAir()) {
+         return false;
+      }
+
+      BlockEntity targetEntity = this.level.getBlockEntity(target);
+      List<ItemStack> drops = Block.getDrops(targetState, serverLevel, target, targetEntity);
+      int[] slots = this.accessibleSlots();
+      if (!this.canInsertAllIntoSlots(drops, slots) || !this.level.destroyBlock(target, false, null, 512)) {
+         return false;
+      }
+
+      for (ItemStack drop : drops) {
+         this.insertIntoSlots(drop.copy(), slots);
+      }
+
+      return true;
    }
 
    private int blockBreakerProcessTicks(BlockState targetState, BlockPos target) {
@@ -1478,7 +1502,9 @@ public class MachineBlockEntity extends BaseContainerBlockEntity {
    }
 
    private void tickTreeCutter(boolean powered) {
-      if (this.level != null && !powered && this.cooldown <= 0 && this.tickCounter % 40 == 0) {
+      if (this.level != null && powered) {
+         this.setBooleanProperty(MachineBlocks.ACTIVE, false);
+      } else if (this.level != null && this.cooldown <= 0 && this.tickCounter % 40 == 0) {
          Direction direction = this.facing(this.getBlockState());
          BlockPos cursor = this.worldPosition.relative(direction);
          int cut = 0;
@@ -1489,7 +1515,10 @@ public class MachineBlockEntity extends BaseContainerBlockEntity {
                break;
             }
 
-            this.level.destroyBlock(cursor, true, null, 512);
+            if (!this.destroyBlockIntoDropBuffer(cursor, state)) {
+               break;
+            }
+
             cut++;
             cursor = cursor.above();
          }
@@ -1497,6 +1526,8 @@ public class MachineBlockEntity extends BaseContainerBlockEntity {
          this.setBooleanProperty(MachineBlocks.ACTIVE, cut > 0);
          if (cut > 0) {
             this.cooldown = 30;
+            this.setChanged();
+            this.updateComparator();
          }
       } else {
          if (this.cooldown <= 0) {
@@ -1912,14 +1943,22 @@ public class MachineBlockEntity extends BaseContainerBlockEntity {
             this.tickMilkingMachineContainerIo(direction);
          }
 
-         if (!powered && this.tickCounter % 120 == 0 && this.fluidAmount < 4000) {
+         if (!powered && this.tickCounter % 120 == 0) {
             this.tickMilkingMachineContainerIo(direction);
+            ItemStack milkBucket = new ItemStack(Items.MILK_BUCKET);
+            boolean canFillBucket = ((ItemStack)this.items.get(0)).is(Items.BUCKET) && this.canInsertIntoSlots(milkBucket, 1);
+            boolean canStoreFluid = this.canAddFluid("milk", 1000, 4000);
+            if (!canFillBucket && !canStoreFluid) {
+               this.setBooleanProperty(MachineBlocks.ACTIVE, false);
+               this.syncMilkingFilled();
+               return;
+            }
+
             AABB box = new AABB(this.worldPosition.relative(direction)).inflate(2.0, 1.5, 2.0);
             if (this.level.getEntitiesOfClass(Cow.class, box, cow -> cow.isAlive() && !cow.isBaby()).isEmpty()) {
                this.setBooleanProperty(MachineBlocks.ACTIVE, false);
             } else {
-               ItemStack milkBucket = new ItemStack(Items.MILK_BUCKET);
-               if (((ItemStack)this.items.get(0)).is(Items.BUCKET) && this.canInsertIntoSlots(milkBucket, 1)) {
+               if (canFillBucket) {
                   ((ItemStack)this.items.get(0)).shrink(1);
                   this.insertIntoSlots(milkBucket, 1);
                   this.tickMilkingMachineContainerIo(direction);
@@ -2057,7 +2096,13 @@ public class MachineBlockEntity extends BaseContainerBlockEntity {
    }
 
    private boolean addHeldFluid(ItemStack stack, Player player, InteractionHand hand, String type, int capacity) {
-      return !this.addFluid(type, 1000, capacity) ? false : this.consumeHeldBucket(stack, player, hand, new ItemStack(Items.BUCKET));
+      if (!this.addFluid(type, 1000, capacity)) {
+         return false;
+      }
+
+      this.syncFluidLevel(this.propertyForFluidLevel(), capacity);
+      this.syncMilkingFilled();
+      return this.consumeHeldBucket(stack, player, hand, new ItemStack(Items.BUCKET));
    }
 
    private boolean consumeHeldBucket(ItemStack stack, Player player, InteractionHand hand, ItemStack replacement) {
@@ -2509,6 +2554,59 @@ public class MachineBlockEntity extends BaseContainerBlockEntity {
       return false;
    }
 
+   private boolean canInsertAllIntoSlots(List<ItemStack> sources, int... slots) {
+      NonNullList<ItemStack> simulated = NonNullList.withSize(this.items.size(), ItemStack.EMPTY);
+
+      for (int i = 0; i < this.items.size(); i++) {
+         simulated.set(i, ((ItemStack)this.items.get(i)).copy());
+      }
+
+      for (ItemStack source : sources) {
+         if (!this.simulateInsertIntoSlots(simulated, source, slots)) {
+            return false;
+         }
+      }
+
+      return true;
+   }
+
+   private boolean simulateInsertIntoSlots(NonNullList<ItemStack> simulated, ItemStack source, int... slots) {
+      if (source.isEmpty()) {
+         return true;
+      }
+
+      ItemStack remaining = source.copy();
+
+      for (int slotIndex : slots) {
+         if (this.validSlot(slotIndex)) {
+            ItemStack slot = (ItemStack)simulated.get(slotIndex);
+            if (!slot.isEmpty() && ItemStack.isSameItemSameComponents(slot, remaining)) {
+               int move = Math.min(remaining.getCount(), Math.min(slot.getMaxStackSize(), this.getMaxStackSize(slot)) - slot.getCount());
+               if (move > 0) {
+                  slot.grow(move);
+                  remaining.shrink(move);
+                  if (remaining.isEmpty()) {
+                     return true;
+                  }
+               }
+            }
+         }
+      }
+
+      for (int slotIndex : slots) {
+         if (this.validSlot(slotIndex) && ((ItemStack)simulated.get(slotIndex)).isEmpty()) {
+            int move = Math.min(remaining.getCount(), Math.min(remaining.getMaxStackSize(), this.getMaxStackSize(remaining)));
+            simulated.set(slotIndex, remaining.copyWithCount(move));
+            remaining.shrink(move);
+            if (remaining.isEmpty()) {
+               return true;
+            }
+         }
+      }
+
+      return remaining.isEmpty();
+   }
+
    private boolean insertIntoSlots(ItemStack source, int... slots) {
       if (source.isEmpty()) {
          return true;
@@ -2763,24 +2861,46 @@ public class MachineBlockEntity extends BaseContainerBlockEntity {
 
    private void updateDropperFilters() {
       Arrays.fill(this.dropperFilterMatches, 0);
+      int[] availableCounts = new int[12];
+
+      for (int slot = 0; slot < 12; slot++) {
+         availableCounts[slot] = ((ItemStack)this.items.get(slot)).getCount();
+      }
 
       for (int filter = 0; filter < 3; filter++) {
          ItemStack wanted = (ItemStack)this.items.get(12 + filter);
          if (!wanted.isEmpty()) {
             this.dropperFilterMatches[filter] = 1;
-            int needed = wanted.getCount();
-            int found = 0;
-
-            for (int slot = 0; slot < 12; slot++) {
-               ItemStack candidate = (ItemStack)this.items.get(slot);
-               if (ItemStack.isSameItemSameComponents(candidate, wanted)) {
-                  found += candidate.getCount();
-                  if (found >= needed) {
-                     this.dropperFilterMatches[filter] = 2;
-                     break;
-                  }
-               }
+            if (this.countAvailableDropperStock(wanted, availableCounts) >= wanted.getCount()) {
+               this.dropperFilterMatches[filter] = 2;
+               this.reserveAvailableDropperStock(wanted, availableCounts);
             }
+         }
+      }
+   }
+
+   private int countAvailableDropperStock(ItemStack wanted, int[] availableCounts) {
+      int found = 0;
+
+      for (int slot = 0; slot < 12; slot++) {
+         ItemStack candidate = (ItemStack)this.items.get(slot);
+         if (availableCounts[slot] > 0 && ItemStack.isSameItemSameComponents(candidate, wanted)) {
+            found += availableCounts[slot];
+         }
+      }
+
+      return found;
+   }
+
+   private void reserveAvailableDropperStock(ItemStack wanted, int[] availableCounts) {
+      int remaining = wanted.getCount();
+
+      for (int slot = 0; slot < 12 && remaining > 0; slot++) {
+         ItemStack candidate = (ItemStack)this.items.get(slot);
+         if (availableCounts[slot] > 0 && ItemStack.isSameItemSameComponents(candidate, wanted)) {
+            int take = Math.min(remaining, availableCounts[slot]);
+            availableCounts[slot] -= take;
+            remaining -= take;
          }
       }
    }
@@ -2827,7 +2947,12 @@ public class MachineBlockEntity extends BaseContainerBlockEntity {
       for (int filter = 0; filter < 3; filter++) {
          if (this.dropperFilterMatches[filter] > 1) {
             ItemStack wanted = ((ItemStack)this.items.get(12 + filter)).copy();
-            int remaining = wanted.getCount();
+            int wantedCount = wanted.getCount();
+            if (this.countDropperStock(wanted) < wantedCount) {
+               continue;
+            }
+
+            int remaining = wantedCount;
 
             for (int slot = 11; slot >= 0 && remaining > 0; slot--) {
                ItemStack stored = (ItemStack)this.items.get(slot);
@@ -2838,15 +2963,25 @@ public class MachineBlockEntity extends BaseContainerBlockEntity {
                }
             }
 
-            ItemStack dropped = wanted.copyWithCount(wanted.getCount() - remaining);
-            if (!dropped.isEmpty()) {
-               this.dropItem(direction, dropped);
-               droppedAny = true;
-            }
+            this.dropItem(direction, wanted.copyWithCount(wantedCount));
+            droppedAny = true;
          }
       }
 
       return droppedAny;
+   }
+
+   private int countDropperStock(ItemStack wanted) {
+      int found = 0;
+
+      for (int slot = 0; slot < 12; slot++) {
+         ItemStack candidate = (ItemStack)this.items.get(slot);
+         if (ItemStack.isSameItemSameComponents(candidate, wanted)) {
+            found += candidate.getCount();
+         }
+      }
+
+      return found;
    }
 
    private boolean matchesAnyDropperFilter(ItemStack stack) {
@@ -2955,6 +3090,11 @@ public class MachineBlockEntity extends BaseContainerBlockEntity {
    }
 
    private void normalizeLoadedState() {
+      this.tickCounter = Math.max(0, this.tickCounter);
+      this.fifoTimer = Math.max(0, this.fifoTimer);
+      this.cooldown = Mth.clamp(this.cooldown, 0, 400);
+      this.burnTicks = Math.max(0, this.burnTicks);
+      this.fuelBurnTime = Math.max(0, this.fuelBurnTime);
       this.redstoneUpdated = false;
       this.manualTrigger = false;
       this.manualRedstoneTrigger = false;
@@ -3106,6 +3246,7 @@ public class MachineBlockEntity extends BaseContainerBlockEntity {
 
       ItemStack remaining = source.copy();
       int[] slots = this.accessibleSlots();
+      boolean insertedAny = false;
 
       for (int slotIndex : slots) {
          ItemStack slot = (ItemStack)this.items.get(slotIndex);
@@ -3115,7 +3256,9 @@ public class MachineBlockEntity extends BaseContainerBlockEntity {
                slot.grow(move);
                remaining.shrink(move);
                this.setChanged();
+               insertedAny = true;
                if (remaining.isEmpty()) {
+                  this.updateComparator();
                   return ItemStack.EMPTY;
                }
             }
@@ -3128,10 +3271,16 @@ public class MachineBlockEntity extends BaseContainerBlockEntity {
             this.items.set(i, remaining.copyWithCount(move));
             remaining.shrink(move);
             this.setChanged();
+            insertedAny = true;
             if (remaining.isEmpty()) {
+               this.updateComparator();
                return ItemStack.EMPTY;
             }
          }
+      }
+
+      if (insertedAny) {
+         this.updateComparator();
       }
 
       return remaining;

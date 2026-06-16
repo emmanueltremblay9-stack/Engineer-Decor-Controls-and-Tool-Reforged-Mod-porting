@@ -272,6 +272,24 @@ public final class EngineerToolsGameTests {
    }
 
    @GameTest(template = "empty", timeoutTicks = 40)
+   public static void material_box_recovers_from_invalid_stored_item_data(GameTestHelper helper) {
+      Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+      ItemStack box = new ItemStack((ItemLike)EngineerToolsModule.MATERIAL_BOX.get());
+      CompoundTag tag = new CompoundTag();
+      tag.putString("stored_item", "engineers_decor_reforged:missing_material");
+      tag.putInt("stored_count", 48);
+      box.set(DataComponents.CUSTOM_DATA, CustomData.of(tag));
+      player.setItemInHand(InteractionHand.MAIN_HAND, box);
+      player.setItemInHand(InteractionHand.OFF_HAND, new ItemStack(Items.COBBLESTONE, 12));
+      helper.assertValueEqual(0, MaterialBoxItem.storedCount(box), "material box should ignore invalid stored item ids");
+      box.use(helper.getLevel(), player, InteractionHand.MAIN_HAND);
+      helper.assertValueEqual(12, MaterialBoxItem.storedCount(box), "material box should reuse invalid saved data as empty storage");
+      helper.assertTrue(MaterialBoxItem.storedItem(box) == Items.COBBLESTONE, "material box should replace invalid saved item data with the new material");
+      helper.assertTrue(player.getOffhandItem().isEmpty(), "material box should store the offhand stack after recovering from invalid data");
+      helper.succeed();
+   }
+
+   @GameTest(template = "empty", timeoutTicks = 40)
    public static void musli_bar_press_converts_ingredients_atomically(GameTestHelper helper) {
       Player player = helper.makeMockPlayer(GameType.SURVIVAL);
       ItemStack press = new ItemStack((ItemLike)EngineerToolsModule.MUSLI_BAR_PRESS.get());
