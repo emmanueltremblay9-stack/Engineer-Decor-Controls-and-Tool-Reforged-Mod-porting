@@ -30,7 +30,7 @@ One marker consumes one Ariadne Coal in survival. It refuses unsupported faces i
 <np>
 Auto Stim Pack
 Emergency injector
-<&stimpack>The Auto Stim Pack heals and briefly boosts movement when used manually. It can also trigger from inventory when health is low, then goes on cooldown.<br>
+<&stimpack>The Auto Stim Pack heals, briefly protects, and boosts movement when used manually. It can also trigger from inventory when health is low, then goes on cooldown.<br>
 <br>
 Keep one in your kit for emergency recovery during mine or factory work.
 <np>

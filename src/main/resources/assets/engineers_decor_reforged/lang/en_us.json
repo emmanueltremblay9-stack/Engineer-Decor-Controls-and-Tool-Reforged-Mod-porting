@@ -510,7 +510,7 @@
   "item.engineers_decor_reforged.sleeping_bag.msg.rested": "Rested until morning.",
   "item.engineers_decor_reforged.sleeping_bag.msg.unsafe": "It is not safe enough to rest.",
   "item.engineers_decor_reforged.stimpack": "Auto Stim Pack",
-  "item.engineers_decor_reforged.stimpack.help": "Automatically injects when health\n is low, healing and briefly boosting\n movement with a cooldown. Can also\n be used manually.",
+  "item.engineers_decor_reforged.stimpack.help": "Automatically injects when health\n is low, healing, protecting, and\n briefly boosting movement with a\n cooldown. Can also be used manually.",
   "item.engineers_decor_reforged.tracker": "Tracker",
   "item.engineers_decor_reforged.tracker.help": "Click a block to store its location.\n Sneak-use to clear the target. The\n tooltip reports the saved dimension\n and coordinates.",
   "item.engineers_decor_reforged.tracker.hint.cleared": "Current tracking target cleared.",

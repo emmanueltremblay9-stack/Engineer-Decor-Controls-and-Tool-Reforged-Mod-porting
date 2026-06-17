@@ -20,6 +20,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.animal.Pig;
 import net.minecraft.world.entity.animal.Sheep;
@@ -369,6 +370,34 @@ public final class EngineerToolsGameTests {
       helper.getLevel().setDayTime(1000L);
       bag.use(helper.getLevel(), player, InteractionHand.MAIN_HAND);
       helper.assertValueEqual(0, bag.getDamageValue(), "daytime sleeping bag use should not damage the item");
+      helper.succeed();
+   }
+
+   @GameTest(template = "empty", timeoutTicks = 40)
+   public static void stimpack_auto_injection_applies_original_protection_buffs(GameTestHelper helper) {
+      Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+      ItemStack stimpack = new ItemStack((ItemLike)EngineerToolsModule.STIMPACK.get());
+      player.setHealth(4.0F);
+      stimpack.getItem().inventoryTick(stimpack, helper.getLevel(), player, 0, false);
+      helper.assertTrue(player.hasEffect(MobEffects.REGENERATION), "stimpack should apply original regeneration");
+      helper.assertTrue(player.hasEffect(MobEffects.MOVEMENT_SPEED), "stimpack should apply original movement speed");
+      helper.assertTrue(player.hasEffect(MobEffects.DAMAGE_RESISTANCE), "stimpack should apply original damage resistance");
+      helper.assertTrue(player.hasEffect(MobEffects.FIRE_RESISTANCE), "stimpack should apply original fire resistance");
+      helper.assertValueEqual(1, stimpack.getDamageValue(), "automatic stimpack injection should consume one use");
+      helper.succeed();
+   }
+
+   @GameTest(template = "empty", timeoutTicks = 40)
+   public static void diving_capsule_uses_original_air_trigger_and_refill_fraction(GameTestHelper helper) {
+      Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+      ItemStack capsule = new ItemStack((ItemLike)EngineerToolsModule.DIVING_CAPSULE.get());
+      int maxAir = player.getMaxAirSupply();
+      int startingAir = maxAir * 8 / 30;
+      int expectedAir = Math.min(maxAir, startingAir + maxAir * 6 / 10);
+      player.setAirSupply(startingAir);
+      capsule.getItem().inventoryTick(capsule, helper.getLevel(), player, 0, false);
+      helper.assertValueEqual(expectedAir, player.getAirSupply(), "diving capsule should trigger below 30 percent air and restore 60 percent of max air");
+      helper.assertValueEqual(1, capsule.getDamageValue(), "automatic diving capsule refill should consume one use");
       helper.succeed();
    }
 

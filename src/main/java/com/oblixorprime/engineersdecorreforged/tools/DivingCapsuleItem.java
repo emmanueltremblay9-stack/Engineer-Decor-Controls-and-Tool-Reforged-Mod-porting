@@ -11,7 +11,8 @@ import net.minecraft.world.level.Level;
 
 public class DivingCapsuleItem extends TooltipItem {
    private static final int COOLDOWN_TICKS = 400;
-   private static final int AIR_BOOST = 140;
+   private static final int TRIGGER_AIR_TENTHS = 3;
+   private static final int AIR_BOOST_TENTHS = 6;
 
    public DivingCapsuleItem(Properties properties) {
       super("diving_capsule", properties);
@@ -27,15 +28,20 @@ public class DivingCapsuleItem extends TooltipItem {
    }
 
    public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
-      if (!level.isClientSide && entity instanceof Player player && player.getAirSupply() < 60 && !player.getCooldowns().isOnCooldown(this)) {
+      if (
+         !level.isClientSide
+            && entity instanceof Player player
+            && player.getAirSupply() <= triggerAir(player)
+            && !player.getCooldowns().isOnCooldown(this)
+      ) {
          this.refill(level, player, stack);
       }
    }
 
    private boolean refill(Level level, Player player, ItemStack stack) {
       if (!player.getCooldowns().isOnCooldown(this) && player.getAirSupply() < player.getMaxAirSupply()) {
-         player.setAirSupply(Math.min(player.getMaxAirSupply(), player.getAirSupply() + 140));
-         player.getCooldowns().addCooldown(this, 400);
+         player.setAirSupply(Math.min(player.getMaxAirSupply(), player.getAirSupply() + airBoost(player)));
+         player.getCooldowns().addCooldown(this, COOLDOWN_TICKS);
          level.playSound(null, player.blockPosition(), SoundEvents.BUBBLE_COLUMN_UPWARDS_INSIDE, player.getSoundSource(), 0.6F, 1.25F);
          if (!player.getAbilities().instabuild) {
             damageOrConsume(stack, 1);
@@ -45,6 +51,14 @@ public class DivingCapsuleItem extends TooltipItem {
       } else {
          return false;
       }
+   }
+
+   private static int triggerAir(Player player) {
+      return player.getMaxAirSupply() * TRIGGER_AIR_TENTHS / 10;
+   }
+
+   private static int airBoost(Player player) {
+      return player.getMaxAirSupply() * AIR_BOOST_TENTHS / 10;
    }
 
    private static void damageOrConsume(ItemStack stack, int amount) {

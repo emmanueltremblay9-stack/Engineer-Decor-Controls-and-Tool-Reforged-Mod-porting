@@ -13,6 +13,9 @@ import net.minecraft.world.level.Level;
 
 public class AutoStimPackItem extends TooltipItem {
    private static final int COOLDOWN_TICKS = 900;
+   private static final int REGENERATION_TICKS = 300;
+   private static final int MOVEMENT_SPEED_TICKS = 400;
+   private static final int PROTECTION_TICKS = 200;
 
    public AutoStimPackItem(Properties properties) {
       super("stimpack", properties);
@@ -39,9 +42,11 @@ public class AutoStimPackItem extends TooltipItem {
       }
 
       player.heal(6.0F);
-      player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 100, 0));
-      player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 160, 0));
-      player.getCooldowns().addCooldown(this, 900);
+      player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, REGENERATION_TICKS, 0));
+      player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, MOVEMENT_SPEED_TICKS, 0));
+      player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, PROTECTION_TICKS, 0));
+      player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, PROTECTION_TICKS, 0));
+      player.getCooldowns().addCooldown(this, COOLDOWN_TICKS);
       level.playSound(null, player.blockPosition(), SoundEvents.HONEY_DRINK, player.getSoundSource(), 0.7F, 1.2F);
       if (!player.getAbilities().instabuild) {
          damageOrConsume(stack, 1);
