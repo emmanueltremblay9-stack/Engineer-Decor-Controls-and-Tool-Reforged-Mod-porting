@@ -12,6 +12,7 @@ import java.util.List;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.gametest.framework.GameTest;
@@ -575,6 +576,7 @@ public final class EngineerToolsGameTests {
       assertMusliSeedAccepted(helper, Items.MELON_SEEDS);
       assertMusliSeedAccepted(helper, Items.PUMPKIN_SEEDS);
       assertMusliSeedAccepted(helper, Items.BEETROOT_SEEDS);
+      assertMusliSeedAccepted(helper, (Item)BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath("immersiveengineering", "seed")));
       helper.succeed();
    }
 

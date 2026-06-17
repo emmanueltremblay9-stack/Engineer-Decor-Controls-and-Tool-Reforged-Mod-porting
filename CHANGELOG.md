@@ -2,6 +2,25 @@
 
 All notable reconstruction, repair, and validation changes for this project are recorded here.
 
+## [1.1.9-reconstructed] - 2026-06-17
+
+### Validation
+
+- Confirmed `runGameTestServer` passes with all 146 required GameTests.
+- Confirmed `clean build` passes and produces `build/libs/engineers_decor_reforged-1.1.9-reconstructed.jar`.
+- Installed the rebuilt jar into the Prism `1.21.1 TesT LaB` instance with matching SHA-256 hashes.
+
+### Changed
+
+- Added Immersive Engineering Industrial Hemp Seeds (`immersiveengineering:seed`) to `engineers_decor_reforged:musli_bar_press_seeds`.
+- Muslee Bar Press inventory use and both Muslee recipes now accept Industrial Hemp Seeds through the existing shared accepted-seed tag.
+- Updated Muslee Bar Press tooltip and manual text to mention hemp seeds.
+- Synchronized user-visible mod version metadata to `1.1.9-reconstructed`.
+
+### Added
+
+- Extended Muslee Bar Press seed GameTest coverage to include the Immersive Engineering hemp seed item.
+
 ## [1.1.8-reconstructed] - 2026-06-17
 
 ### Validation

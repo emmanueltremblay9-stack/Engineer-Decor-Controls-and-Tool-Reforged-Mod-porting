@@ -495,7 +495,7 @@
   "item.engineers_decor_reforged.musli_bar": "Muslee Melange Power Bar",
   "item.engineers_decor_reforged.musli_bar.help": "Fast nutritional snack made from\n seeds, fruit, and bread.",
   "item.engineers_decor_reforged.musli_bar_press": "Muslee Melange Power Bar Press",
-  "item.engineers_decor_reforged.musli_bar_press.help": "Portable food press. Use with\n bread, an apple, and wheat,\n melon, pumpkin, or beetroot seeds\n to press four power bars.",
+  "item.engineers_decor_reforged.musli_bar_press.help": "Portable food press. Use with\n bread, an apple, and wheat,\n melon, pumpkin, beetroot, or\n hemp seeds to press four bars.",
   "item.engineers_decor_reforged.musli_bar_press.msg.full": "No room for pressed bars.",
   "item.engineers_decor_reforged.musli_bar_press.msg.ingredients": "Need bread, an apple, and acceptable seeds.",
   "item.engineers_decor_reforged.musli_bar_press.msg.pressed": "Pressed a batch of Muslee bars.",

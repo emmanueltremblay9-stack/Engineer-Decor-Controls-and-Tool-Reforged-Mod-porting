@@ -65,4 +65,4 @@ Additional bug hunt fixes:
 - REDIA Tool behavior was reimplemented against the original MIT Engineer's Tools source: multi-tool action exposure, torch placement, sneak-use ground cycling and shearing, safe attack, tree felling, and diamond over-repair Efficiency/Fortune progression.
 - Mind Squeezer behavior now matches the original MIT Engineer's Tools source: stackable to 64, no durability or breaking, no creative cost bypass, original `maxHealth / 10` low-health threshold and health cost, hunger exhaustion, and short blindness on successful conversion.
 - Ariadne Coal behavior now matches the original MIT Engineer's Tools source: a single-stack 100-use marker tool that wears on successful placement, does not wear on failed placement, and breaks on the final use.
-- Muslee Bar Press now accepts wheat, melon, pumpkin, and beetroot seeds through a shared item tag for both inventory use and direct recipes, matching upstream Engineer's Tools readme/update metadata.
+- Muslee Bar Press now accepts wheat, melon, pumpkin, beetroot, and Immersive Engineering Industrial Hemp seeds through a shared item tag for both inventory use and direct recipes.

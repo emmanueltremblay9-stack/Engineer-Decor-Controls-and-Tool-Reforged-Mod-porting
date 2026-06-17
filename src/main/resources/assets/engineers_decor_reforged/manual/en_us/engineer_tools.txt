@@ -56,7 +56,7 @@ Muslee Bar Press
 Food press
 <&musli_bar_press>The Muslee Bar Press makes field rations from compact ingredients.<br>
 <br>
-Use it with bread, an apple, and wheat, melon, pumpkin, or beetroot seeds in your inventory to press four Muslee Melange Power Bars. The press consumes the ingredients atomically, checks for output space, and wears with each batch.
+Use it with bread, an apple, and wheat, melon, pumpkin, beetroot, or Industrial Hemp seeds in your inventory to press four Muslee Melange Power Bars. The press consumes the ingredients atomically, checks for output space, and wears with each batch.
 <np>
 Muslee Melange Power Bar
 Fast shop snack
