@@ -558,6 +558,10 @@ public class RediaToolItem extends TooltipItem {
          return;
       }
 
+      if (entity instanceof Player player) {
+         player.causeFoodExhaustion(0.005F);
+      }
+
       Block.dropResources(state, level, pos, null, entity, new ItemStack(this));
       level.setBlock(pos, level.getFluidState(pos).createLegacyBlock(), 11);
    }

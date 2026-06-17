@@ -281,6 +281,23 @@ public final class EngineerToolsGameTests {
    }
 
    @GameTest(template = "empty", timeoutTicks = 40)
+   public static void redia_tool_tree_felling_adds_original_exhaustion_cost(GameTestHelper helper) {
+      Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+      player.setShiftKeyDown(true);
+      ItemStack redia = new ItemStack((ItemLike)EngineerToolsModule.REDIA_TOOL.get());
+      player.setItemInHand(InteractionHand.MAIN_HAND, redia);
+      helper.setBlock(TEST_POS, Blocks.OAK_LOG);
+      helper.setBlock(TEST_POS.above(), Blocks.OAK_LOG);
+      helper.setBlock(TEST_POS.above(2), Blocks.OAK_LOG);
+      float exhaustionBefore = player.getFoodData().getExhaustionLevel();
+      redia.getItem().mineBlock(redia, helper.getLevel(), Blocks.OAK_LOG.defaultBlockState(), helper.absolutePos(TEST_POS), player);
+      helper.assertTrue(
+         player.getFoodData().getExhaustionLevel() > exhaustionBefore, "REDIA Tool tree felling should apply the original hunger exhaustion cost"
+      );
+      helper.succeed();
+   }
+
+   @GameTest(template = "empty", timeoutTicks = 40)
    public static void redia_tool_repairs_and_overrepairs_with_diamonds(GameTestHelper helper) {
       RediaToolRepairRecipe recipe = new RediaToolRepairRecipe(CraftingBookCategory.EQUIPMENT);
       ItemStack damaged = new ItemStack((ItemLike)EngineerToolsModule.REDIA_TOOL.get());
