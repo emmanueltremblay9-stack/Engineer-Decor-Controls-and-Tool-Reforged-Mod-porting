@@ -2,6 +2,29 @@
 
 All notable reconstruction, repair, and validation changes for this project are recorded here.
 
+## [1.1.6-reconstructed] - 2026-06-17
+
+### Validation
+
+- Confirmed `runGameTestServer` passes with all 144 required GameTests.
+- Confirmed `clean build` passes and produces `build/libs/engineers_decor_reforged-1.1.6-reconstructed.jar`.
+- Installed the rebuilt jar into the Prism `1.21.1 TesT LaB` instance with matching SHA-256 hashes.
+
+### Fixed
+
+- Restored original Mind Squeezer parity from Engineer's Tools:
+  - the Mind Squeezer is stackable to 64 and no longer has durability or breaks
+  - creative/instabuild no longer bypasses the original lapis and XP requirements
+  - low-health refusal now uses the original `maxHealth / 10` threshold
+  - successful conversion now consumes one lapis and one XP level, applies the original `maxHealth / 10` health cost, adds hunger exhaustion, and briefly blinds the user
+  - success sounds now match the original hurt/enchantment feedback instead of the placeholder grindstone sound
+- Updated Mind Squeezer tooltip and manual text so the documented costs match the restored behavior.
+- Synchronized user-visible mod version metadata to `1.1.6-reconstructed`.
+
+### Added
+
+- Updated GameTest coverage for Mind Squeezer stackability, non-durability, original costs/effects, low-health threshold behavior, and creative no-bypass behavior.
+
 ## [1.1.5-reconstructed] - 2026-06-17
 
 ### Validation

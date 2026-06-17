@@ -61,31 +61,38 @@ public final class EngineerToolsGameTests {
    }
 
    @GameTest(template = "empty", timeoutTicks = 40)
-   public static void charged_lapis_squeezer_converts_lapis_xp_and_damages_tool(GameTestHelper helper) {
+   public static void charged_lapis_squeezer_uses_original_costs_without_wearing_tool(GameTestHelper helper) {
       Player player = helper.makeMockPlayer(GameType.SURVIVAL);
       ItemStack squeezer = new ItemStack((ItemLike)EngineerToolsModule.CHARGED_LAPIS_SQUEEZER.get());
       player.setItemInHand(InteractionHand.MAIN_HAND, squeezer);
       player.experienceLevel = 1;
       player.getInventory().add(new ItemStack(Items.LAPIS_LAZULI));
+      player.setHealth(3.0F);
       float healthBefore = player.getHealth();
+      float exhaustionBefore = player.getFoodData().getExhaustionLevel();
       squeezer.use(helper.getLevel(), player, InteractionHand.MAIN_HAND);
+      float expectedHealth = healthBefore - player.getMaxHealth() / 10.0F;
       helper.assertValueEqual(0, countItem(player.getInventory(), Items.LAPIS_LAZULI), "squeezer should consume one lapis");
       helper.assertValueEqual(0, player.experienceLevel, "squeezer should consume one XP level");
       helper.assertValueEqual(1, countItem(player.getInventory(), (Item)EngineerToolsModule.CHARGED_LAPIS.get()), "squeezer should create one charged lapis");
-      helper.assertValueEqual(1, squeezer.getDamageValue(), "squeezer should lose durability on success");
-      helper.assertTrue(player.getHealth() < healthBefore, "squeezer should hurt the user on success");
+      helper.assertValueEqual(0, squeezer.getDamageValue(), "squeezer should not lose durability on success");
+      helper.assertTrue(Math.abs(player.getHealth() - expectedHealth) < 0.001F, "squeezer should apply the original max-health/10 health cost");
+      helper.assertTrue(
+         player.getFoodData().getExhaustionLevel() > exhaustionBefore, "squeezer should apply the original hunger exhaustion cost"
+      );
+      helper.assertTrue(player.hasEffect(MobEffects.BLINDNESS), "squeezer should briefly blind the user on success");
       helper.succeed();
    }
 
    @GameTest(template = "empty", timeoutTicks = 40)
-   public static void charged_lapis_squeezer_without_lapis_keeps_xp_and_durability(GameTestHelper helper) {
+   public static void charged_lapis_squeezer_without_lapis_keeps_xp_and_item(GameTestHelper helper) {
       Player player = helper.makeMockPlayer(GameType.SURVIVAL);
       ItemStack squeezer = new ItemStack((ItemLike)EngineerToolsModule.CHARGED_LAPIS_SQUEEZER.get());
       player.setItemInHand(InteractionHand.MAIN_HAND, squeezer);
       player.experienceLevel = 1;
       squeezer.use(helper.getLevel(), player, InteractionHand.MAIN_HAND);
       helper.assertValueEqual(1, player.experienceLevel, "missing lapis should not consume XP");
-      helper.assertValueEqual(0, squeezer.getDamageValue(), "missing lapis should not damage the squeezer");
+      helper.assertValueEqual(0, squeezer.getDamageValue(), "missing lapis should not wear the squeezer");
       helper.assertValueEqual(
          0, countItem(player.getInventory(), (Item)EngineerToolsModule.CHARGED_LAPIS.get()), "missing lapis should not create charged lapis"
       );
@@ -93,44 +100,44 @@ public final class EngineerToolsGameTests {
    }
 
    @GameTest(template = "empty", timeoutTicks = 40)
-   public static void charged_lapis_squeezer_without_xp_keeps_lapis_and_durability(GameTestHelper helper) {
+   public static void charged_lapis_squeezer_without_xp_keeps_lapis_and_item(GameTestHelper helper) {
       Player player = helper.makeMockPlayer(GameType.SURVIVAL);
       ItemStack squeezer = new ItemStack((ItemLike)EngineerToolsModule.CHARGED_LAPIS_SQUEEZER.get());
       player.setItemInHand(InteractionHand.MAIN_HAND, squeezer);
       player.getInventory().add(new ItemStack(Items.LAPIS_LAZULI));
       squeezer.use(helper.getLevel(), player, InteractionHand.MAIN_HAND);
       helper.assertValueEqual(1, countItem(player.getInventory(), Items.LAPIS_LAZULI), "missing XP should not consume lapis");
-      helper.assertValueEqual(0, squeezer.getDamageValue(), "missing XP should not damage the squeezer");
+      helper.assertValueEqual(0, squeezer.getDamageValue(), "missing XP should not wear the squeezer");
       helper.assertValueEqual(0, countItem(player.getInventory(), (Item)EngineerToolsModule.CHARGED_LAPIS.get()), "missing XP should not create charged lapis");
       helper.succeed();
    }
 
    @GameTest(template = "empty", timeoutTicks = 40)
-   public static void charged_lapis_squeezer_breaks_cleanly_after_final_success(GameTestHelper helper) {
+   public static void charged_lapis_squeezer_is_original_stackable_reusable_item(GameTestHelper helper) {
       Player player = helper.makeMockPlayer(GameType.SURVIVAL);
-      ItemStack squeezer = new ItemStack((ItemLike)EngineerToolsModule.CHARGED_LAPIS_SQUEEZER.get());
-      squeezer.setDamageValue(63);
+      ItemStack squeezer = new ItemStack((ItemLike)EngineerToolsModule.CHARGED_LAPIS_SQUEEZER.get(), 2);
       player.setItemInHand(InteractionHand.MAIN_HAND, squeezer);
       player.experienceLevel = 1;
       player.getInventory().add(new ItemStack(Items.LAPIS_LAZULI));
+      helper.assertValueEqual(64, squeezer.getMaxStackSize(), "squeezer should use the original stack size");
+      helper.assertFalse(squeezer.isDamageableItem(), "squeezer should not be a durability item");
       squeezer.use(helper.getLevel(), player, InteractionHand.MAIN_HAND);
-      helper.assertTrue(player.getMainHandItem().isEmpty(), "near-broken squeezer should break after the successful conversion");
+      helper.assertValueEqual(2, player.getMainHandItem().getCount(), "successful conversion should not consume or break the squeezer");
       helper.assertValueEqual(
-         1, countItem(player.getInventory(), (Item)EngineerToolsModule.CHARGED_LAPIS.get()), "final successful use should create exactly one charged lapis"
+         1, countItem(player.getInventory(), (Item)EngineerToolsModule.CHARGED_LAPIS.get()), "successful use should create exactly one charged lapis"
       );
       helper.succeed();
    }
 
    @GameTest(template = "empty", timeoutTicks = 40)
-   public static void charged_lapis_squeezer_creative_use_does_not_damage_tool(GameTestHelper helper) {
+   public static void charged_lapis_squeezer_creative_does_not_bypass_original_costs(GameTestHelper helper) {
       Player player = helper.makeMockPlayer(GameType.SURVIVAL);
       player.getAbilities().instabuild = true;
       ItemStack squeezer = new ItemStack((ItemLike)EngineerToolsModule.CHARGED_LAPIS_SQUEEZER.get());
       player.setItemInHand(InteractionHand.MAIN_HAND, squeezer);
       squeezer.use(helper.getLevel(), player, InteractionHand.MAIN_HAND);
-      helper.assertValueEqual(0, squeezer.getDamageValue(), "creative squeezer use should not damage the tool");
       helper.assertValueEqual(
-         1, countItem(player.getInventory(), (Item)EngineerToolsModule.CHARGED_LAPIS.get()), "creative squeezer use should create charged lapis"
+         0, countItem(player.getInventory(), (Item)EngineerToolsModule.CHARGED_LAPIS.get()), "creative squeezer use should still require the original inputs"
       );
       helper.succeed();
    }

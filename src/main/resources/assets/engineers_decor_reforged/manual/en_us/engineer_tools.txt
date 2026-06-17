@@ -68,7 +68,7 @@ Mind Squeezer
 Experience condenser
 <&charged_lapis_squeezer>The Mind Squeezer converts one lapis lazuli and one experience level from your inventory into Charged Lapis.<br>
 <br>
-The process hurts the user and damages the squeezer on every successful conversion. It refuses to run without lapis, without XP, or when the user is too close to death.
+The process hurts, exhausts, and briefly blinds the user on every successful conversion. It refuses to run without lapis, without XP, or when the user is too close to death.
 <np>
 Charged Lapis
 Stored experience

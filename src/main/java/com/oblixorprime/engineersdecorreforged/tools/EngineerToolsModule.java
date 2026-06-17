@@ -39,7 +39,7 @@ public final class EngineerToolsModule {
       "musli_bar", () -> new TooltipItem("musli_bar", new Properties().food(new Builder().nutrition(6).saturationModifier(0.65F).fast().build()))
    );
    public static final DeferredItem<Item> CHARGED_LAPIS_SQUEEZER = ModItems.registerItem(
-      "charged_lapis_squeezer", () -> new ChargedLapisSqueezerItem(new Properties().stacksTo(1).durability(64).rarity(Rarity.UNCOMMON))
+      "charged_lapis_squeezer", () -> new ChargedLapisSqueezerItem(new Properties().stacksTo(64).rarity(Rarity.UNCOMMON))
    );
    public static final DeferredItem<Item> CHARGED_LAPIS = ModItems.registerItem(
       "charged_lapis", () -> new ChargedLapisItem(new Properties().rarity(Rarity.UNCOMMON))

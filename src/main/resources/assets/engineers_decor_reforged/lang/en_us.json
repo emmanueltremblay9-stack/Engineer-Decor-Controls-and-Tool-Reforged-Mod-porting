@@ -468,7 +468,7 @@
   "item.engineers_decor_reforged.charged_lapis": "Charged Lapis",
   "item.engineers_decor_reforged.charged_lapis.help": "Stores one experience level.\n Consume to retrieve the level,\n remove active effects, and recover\n a small amount of health.",
   "item.engineers_decor_reforged.charged_lapis_squeezer": "Mind Squeezer",
-  "item.engineers_decor_reforged.charged_lapis_squeezer.help": "Creates Charged Lapis from one\n lapis lazuli and one experience\n level. A successful squeeze hurts\n the user and wears the tool.",
+  "item.engineers_decor_reforged.charged_lapis_squeezer.help": "Creates Charged Lapis from one\n lapis lazuli and one experience\n level. A successful squeeze hurts,\n exhausts, and briefly blinds the user.",
   "item.engineers_decor_reforged.charged_lapis_squeezer.msg.lowhealth": "That would be too dangerous.",
   "item.engineers_decor_reforged.charged_lapis_squeezer.msg.nolapis": "No lapis lazuli in inventory.",
   "item.engineers_decor_reforged.charged_lapis_squeezer.msg.noxp": "No experience level available.",
