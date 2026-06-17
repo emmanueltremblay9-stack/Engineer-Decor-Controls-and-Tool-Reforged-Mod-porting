@@ -15,6 +15,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 
 public class SleepingBagItem extends TooltipItem {
+   public static final int MAX_DAMAGE = 4096;
    private static final long DAY_LENGTH = 24000L;
    private static final long REST_START = 12542L;
    private static final long REST_END = 23459L;
@@ -24,6 +25,12 @@ public class SleepingBagItem extends TooltipItem {
       super("sleeping_bag", properties);
    }
 
+   @Override
+   public boolean isBarVisible(ItemStack stack) {
+      return false;
+   }
+
+   @Override
    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
       ItemStack stack = player.getItemInHand(hand);
       if (level.isClientSide) {

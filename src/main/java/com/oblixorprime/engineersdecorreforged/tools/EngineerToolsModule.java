@@ -24,7 +24,7 @@ public final class EngineerToolsModule {
       "stimpack", () -> new AutoStimPackItem(new Properties().stacksTo(1).durability(16).rarity(Rarity.UNCOMMON))
    );
    public static final DeferredItem<Item> SLEEPING_BAG = ModItems.registerItem(
-      "sleeping_bag", () -> new SleepingBagItem(new Properties().stacksTo(1).durability(48).rarity(Rarity.UNCOMMON))
+      "sleeping_bag", () -> new SleepingBagItem(new Properties().stacksTo(1).durability(SleepingBagItem.MAX_DAMAGE).rarity(Rarity.UNCOMMON))
    );
    public static final DeferredItem<Item> MATERIAL_BOX = ModItems.registerItem(
       "material_box", () -> new MaterialBoxItem(new Properties().stacksTo(1).rarity(Rarity.UNCOMMON))

@@ -394,6 +394,15 @@ public final class EngineerToolsGameTests {
    }
 
    @GameTest(template = "empty", timeoutTicks = 40)
+   public static void sleeping_bag_uses_original_durability_and_hidden_bar(GameTestHelper helper) {
+      ItemStack bag = new ItemStack((ItemLike)EngineerToolsModule.SLEEPING_BAG.get());
+      helper.assertValueEqual(4096, bag.getMaxDamage(), "sleeping bag should use the original 4096 durability");
+      bag.setDamageValue(1);
+      helper.assertFalse(bag.isBarVisible(), "sleeping bag should keep the original hidden durability bar");
+      helper.succeed();
+   }
+
+   @GameTest(template = "empty", timeoutTicks = 40)
    public static void stimpack_auto_injection_applies_original_protection_buffs(GameTestHelper helper) {
       Player player = helper.makeMockPlayer(GameType.SURVIVAL);
       ItemStack stimpack = new ItemStack((ItemLike)EngineerToolsModule.STIMPACK.get());
@@ -628,13 +637,14 @@ public final class EngineerToolsGameTests {
    }
 
    @GameTest(template = "empty", timeoutTicks = 40)
-   public static void crushing_hammer_entity_hit_keeps_vanilla_attack(GameTestHelper helper) {
+   public static void crushing_hammer_entity_hit_cancels_vanilla_attack(GameTestHelper helper) {
       Player player = helper.makeMockPlayer(GameType.SURVIVAL);
       ItemStack hammer = new ItemStack((ItemLike)EngineerToolsModule.CRUSHING_HAMMER.get());
       Pig target = (Pig)EntityType.PIG.create(helper.getLevel());
       helper.assertTrue(target != null, "pig test target should be creatable");
       boolean cancelled = hammer.getItem().onLeftClickEntity(hammer, player, target);
-      helper.assertFalse(cancelled, "crushing hammer knockback hook should not cancel vanilla attack damage");
+      helper.assertTrue(cancelled, "crushing hammer should keep original knockback-only hits by cancelling vanilla attack damage");
+      helper.assertTrue(hammer.canDisableShield(new ItemStack(Items.SHIELD), target, player), "crushing hammer should disable shields like the original item");
       helper.succeed();
    }
 

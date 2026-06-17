@@ -2,6 +2,28 @@
 
 All notable reconstruction, repair, and validation changes for this project are recorded here.
 
+## [1.1.5-reconstructed] - 2026-06-17
+
+### Validation
+
+- Confirmed `runGameTestServer` passes with all 144 required GameTests.
+- Confirmed `clean build` passes and produces `build/libs/engineers_decor_reforged-1.1.5-reconstructed.jar`.
+- Installed the rebuilt jar into the Prism `1.21.1 TesT LaB` instance with matching SHA-256 hashes.
+
+### Fixed
+
+- Restored additional original Engineer's Tools parity:
+  - Sleeping Bag now uses the original 4096 durability instead of 48.
+  - Sleeping Bag keeps its original hidden durability bar.
+  - Crushing Hammer entity hits now cancel vanilla attack damage after applying knockback.
+  - Crushing Hammer now disables shields like the original item.
+  - Crushing Hammer block mining now returns the original no-use-stat result after server-side wear handling.
+- Synchronized user-visible mod version metadata to `1.1.5-reconstructed`.
+
+### Added
+
+- Added GameTest coverage for Sleeping Bag durability/bar behavior and updated Crushing Hammer attack/shield parity coverage.
+
 ## [1.1.4-reconstructed] - 2026-06-17
 
 ### Validation
