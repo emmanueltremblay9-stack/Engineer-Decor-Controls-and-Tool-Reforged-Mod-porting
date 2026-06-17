@@ -2,6 +2,23 @@
 
 All notable reconstruction, repair, and validation changes for this project are recorded here.
 
+## [1.1.10-reconstructed] - 2026-06-17
+
+### Validation
+
+- Confirmed `runGameTestServer` passes with all 147 required GameTests.
+- Confirmed `clean build` passes and produces `build/libs/engineers_decor_reforged-1.1.10-reconstructed.jar`.
+- Confirmed the rebuilt jar metadata reports `engineers_decor_reforged` version `1.1.10-reconstructed`.
+
+### Fixed
+
+- Guarded machine menu shift-click handling against negative and out-of-range slot indices so malformed menu input returns `ItemStack.EMPTY` instead of throwing from `this.slots.get(index)`.
+- Synchronized user-visible mod version metadata to `1.1.10-reconstructed`.
+
+### Added
+
+- Added GameTest coverage for invalid machine menu quick-move indices.
+
 ## [1.1.9-reconstructed] - 2026-06-17
 
 ### Validation

@@ -260,6 +260,18 @@ public final class MachineGuiGameTests {
    }
 
    @GameTest(template = "empty", timeoutTicks = 80)
+   public static void machine_menu_quick_move_rejects_invalid_slot_indices(GameTestHelper helper) {
+      Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+      MachineBlockEntity machine = placeMachine(helper, ModBlocks.FACTORY_HOPPER, MachineKind.FACTORY_HOPPER);
+      MachineMenu menu = new MachineMenu(MachineKind.FACTORY_HOPPER, 11, player.getInventory(), machine, machine.dataAccessForTests());
+      helper.assertTrue(menu.quickMoveStack(player, -1).isEmpty(), "quick move should ignore negative slot indices");
+      helper.assertTrue(menu.quickMoveStack(player, menu.slots.size()).isEmpty(), "quick move should ignore slot indices just past the menu");
+      helper.assertTrue(menu.quickMoveStack(player, menu.slots.size() + 100).isEmpty(), "quick move should ignore far out-of-range slot indices");
+      menu.removed(player);
+      helper.succeed();
+   }
+
+   @GameTest(template = "empty", timeoutTicks = 80)
    public static void metal_crafting_table_crafts_vanilla_grid_recipes(GameTestHelper helper) {
       MachineBlockEntity machine = placeMachine(helper, ModBlocks.METAL_CRAFTING_TABLE, MachineKind.METAL_CRAFTING_TABLE);
       machine.setItem(1, new ItemStack(Items.OAK_PLANKS));

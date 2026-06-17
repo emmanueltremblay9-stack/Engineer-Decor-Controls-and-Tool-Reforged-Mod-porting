@@ -29,7 +29,7 @@ Automation I/O fix:
 - Small electrical furnace input slots are insertion-only for automation.
 - Automation extraction is limited to layout result slots when a machine layout defines result slots.
 - Regression coverage was added to `MachineGuiGameTests`.
-- `runGameTestServer` now completes successfully; the latest local run passed 146 required GameTests.
+- `runGameTestServer` now completes successfully; the latest local run passed 147 required GameTests.
 
 Additional bug hunt fixes:
 
@@ -66,3 +66,4 @@ Additional bug hunt fixes:
 - Mind Squeezer behavior now matches the original MIT Engineer's Tools source: stackable to 64, no durability or breaking, no creative cost bypass, original `maxHealth / 10` low-health threshold and health cost, hunger exhaustion, and short blindness on successful conversion.
 - Ariadne Coal behavior now matches the original MIT Engineer's Tools source: a single-stack 100-use marker tool that wears on successful placement, does not wear on failed placement, and breaks on the final use.
 - Muslee Bar Press now accepts wheat, melon, pumpkin, beetroot, and Immersive Engineering Industrial Hemp seeds through a shared item tag for both inventory use and direct recipes.
+- Machine menu shift-click handling now ignores negative and out-of-range slot indices instead of throwing from malformed menu input.

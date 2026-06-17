@@ -15,9 +15,9 @@ This workspace was rebuilt from the published `engineers_decor_reforged-1.1.jar`
 Latest local validation before publishing:
 
 - `compileJava` passed.
-- `runGameTestServer` passed with 146 required GameTests.
-- `clean build` passed and produced `build/libs/engineers_decor_reforged-1.1.9-reconstructed.jar`.
-- Latest rebuilt jar observed locally: `2,470,400` bytes, updated `2026-06-17 6:58:47 PM`.
+- `runGameTestServer` passed with 147 required GameTests.
+- `clean build` passed and produced `build/libs/engineers_decor_reforged-1.1.10-reconstructed.jar`.
+- Latest rebuilt jar observed locally: `2,470,602` bytes, updated `2026-06-17 7:08:55 PM`.
 
 ## Notes
 

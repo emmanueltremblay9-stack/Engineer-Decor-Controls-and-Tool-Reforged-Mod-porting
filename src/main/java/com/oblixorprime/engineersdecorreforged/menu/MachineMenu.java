@@ -164,6 +164,10 @@ public class MachineMenu extends AbstractContainerMenu {
 
    public ItemStack quickMoveStack(Player player, int index) {
       ItemStack result = ItemStack.EMPTY;
+      if (index < 0 || index >= this.slots.size()) {
+         return result;
+      }
+
       Slot slot = (Slot)this.slots.get(index);
       if (slot != null && slot.hasItem()) {
          ItemStack stack = slot.getItem();
