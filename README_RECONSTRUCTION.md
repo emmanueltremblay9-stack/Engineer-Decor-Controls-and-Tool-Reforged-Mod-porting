@@ -29,7 +29,7 @@ Automation I/O fix:
 - Small electrical furnace input slots are insertion-only for automation.
 - Automation extraction is limited to layout result slots when a machine layout defines result slots.
 - Regression coverage was added to `MachineGuiGameTests`.
-- `runGameTestServer` now completes successfully; the latest local run passed 132 required GameTests.
+- `runGameTestServer` now completes successfully; the latest local run passed 139 required GameTests.
 
 Additional bug hunt fixes:
 
@@ -62,3 +62,4 @@ Additional bug hunt fixes:
 - Machine menu progress meters now report normalized percentages, and Small Block Breaker total work ticks are synced to the menu.
 - Tracker tooltips ignore incomplete saved target custom data instead of showing fake origin coordinates.
 - Metal Rung Ladder and Staggered Metal Steps are tagged as `minecraft:climbable`, restoring player ladder movement.
+- REDIA Tool behavior was reimplemented against the original MIT Engineer's Tools source: multi-tool action exposure, torch placement, sneak-use ground cycling and shearing, safe attack, tree felling, and diamond over-repair Efficiency/Fortune progression.
