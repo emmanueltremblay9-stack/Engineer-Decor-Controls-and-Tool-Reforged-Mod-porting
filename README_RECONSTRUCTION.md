@@ -29,7 +29,7 @@ Automation I/O fix:
 - Small electrical furnace input slots are insertion-only for automation.
 - Automation extraction is limited to layout result slots when a machine layout defines result slots.
 - Regression coverage was added to `MachineGuiGameTests`.
-- `runGameTestServer` now completes successfully; the latest local run passed 144 required GameTests.
+- `runGameTestServer` now completes successfully; the latest local run passed 145 required GameTests.
 
 Additional bug hunt fixes:
 
@@ -64,3 +64,4 @@ Additional bug hunt fixes:
 - Metal Rung Ladder and Staggered Metal Steps are tagged as `minecraft:climbable`, restoring player ladder movement.
 - REDIA Tool behavior was reimplemented against the original MIT Engineer's Tools source: multi-tool action exposure, torch placement, sneak-use ground cycling and shearing, safe attack, tree felling, and diamond over-repair Efficiency/Fortune progression.
 - Mind Squeezer behavior now matches the original MIT Engineer's Tools source: stackable to 64, no durability or breaking, no creative cost bypass, original `maxHealth / 10` low-health threshold and health cost, hunger exhaustion, and short blindness on successful conversion.
+- Ariadne Coal behavior now matches the original MIT Engineer's Tools source: a single-stack 100-use marker tool that wears on successful placement, does not wear on failed placement, and breaks on the final use.

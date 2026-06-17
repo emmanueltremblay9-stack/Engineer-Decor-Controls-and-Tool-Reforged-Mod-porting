@@ -2,6 +2,29 @@
 
 All notable reconstruction, repair, and validation changes for this project are recorded here.
 
+## [1.1.7-reconstructed] - 2026-06-17
+
+### Validation
+
+- Confirmed `runGameTestServer` passes with all 145 required GameTests.
+- Confirmed `clean build` passes and produces `build/libs/engineers_decor_reforged-1.1.7-reconstructed.jar`.
+- Installed the rebuilt jar into the Prism `1.21.1 TesT LaB` instance with matching SHA-256 hashes.
+
+### Fixed
+
+- Restored original Ariadne Coal parity from Engineer's Tools:
+  - Ariadne Coal is now a single-stack durability tool instead of a stack of consumable marker items.
+  - Ariadne Coal now uses the original 100-use durability.
+  - Successful marker placement now costs one durability and breaks the item on the final use.
+  - Failed marker placement now leaves durability unchanged.
+  - Placement feedback now uses the original hit/break style sounds instead of the placeholder stone-place sound.
+- Updated Ariadne Coal tooltip and manual text so the documented cost matches the restored durability behavior.
+- Synchronized user-visible mod version metadata to `1.1.7-reconstructed`.
+
+### Added
+
+- Updated Ariadne Coal GameTests for single-stack behavior, original durability, placement wear, failed-use no-wear behavior, and final-use break behavior.
+
 ## [1.1.6-reconstructed] - 2026-06-17
 
 ### Validation

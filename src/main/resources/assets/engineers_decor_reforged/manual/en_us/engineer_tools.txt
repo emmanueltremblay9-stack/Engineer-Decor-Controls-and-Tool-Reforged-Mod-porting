@@ -26,7 +26,7 @@ Ariadne Coal
 Mine route marker
 <&ariadne_coal>Ariadne Coal places quick black arrow route markers on stable mine faces. Use it on a solid face to mark the next turn, exit, or branch point; the marker supports eight clicked-face directions, including diagonals.<br>
 <br>
-One marker consumes one Ariadne Coal in survival. It refuses unsupported faces instead of wasting the item.
+Ariadne Coal is a reusable 100-use marker tool. Each successful marker placement costs one durability. It refuses unsupported faces instead of wearing the item.
 <np>
 Auto Stim Pack
 Emergency injector

@@ -462,7 +462,7 @@
   "item.engineers_decor_reforged.switchlink_pearl": "Switch Link Pearl",
   "item.engineers_decor_reforged.switchlink_pearl.help": "Create it by clicking a Switch\n Link receiver with an Ender Pearl.\n Sneak-use the linked pearl to\n remotely activate the stored\n receiver. The target must be\n loaded, in the same dimension,\n and within range.",
   "item.engineers_decor_reforged.ariadne_coal": "Ariadne Coal",
-  "item.engineers_decor_reforged.ariadne_coal.help": "Coal marker for placing 8-way\n black arrow route marks on\n stable mine faces.",
+  "item.engineers_decor_reforged.ariadne_coal.help": "Reusable coal marker for placing\n 8-way black arrow route marks\n on stable mine faces.",
   "item.engineers_decor_reforged.ariadne_coal.msg.badtarget": "No stable surface for that marker.",
   "item.engineers_decor_reforged.ariadne_coal.msg.placed": "Route marker placed.",
   "item.engineers_decor_reforged.charged_lapis": "Charged Lapis",

@@ -18,7 +18,7 @@ public final class EngineerToolsModule {
       "tracker", () -> new TrackerItem(new Properties().stacksTo(1).rarity(Rarity.UNCOMMON))
    );
    public static final DeferredItem<Item> ARIADNE_COAL = ModItems.registerItem(
-      "ariadne_coal", () -> new AriadneCoalItem(new Properties().stacksTo(16).rarity(Rarity.UNCOMMON))
+      "ariadne_coal", () -> new AriadneCoalItem(new Properties().stacksTo(1).durability(100).rarity(Rarity.UNCOMMON))
    );
    public static final DeferredItem<Item> STIMPACK = ModItems.registerItem(
       "stimpack", () -> new AutoStimPackItem(new Properties().stacksTo(1).durability(16).rarity(Rarity.UNCOMMON))

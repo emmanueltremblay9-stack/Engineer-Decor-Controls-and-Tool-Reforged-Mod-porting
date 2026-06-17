@@ -351,9 +351,11 @@ public final class EngineerToolsGameTests {
    @GameTest(template = "empty", timeoutTicks = 40)
    public static void ariadne_coal_places_route_marker(GameTestHelper helper) {
       Player player = helper.makeMockPlayer(GameType.SURVIVAL);
-      ItemStack marker = new ItemStack((ItemLike)EngineerToolsModule.ARIADNE_COAL.get(), 2);
+      ItemStack marker = new ItemStack((ItemLike)EngineerToolsModule.ARIADNE_COAL.get());
       helper.setBlock(TEST_POS, Blocks.STONE);
       helper.setBlock(TEST_POS.north(), Blocks.AIR);
+      helper.assertValueEqual(1, marker.getMaxStackSize(), "Ariadne Coal should use the original single-item stack size");
+      helper.assertValueEqual(100, marker.getMaxDamage(), "Ariadne Coal should use the original 100-use durability");
       ((Item)EngineerToolsModule.ARIADNE_COAL.get()).useOn(context(helper, player, marker, TEST_POS, Direction.NORTH, 0.95, 0.95, 0.0));
       BlockState placed = helper.getBlockState(TEST_POS.north());
       helper.assertTrue(placed.is((Block)ModBlocks.ARIADNE_MARKER.get()), "Ariadne Coal should place a black arrow route marker");
@@ -361,19 +363,34 @@ public final class EngineerToolsGameTests {
       helper.assertValueEqual(
          3, (Integer)placed.getValue(PortedBlocks.ARIADNE_MARKER_ROTATION), "Ariadne Coal marker should support original diagonal clicked face directions"
       );
-      helper.assertValueEqual(1, marker.getCount(), "Ariadne Coal should consume one item per marker");
+      helper.assertValueEqual(1, marker.getDamageValue(), "Ariadne Coal should lose one durability per marker");
+      helper.assertValueEqual(1, marker.getCount(), "Ariadne Coal should not be consumed until its durability is depleted");
       helper.succeed();
    }
 
    @GameTest(template = "empty", timeoutTicks = 40)
-   public static void ariadne_coal_rejects_unsupported_face_without_consuming(GameTestHelper helper) {
+   public static void ariadne_coal_rejects_unsupported_face_without_wearing(GameTestHelper helper) {
       Player player = helper.makeMockPlayer(GameType.SURVIVAL);
-      ItemStack marker = new ItemStack((ItemLike)EngineerToolsModule.ARIADNE_COAL.get(), 2);
+      ItemStack marker = new ItemStack((ItemLike)EngineerToolsModule.ARIADNE_COAL.get());
       helper.setBlock(TEST_POS, Blocks.STONE);
       helper.setBlock(TEST_POS.north(), Blocks.STONE);
       ((Item)EngineerToolsModule.ARIADNE_COAL.get()).useOn(context(helper, player, marker, TEST_POS, Direction.NORTH));
-      helper.assertValueEqual(2, marker.getCount(), "failed Ariadne Coal use should not consume the item");
+      helper.assertValueEqual(0, marker.getDamageValue(), "failed Ariadne Coal use should not wear the item");
       helper.assertTrue(helper.getBlockState(TEST_POS.north()).is(Blocks.STONE), "failed Ariadne Coal use should not replace occupied blocks");
+      helper.succeed();
+   }
+
+   @GameTest(template = "empty", timeoutTicks = 40)
+   public static void ariadne_coal_breaks_after_original_final_use(GameTestHelper helper) {
+      Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+      ItemStack marker = new ItemStack((ItemLike)EngineerToolsModule.ARIADNE_COAL.get());
+      marker.setDamageValue(99);
+      player.setItemInHand(InteractionHand.MAIN_HAND, marker);
+      helper.setBlock(TEST_POS, Blocks.STONE);
+      helper.setBlock(TEST_POS.north(), Blocks.AIR);
+      ((Item)EngineerToolsModule.ARIADNE_COAL.get()).useOn(context(helper, player, marker, TEST_POS, Direction.NORTH));
+      helper.assertTrue(helper.getBlockState(TEST_POS.north()).is((Block)ModBlocks.ARIADNE_MARKER.get()), "final Ariadne Coal use should still place a marker");
+      helper.assertTrue(player.getMainHandItem().isEmpty(), "Ariadne Coal should break after the original 100th use");
       helper.succeed();
    }
 

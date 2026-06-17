@@ -40,11 +40,14 @@ public class AriadneCoalItem extends TooltipItem {
          if (!level.isClientSide) {
             level.setBlock(placePos, marker, 11);
             ItemStack stack = context.getItemInHand();
-            if (!player.getAbilities().instabuild) {
-               stack.shrink(1);
+            stack.setDamageValue(stack.getDamageValue() + 1);
+            if (stack.getDamageValue() >= stack.getMaxDamage()) {
+               player.setItemInHand(context.getHand(), ItemStack.EMPTY);
+               level.playSound(null, placePos, SoundEvents.WOOD_BREAK, player.getSoundSource(), 0.4F, 2.0F);
+            } else {
+               level.playSound(null, placePos, SoundEvents.GRAVEL_HIT, player.getSoundSource(), 0.4F, 2.0F);
             }
 
-            level.playSound(null, placePos, SoundEvents.STONE_PLACE, player.getSoundSource(), 0.7F, 0.85F);
             player.displayClientMessage(Component.translatable("item.engineers_decor_reforged.ariadne_coal.msg.placed"), true);
          }
 
