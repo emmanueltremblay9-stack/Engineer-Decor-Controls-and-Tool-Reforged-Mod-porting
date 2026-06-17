@@ -29,7 +29,7 @@ Automation I/O fix:
 - Small electrical furnace input slots are insertion-only for automation.
 - Automation extraction is limited to layout result slots when a machine layout defines result slots.
 - Regression coverage was added to `MachineGuiGameTests`.
-- `runGameTestServer` now completes successfully; the latest local run passed 128 required GameTests.
+- `runGameTestServer` now completes successfully; the latest local run passed 129 required GameTests.
 
 Additional bug hunt fixes:
 
@@ -58,3 +58,4 @@ Additional bug hunt fixes:
 - Pulse-control GameTest fixtures now place valid backing support so scheduled reset coverage does not depend on unsupported floating controls.
 - Factory hopper pulse mode only collects loose world items when a manual, ignored-redstone, continuous, or fresh redstone-edge trigger actually fires.
 - The shared blank GameTest structure now declares an 8x8x16 footprint so multi-block fixtures are spaced correctly as the suite grows.
+- Metal sliding door hitboxes now follow the centered closed panel and the side-stacked open model instead of using vanilla hinged-door edge boxes.

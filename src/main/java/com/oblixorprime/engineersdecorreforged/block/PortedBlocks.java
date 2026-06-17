@@ -16,6 +16,7 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.DirectionalBlock;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
@@ -25,6 +26,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.DoorHingeSide;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
@@ -32,6 +34,7 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -896,6 +899,74 @@ public final class PortedBlocks {
 
       protected VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
          return this.getShape(state, level, pos, context);
+      }
+   }
+
+   public static class SlidingDoorBlock extends DoorBlock {
+      public static final MapCodec<PortedBlocks.SlidingDoorBlock> CODEC = simpleCodec(properties -> new PortedBlocks.SlidingDoorBlock(BlockSetType.OAK, properties));
+      private static final VoxelShape CLOSED_NORTH_SOUTH_SHAPE = Shapes.or(
+         Block.box(0.0, 0.0, 7.0, 16.0, 16.0, 9.0),
+         Block.box(15.0, 0.0, 6.0, 16.0, 16.0, 7.0),
+         Block.box(15.0, 0.0, 9.0, 16.0, 16.0, 10.0),
+         Block.box(0.0, 0.0, 6.0, 15.0, 0.25, 7.0),
+         Block.box(0.0, 0.0, 9.0, 15.0, 0.25, 10.0)
+      );
+      private static final VoxelShape CLOSED_EAST_WEST_SHAPE = rotateClockwise(CLOSED_NORTH_SOUTH_SHAPE);
+      private static final VoxelShape OPEN_EAST_STACK_SHAPE = Shapes.or(
+         Block.box(14.75, 0.0, 6.0, 16.0, 16.0, 10.0), Block.box(0.0, 0.0, 6.0, 15.0, 0.25, 10.0)
+      );
+      private static final VoxelShape OPEN_SOUTH_STACK_SHAPE = rotateClockwise(OPEN_EAST_STACK_SHAPE);
+      private static final VoxelShape OPEN_WEST_STACK_SHAPE = rotateClockwise(OPEN_SOUTH_STACK_SHAPE);
+      private static final VoxelShape OPEN_NORTH_STACK_SHAPE = rotateClockwise(OPEN_WEST_STACK_SHAPE);
+
+      public SlidingDoorBlock(BlockSetType type, Properties properties) {
+         super(type, properties);
+      }
+
+      @Override
+      public MapCodec<? extends DoorBlock> codec() {
+         return CODEC;
+      }
+
+      @Override
+      protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+         return state.getValue(OPEN) ? openShape(state) : closedShape(state);
+      }
+
+      private static VoxelShape closedShape(BlockState state) {
+         return state.getValue(FACING).getAxis() == Axis.X ? CLOSED_EAST_WEST_SHAPE : CLOSED_NORTH_SOUTH_SHAPE;
+      }
+
+      private static VoxelShape openShape(BlockState state) {
+         return switch (openStackSide(state)) {
+            case NORTH -> OPEN_NORTH_STACK_SHAPE;
+            case SOUTH -> OPEN_SOUTH_STACK_SHAPE;
+            case WEST -> OPEN_WEST_STACK_SHAPE;
+            case EAST -> OPEN_EAST_STACK_SHAPE;
+            default -> OPEN_EAST_STACK_SHAPE;
+         };
+      }
+
+      private static Direction openStackSide(BlockState state) {
+         Direction facing = state.getValue(FACING);
+         DoorHingeSide hinge = state.getValue(HINGE);
+         return switch (facing) {
+            case NORTH -> hinge == DoorHingeSide.RIGHT ? Direction.EAST : Direction.WEST;
+            case SOUTH -> hinge == DoorHingeSide.LEFT ? Direction.EAST : Direction.WEST;
+            case EAST -> hinge == DoorHingeSide.RIGHT ? Direction.SOUTH : Direction.NORTH;
+            case WEST -> hinge == DoorHingeSide.LEFT ? Direction.SOUTH : Direction.NORTH;
+            default -> Direction.EAST;
+         };
+      }
+
+      private static VoxelShape rotateClockwise(VoxelShape shape) {
+         VoxelShape rotated = Shapes.empty();
+
+         for (AABB box : shape.toAabbs()) {
+            rotated = Shapes.or(rotated, Shapes.create(1.0 - box.maxZ, box.minY, box.minX, 1.0 - box.minZ, box.maxY, box.maxX));
+         }
+
+         return rotated;
       }
    }
 }

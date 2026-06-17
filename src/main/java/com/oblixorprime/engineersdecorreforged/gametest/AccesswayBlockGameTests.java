@@ -17,8 +17,12 @@ import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.DoorHingeSide;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.BooleanOp;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
@@ -178,6 +182,41 @@ public final class AccesswayBlockGameTests {
       });
    }
 
+   @GameTest(template = "empty", timeoutTicks = 40)
+   public static void metal_sliding_door_hitbox_matches_sliding_panel_model(GameTestHelper helper) {
+      DoorBlock door = (DoorBlock)ModBlocks.METAL_SLIDING_DOOR.get();
+      BlockState base = (BlockState)((BlockState)((BlockState)((BlockState)door.defaultBlockState().setValue(DoorBlock.HALF, DoubleBlockHalf.LOWER))
+               .setValue(DoorBlock.POWERED, false))
+            .setValue(DoorBlock.FACING, Direction.NORTH))
+         .setValue(DoorBlock.HINGE, DoorHingeSide.RIGHT);
+
+      VoxelShape closedNorth = ((BlockState)base.setValue(DoorBlock.OPEN, false)).getShape(helper.getLevel(), helper.absolutePos(LOWER_POS));
+      assertShapeBounds(helper, closedNorth, 0.0, 0.0, 6.0, 16.0, 16.0, 10.0, "closed north sliding door shape should be centered on the visible model");
+      assertShapeIntersects(helper, closedNorth, 0.0, 4.0, 7.25, 16.0, 12.0, 8.75, "closed sliding door should contain the centered main panel");
+      assertShapeDoesNotIntersect(helper, closedNorth, 0.0, 4.0, 0.0, 16.0, 12.0, 3.0, "closed sliding door should not keep the vanilla edge hitbox");
+
+      VoxelShape closedEast = ((BlockState)((BlockState)base.setValue(DoorBlock.FACING, Direction.EAST)).setValue(DoorBlock.OPEN, false))
+         .getShape(helper.getLevel(), helper.absolutePos(LOWER_POS));
+      assertShapeBounds(helper, closedEast, 6.0, 0.0, 0.0, 10.0, 16.0, 16.0, "closed east sliding door shape should rotate with the model");
+
+      VoxelShape openNorthRight = ((BlockState)base.setValue(DoorBlock.OPEN, true)).getShape(helper.getLevel(), helper.absolutePos(LOWER_POS));
+      assertShapeIntersects(helper, openNorthRight, 15.25, 4.0, 7.0, 15.75, 12.0, 9.0, "open right-hinged sliding door should keep its side stack on the east rail");
+      assertShapeIntersects(helper, openNorthRight, 7.0, 0.0, 7.0, 9.0, 0.2, 9.0, "open sliding door should keep its low floor track");
+      assertShapeDoesNotIntersect(
+         helper, openNorthRight, 7.0, 4.0, 7.0, 9.0, 12.0, 9.0, "open sliding door should clear the human-height center passage"
+      );
+
+      VoxelShape openWestLeft = ((BlockState)((BlockState)((BlockState)base.setValue(DoorBlock.FACING, Direction.WEST))
+               .setValue(DoorBlock.HINGE, DoorHingeSide.LEFT))
+            .setValue(DoorBlock.OPEN, true))
+         .getShape(helper.getLevel(), helper.absolutePos(LOWER_POS));
+      assertShapeIntersects(helper, openWestLeft, 7.0, 4.0, 15.25, 9.0, 12.0, 15.75, "open west-facing left-hinged sliding door should rotate its side stack south");
+      assertShapeDoesNotIntersect(
+         helper, openWestLeft, 7.0, 4.0, 7.0, 9.0, 12.0, 9.0, "rotated open sliding door should also clear the human-height center passage"
+      );
+      helper.succeed();
+   }
+
    private static void assertSlicePlacementPart(GameTestHelper helper, Player player, Block block, double localY, int expectedPart, String message) {
       BlockState state = placementState(helper, player, block, LOWER_POS, localY);
       helper.assertTrue(state != null, "slab slice placement state should not be null");
@@ -214,5 +253,40 @@ public final class AccesswayBlockGameTests {
       helper.assertBlockProperty(lowerPos, DoorBlock.OPEN, true);
       helper.assertBlockProperty(lowerPos.above(), DoorBlock.POWERED, true);
       helper.assertBlockProperty(lowerPos.above(), DoorBlock.OPEN, true);
+   }
+
+   private static void assertShapeBounds(
+      GameTestHelper helper, VoxelShape shape, double minX, double minY, double minZ, double maxX, double maxY, double maxZ, String message
+   ) {
+      AABB bounds = shape.bounds();
+      helper.assertTrue(
+         close(bounds.minX, minX / 16.0)
+            && close(bounds.minY, minY / 16.0)
+            && close(bounds.minZ, minZ / 16.0)
+            && close(bounds.maxX, maxX / 16.0)
+            && close(bounds.maxY, maxY / 16.0)
+            && close(bounds.maxZ, maxZ / 16.0),
+         message + "; actual bounds=" + bounds
+      );
+   }
+
+   private static void assertShapeIntersects(
+      GameTestHelper helper, VoxelShape shape, double minX, double minY, double minZ, double maxX, double maxY, double maxZ, String message
+   ) {
+      helper.assertTrue(shapeIntersects(shape, minX, minY, minZ, maxX, maxY, maxZ), message);
+   }
+
+   private static void assertShapeDoesNotIntersect(
+      GameTestHelper helper, VoxelShape shape, double minX, double minY, double minZ, double maxX, double maxY, double maxZ, String message
+   ) {
+      helper.assertTrue(!shapeIntersects(shape, minX, minY, minZ, maxX, maxY, maxZ), message);
+   }
+
+   private static boolean shapeIntersects(VoxelShape shape, double minX, double minY, double minZ, double maxX, double maxY, double maxZ) {
+      return Shapes.joinIsNotEmpty(shape, Block.box(minX, minY, minZ, maxX, maxY, maxZ), BooleanOp.AND);
+   }
+
+   private static boolean close(double left, double right) {
+      return Math.abs(left - right) < 1.0E-6;
    }
 }

@@ -254,7 +254,7 @@ public final class ModBlocks {
       "steel_framed_window", () -> new PortedBlocks.SurfaceMountedBlock(glass(), 0.0, 16.0, 2.0, false)
    );
    public static final DeferredBlock<DoorBlock> METAL_SLIDING_DOOR = registerWithItem(
-      "metal_sliding_door", () -> new DoorBlock(BlockSetType.OAK, metal().noOcclusion())
+      "metal_sliding_door", () -> new PortedBlocks.SlidingDoorBlock(BlockSetType.OAK, metal().noOcclusion())
    );
    public static final DeferredBlock<PortedBlocks.HatchBlock> IRON_HATCH = registerWithItem(
       "iron_hatch", () -> new PortedBlocks.HatchBlock(metal().noOcclusion())
