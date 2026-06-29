@@ -3,9 +3,9 @@ loaderVersion="[1,)"
 license="MIT"
 
 [[mods]]
-modId="engineers_decor_reforged"
-version="1.1.11-reconstructed"
-displayName="Engineer's Decor & Controls Reforged"
+modId="immersive_engineer_decor_controls_tool_reforged"
+version="1.1.28-reconstructed"
+displayName="Immersive Engineer Decor&Controls&Tool Reforged"
 logoFile="pack.png"
 credits="Original Engineer's Decor, RsGauges, and Engineer's Tools by Stefan Wilhelm / wilechaote / Wile / stfwi. RsGauges 1.20.1 port by Waffle / ialwaysaskedforthat and 1.21.1 NeoForge port by MCFabikDE / MCFabik were used for controls resources. Modernization and fusion by Emmanuel / OblixorPrime."
 authors="Stefan Wilhelm / wilechaote / Wile / stfwi; Waffle / ialwaysaskedforthat; MCFabikDE / MCFabik; Emmanuel / OblixorPrime"
@@ -13,21 +13,21 @@ description='''
 Unofficial NeoForge 1.21.1 modernization and fusion fork of Engineer's Decor, Gauges and Switches / RsGauges, and selected Engineer's Tools content. This fork preserves MIT attribution for the original projects and combines industrial decorative blocks, workshop machines, redstone controls, and handheld engineer tools for modern Immersive Engineering-style factory builds.
 '''
 
-[[dependencies.engineers_decor_reforged]]
+[[dependencies.immersive_engineer_decor_controls_tool_reforged]]
 modId="neoforge"
 type="required"
 versionRange="[21.1.230,)"
 ordering="NONE"
 side="BOTH"
 
-[[dependencies.engineers_decor_reforged]]
+[[dependencies.immersive_engineer_decor_controls_tool_reforged]]
 modId="minecraft"
 type="required"
 versionRange="[1.21.1]"
 ordering="NONE"
 side="BOTH"
 
-[[dependencies.engineers_decor_reforged]]
+[[dependencies.immersive_engineer_decor_controls_tool_reforged]]
 modId="immersiveengineering"
 type="required"
 versionRange="[12.4.2-194,)"
