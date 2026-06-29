@@ -1,0 +1,107 @@
+{
+  "clinker_brick_block": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:clinker_brick_block"
+  },
+  "clinker_brick_slab": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:clinker_brick_slab"
+  },
+  "clinker_brick_stairs": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:clinker_brick_stairs"
+  },
+  "clinker_brick_wall": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:clinker_brick_wall"
+  },
+  "clinker_brick_stained_block": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:clinker_brick_stained_block"
+  },
+  "clinker_brick_stained_slab": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:clinker_brick_stained_slab"
+  },
+  "clinker_brick_stained_stairs": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:clinker_brick_stained_stairs"
+  },
+  "clinker_brick_sastor_corner_block": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:clinker_brick_sastor_corner_block"
+  },
+  "clinker_brick_recessed": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:clinker_brick_recessed"
+  },
+  "clinker_brick_vertically_slit": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:clinker_brick_vertically_slit"
+  },
+  "clinker_brick_vertical_slab_structured": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:clinker_brick_vertical_slab_structured"
+  },
+  "halfslab_clinker_brick": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:halfslab_clinker_brick"
+  },
+  "slag_brick_block": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:slag_brick_block"
+  },
+  "slag_brick_slab": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:slag_brick_slab"
+  },
+  "slag_brick_stairs": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:slag_brick_stairs"
+  },
+  "slag_brick_wall": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:slag_brick_wall"
+  },
+  "rebar_concrete": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:rebar_concrete"
+  },
+  "rebar_concrete_slab": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:rebar_concrete_slab"
+  },
+  "rebar_concrete_stairs": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:rebar_concrete_stairs"
+  },
+  "rebar_concrete_wall": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:rebar_concrete_wall"
+  },
+  "halfslab_rebar_concrete": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:halfslab_rebar_concrete"
+  },
+  "rebar_concrete_tile": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:rebar_concrete_tile"
+  },
+  "rebar_concrete_tile_slab": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:rebar_concrete_tile_slab"
+  },
+  "rebar_concrete_tile_stairs": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:rebar_concrete_tile_stairs"
+  },
+  "panzerglass_block": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:panzerglass_block"
+  },
+  "panzerglass_slab": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:panzerglass_slab"
+  }
+}
+

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "ingredient": {
+    "item": "immersive_engineer_decor_controls_tool_reforged:gold_grit"
+  },
+  "result": {
+    "id": "minecraft:gold_ingot"
+  },
+  "experience": 1.0,
+  "cookingtime": 100
+}

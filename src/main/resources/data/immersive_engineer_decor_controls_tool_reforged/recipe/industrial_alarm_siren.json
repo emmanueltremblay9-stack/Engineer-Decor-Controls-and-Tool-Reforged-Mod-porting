@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "result": {
+    "id": "immersive_engineer_decor_controls_tool_reforged:industrial_alarm_siren"
+  },
+  "pattern": [
+    "NN",
+    "RB"
+  ],
+  "key": {
+    "N": {
+      "item": "minecraft:iron_nugget"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "B": {
+      "item": "minecraft:note_block"
+    }
+  }
+}
+

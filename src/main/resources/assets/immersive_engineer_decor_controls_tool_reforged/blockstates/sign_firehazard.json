@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "facing=north": { "model": "immersive_engineer_decor_controls_tool_reforged:block/sign/sign_firehazard_model", "y":180 },
+    "facing=south": { "model": "immersive_engineer_decor_controls_tool_reforged:block/sign/sign_firehazard_model"          },
+    "facing=west":  { "model": "immersive_engineer_decor_controls_tool_reforged:block/sign/sign_firehazard_model", "y":90  },
+    "facing=east":  { "model": "immersive_engineer_decor_controls_tool_reforged:block/sign/sign_firehazard_model", "y":270 },
+    "facing=up":    { "model": "immersive_engineer_decor_controls_tool_reforged:block/sign/sign_firehazard_model"          },
+    "facing=down":  { "model": "immersive_engineer_decor_controls_tool_reforged:block/sign/sign_firehazard_model"          }
+  }
+}

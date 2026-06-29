@@ -1,7 +1,0 @@
-{
-  "render_type": "translucent",
-	"parent": "engineers_decor_reforged:block/autoswitch/glass/entitydetector_glass_model_s00",
-	"textures": {
-    "led": "engineers_decor_reforged:block/indicator/indicator_fg_red_on_texture"
-	}
-}

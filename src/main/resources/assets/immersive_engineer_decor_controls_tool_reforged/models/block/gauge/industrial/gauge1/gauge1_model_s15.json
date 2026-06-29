@@ -1,0 +1,5 @@
+{
+  "render_type": "cutout",
+	"parent": "immersive_engineer_decor_controls_tool_reforged:block/gauge/industrial/gauge1/gauge1_model_s00",
+  "textures": { "front": "immersive_engineer_decor_controls_tool_reforged:block/gauge/flatgauge1texture_s15" }
+}

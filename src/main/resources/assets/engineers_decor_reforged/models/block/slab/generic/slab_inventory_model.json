@@ -1,8 +1,0 @@
-{
-  "parent": "engineers_decor_reforged:block/slab/generic/halfslab_s3_model",
-	"textures": {
-    "particle": "#all",
-    "side": "#all",
-		"all": "engineers_decor_reforged:block/material/wood_framed_texture"
-	}
-}

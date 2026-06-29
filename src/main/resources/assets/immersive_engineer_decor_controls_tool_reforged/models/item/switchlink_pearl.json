@@ -1,0 +1,4 @@
+{
+    "parent": "item/generated",
+    "textures": { "layer0": "immersive_engineer_decor_controls_tool_reforged:item/switchlink_pearl" }
+}

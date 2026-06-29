@@ -1,0 +1,7 @@
+{
+  "render_type": "cutout",
+  "parent": "immersive_engineer_decor_controls_tool_reforged:block/indicator/industrial/led_white_model_s00",
+	"textures": {
+    "lamp": "immersive_engineer_decor_controls_tool_reforged:block/indicator/indicator_fg_green_off_texture"
+	}
+}

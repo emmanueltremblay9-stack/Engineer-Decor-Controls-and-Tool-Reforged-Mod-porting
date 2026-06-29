@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "immersive_engineer_decor_controls_tool_reforged:block/material/industrial_planks_texture0",
+    "top": "immersive_engineer_decor_controls_tool_reforged:block/material/industrial_planks_texture1",
+    "side": "immersive_engineer_decor_controls_tool_reforged:block/material/industrial_planks_texture2"
+  }
+}

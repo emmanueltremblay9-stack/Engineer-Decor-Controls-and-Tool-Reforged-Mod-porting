@@ -1,0 +1,6 @@
+{
+	"parent": "immersive_engineer_decor_controls_tool_reforged:block/device/straight_pipe_valve_model",
+	"textures": {
+    "side" : "immersive_engineer_decor_controls_tool_reforged:block/pipe/straight_pipe_valve_side_redstone_analog_texture"
+	}
+}

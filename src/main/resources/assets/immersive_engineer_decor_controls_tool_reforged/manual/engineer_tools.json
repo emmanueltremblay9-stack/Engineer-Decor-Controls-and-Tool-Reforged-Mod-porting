@@ -1,0 +1,58 @@
+{
+  "redia_tool": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:redia_tool"
+  },
+  "crushing_hammer": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:crushing_hammer"
+  },
+  "tracker": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:tracker"
+  },
+  "ariadne_coal": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:ariadne_coal"
+  },
+  "stimpack": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:stimpack"
+  },
+  "sleeping_bag": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:sleeping_bag"
+  },
+  "material_box": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:material_box"
+  },
+  "diving_capsule": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:diving_capsule"
+  },
+  "musli_bar_press": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:musli_bar_press"
+  },
+  "musli_bar": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:musli_bar"
+  },
+  "charged_lapis_squeezer": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:charged_lapis_squeezer"
+  },
+  "charged_lapis": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:charged_lapis_squeezer"
+  },
+  "iron_grit": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:iron_grit_from_raw_iron"
+  },
+  "gold_grit": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:gold_grit_from_raw_gold"
+  }
+}

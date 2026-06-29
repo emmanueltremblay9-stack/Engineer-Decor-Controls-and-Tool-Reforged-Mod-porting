@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "result": {
+    "id": "immersive_engineer_decor_controls_tool_reforged:industrial_white_blinking_led"
+  },
+  "ingredients": [
+    {
+      "item": "immersive_engineer_decor_controls_tool_reforged:industrial_white_led"
+    },
+    {
+      "item": "minecraft:egg"
+    }
+  ]
+}
+

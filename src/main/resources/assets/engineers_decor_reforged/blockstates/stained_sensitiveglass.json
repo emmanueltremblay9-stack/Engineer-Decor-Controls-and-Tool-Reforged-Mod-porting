@@ -1,6 +1,0 @@
-{
-  "multipart": [
-    { "when": { "powered": "false" }, "apply": { "model": "engineers_decor_reforged:block/sensitiveglass/sensitiveglass_stained_model_s00" } },
-    { "when": { "powered": "true"  }, "apply": { "model": "engineers_decor_reforged:block/sensitiveglass/sensitiveglass_stained_model_s15" } }
-  ]
-}

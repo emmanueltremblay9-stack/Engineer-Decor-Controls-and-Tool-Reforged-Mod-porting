@@ -1,0 +1,7 @@
+{
+  "parent":"immersive_engineer_decor_controls_tool_reforged:block/wall/brick_wall_default",
+	"textures": {
+    "wall": "immersive_engineer_decor_controls_tool_reforged:block/slag_brick/slag_brick_texture0",
+    "particle": "immersive_engineer_decor_controls_tool_reforged:block/slag_brick/slag_brick_texture0"
+	}
+}

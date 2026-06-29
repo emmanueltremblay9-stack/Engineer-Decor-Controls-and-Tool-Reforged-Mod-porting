@@ -1,0 +1,7 @@
+{
+  "render_type": "cutout",
+  "parent": "immersive_engineer_decor_controls_tool_reforged:block/contactmat/industrial/contactmat_shocksense_industrial_model_s00",
+	"textures": {
+    "top": "immersive_engineer_decor_controls_tool_reforged:block/contactswitch/contactmat_industrial_shocksensitive_texture_s15"
+	}
+}

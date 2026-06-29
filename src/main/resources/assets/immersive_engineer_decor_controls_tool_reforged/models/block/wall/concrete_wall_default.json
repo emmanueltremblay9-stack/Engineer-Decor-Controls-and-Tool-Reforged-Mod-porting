@@ -1,0 +1,9 @@
+{
+	"textures": {
+    "wall": "immersive_engineer_decor_controls_tool_reforged:block/concrete/rebar_concrete_texture0",
+    "particle": "immersive_engineer_decor_controls_tool_reforged:block/concrete/rebar_concrete_texture0"
+	},
+	"elements": [{
+    "from": [7.9, 7.9, 7.9], "to": [8, 8, 8], "faces": { "down": {"texture": "#wall"} }
+  }]
+}

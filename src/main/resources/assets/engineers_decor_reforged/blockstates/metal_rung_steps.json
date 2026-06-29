@@ -1,8 +1,0 @@
-{
-  "variants": {
-    "facing=north": { "model": "engineers_decor_reforged:block/ladder/metal_rung_steps_model"          },
-    "facing=south": { "model": "engineers_decor_reforged:block/ladder/metal_rung_steps_model", "y":180 },
-    "facing=west":  { "model": "engineers_decor_reforged:block/ladder/metal_rung_steps_model", "y":270 },
-    "facing=east":  { "model": "engineers_decor_reforged:block/ladder/metal_rung_steps_model", "y":90  }
-  }
-}

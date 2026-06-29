@@ -1,0 +1,67 @@
+{
+  "dark_shingle_roof": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:dark_shingle_roof"
+  },
+  "dark_shingle_roof_metallized": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:dark_shingle_roof_metallized"
+  },
+  "dark_shingle_roof_skylight": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:dark_shingle_roof_skylight"
+  },
+  "dark_shingle_roof_chimneytrunk": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:dark_shingle_roof_chimneytrunk"
+  },
+  "dark_shingle_roof_wireconduit": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:dark_shingle_roof_wireconduit"
+  },
+  "dark_shingle_roof_chimney": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:dark_shingle_roof_chimney"
+  },
+  "dark_shingle_roof_block": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:dark_shingle_roof_decompose"
+  },
+  "dark_shingle_roof_slab": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:dark_shingle_roof_slab"
+  },
+  "dark_shingle_roof_slabslice": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:dark_shingle_roof_slabslice"
+  },
+  "dense_grit_dirt_block": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:dense_grit_dirt_block"
+  },
+  "dense_grit_sand_block": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:dense_grit_sand_block"
+  },
+  "old_industrial_wood_planks": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:old_industrial_wood_planks"
+  },
+  "old_industrial_wood_slab": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:old_industrial_wood_slab"
+  },
+  "old_industrial_wood_stairs": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:old_industrial_wood_stairs"
+  },
+  "old_industrial_wood_slabslice": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:old_industrial_wood_slabslice"
+  },
+  "old_industrial_wood_door": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:old_industrial_wood_door"
+  }
+}
+

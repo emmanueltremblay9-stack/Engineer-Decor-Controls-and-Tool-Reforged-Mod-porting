@@ -1,9 +1,0 @@
-{
-  "render_type": "cutout",
-	"parent": "engineers_decor_reforged:block/observerswitch/industrial/blockdetector_industrial_model_s00",
-	"textures": {
-    "back": "engineers_decor_reforged:block/observerswitch/observerswitch_industrial_blockdetector_back_s15",
-		"front": "engineers_decor_reforged:block/observerswitch/observerswitch_industrial_blockdetector_front_s15",
-		"side": "engineers_decor_reforged:block/observerswitch/observerswitch_industrial_blockdetector_side_texture_s15"
-	}
-}

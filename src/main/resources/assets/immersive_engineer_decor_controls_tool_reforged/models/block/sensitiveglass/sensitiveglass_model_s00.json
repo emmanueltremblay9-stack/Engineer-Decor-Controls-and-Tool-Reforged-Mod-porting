@@ -1,0 +1,7 @@
+{
+  "render_type": "translucent",
+	"parent": "immersive_engineer_decor_controls_tool_reforged:block/sensitiveglass/sensitiveglass_base_model",
+	"textures": {
+    "side": "immersive_engineer_decor_controls_tool_reforged:block/sensitiveglass/sensitiveglass_bw_s00"
+	}
+}

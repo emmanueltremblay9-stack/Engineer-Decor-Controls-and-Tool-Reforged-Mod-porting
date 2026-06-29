@@ -1,0 +1,6 @@
+{
+	"parent": "immersive_engineer_decor_controls_tool_reforged:block/device/small_waste_incinerator_model",
+	"textures": {
+		"side": "immersive_engineer_decor_controls_tool_reforged:block/furnace/small_waste_incinerator_side"
+	}
+}

@@ -1,7 +1,0 @@
-{
-  "render_type": "cutout",
-	"parent": "engineers_decor_reforged:block/switchlink/industrial/switchlink_receiver_industrial_model_s00",
-	"textures": {
-    "led": "engineers_decor_reforged:block/indicator/indicator_fg_green_on_texture"
-	}
-}

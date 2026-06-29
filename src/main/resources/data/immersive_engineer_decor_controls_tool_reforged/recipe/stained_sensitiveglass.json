@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "result": {
+    "id": "immersive_engineer_decor_controls_tool_reforged:stained_sensitiveglass",
+    "count": 4
+  },
+  "pattern": [
+    "NG",
+    "DR"
+  ],
+  "key": {
+    "N": {
+      "item": "minecraft:iron_nugget"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "G": {
+      "item": "minecraft:glass"
+    },
+    "D": {
+      "item": "minecraft:white_dye"
+    }
+  }
+}
+

@@ -1,0 +1,8 @@
+{
+  "parent":"immersive_engineer_decor_controls_tool_reforged:block/wall/brick_wall_post",
+	"textures": {
+		"postside": "immersive_engineer_decor_controls_tool_reforged:block/slag_brick/slag_brick_pole_side",
+		"top": "immersive_engineer_decor_controls_tool_reforged:block/slag_brick/slag_brick_top",
+		"particle": "immersive_engineer_decor_controls_tool_reforged:block/slag_brick/slag_brick_top"
+	}
+}

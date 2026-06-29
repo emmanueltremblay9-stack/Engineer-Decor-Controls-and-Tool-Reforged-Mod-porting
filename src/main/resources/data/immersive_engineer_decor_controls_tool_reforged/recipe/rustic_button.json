@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "NN",
+    "SB"
+  ],
+  "key": {
+    "N": {
+      "item": "minecraft:iron_nugget"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "B": {
+      "tag": "immersive_engineer_decor_controls_tool_reforged:buttons"
+    }
+  },
+  "result": {
+    "id": "immersive_engineer_decor_controls_tool_reforged:rustic_button"
+  }
+}
+

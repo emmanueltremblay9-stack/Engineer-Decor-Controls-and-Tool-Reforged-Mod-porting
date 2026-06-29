@@ -1,0 +1,14 @@
+{
+  "variants": {
+    "": [
+      { "model": "immersive_engineer_decor_controls_tool_reforged:block/soil/dense_grit_sand_model0" },
+      { "model": "immersive_engineer_decor_controls_tool_reforged:block/soil/dense_grit_sand_model1" },
+      { "model": "immersive_engineer_decor_controls_tool_reforged:block/soil/dense_grit_sand_model2" },
+      { "model": "immersive_engineer_decor_controls_tool_reforged:block/soil/dense_grit_sand_model3" },
+      { "model": "immersive_engineer_decor_controls_tool_reforged:block/soil/dense_grit_sand_model4" },
+      { "model": "immersive_engineer_decor_controls_tool_reforged:block/soil/dense_grit_sand_model5" },
+      { "model": "immersive_engineer_decor_controls_tool_reforged:block/soil/dense_grit_sand_model6" },
+      { "model": "immersive_engineer_decor_controls_tool_reforged:block/soil/dense_grit_sand_model7" }
+    ]
+  }
+}

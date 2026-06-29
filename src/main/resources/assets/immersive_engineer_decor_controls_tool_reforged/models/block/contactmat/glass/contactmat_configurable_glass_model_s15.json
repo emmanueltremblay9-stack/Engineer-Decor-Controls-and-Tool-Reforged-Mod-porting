@@ -1,0 +1,9 @@
+{
+  "render_type": "translucent",
+	"parent": "immersive_engineer_decor_controls_tool_reforged:block/contactmat/glass/contactmat_glassxblock_thin",
+	"textures": {
+    "front": "immersive_engineer_decor_controls_tool_reforged:block/contactswitch/contactmat_glass1_s15",
+    "side": "immersive_engineer_decor_controls_tool_reforged:block/sensitiveglass/clearwhiteglass40",
+		"particle": "immersive_engineer_decor_controls_tool_reforged:block/common/cleargrayglass"
+  }
+}

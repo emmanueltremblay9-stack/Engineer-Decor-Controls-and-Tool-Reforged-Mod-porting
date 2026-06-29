@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "active=false,facing=north": { "model": "immersive_engineer_decor_controls_tool_reforged:block/device/small_tree_cutter_model"          },
+    "active=false,facing=south": { "model": "immersive_engineer_decor_controls_tool_reforged:block/device/small_tree_cutter_model", "y":180 },
+    "active=false,facing=west":  { "model": "immersive_engineer_decor_controls_tool_reforged:block/device/small_tree_cutter_model", "y":270 },
+    "active=false,facing=east":  { "model": "immersive_engineer_decor_controls_tool_reforged:block/device/small_tree_cutter_model", "y":90  },
+    "active=true,facing=north":  { "model": "immersive_engineer_decor_controls_tool_reforged:block/device/small_tree_cutter_model_active"          },
+    "active=true,facing=south":  { "model": "immersive_engineer_decor_controls_tool_reforged:block/device/small_tree_cutter_model_active", "y":180 },
+    "active=true,facing=west":   { "model": "immersive_engineer_decor_controls_tool_reforged:block/device/small_tree_cutter_model_active", "y":270 },
+    "active=true,facing=east":   { "model": "immersive_engineer_decor_controls_tool_reforged:block/device/small_tree_cutter_model_active", "y":90  }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "NN",
+    "GL"
+  ],
+  "key": {
+    "N": {
+      "item": "minecraft:iron_nugget"
+    },
+    "G": {
+      "item": "minecraft:glass"
+    },
+    "L": {
+      "tag": "immersive_engineer_decor_controls_tool_reforged:buttons"
+    }
+  },
+  "result": {
+    "id": "immersive_engineer_decor_controls_tool_reforged:glass_button"
+  }
+}
+

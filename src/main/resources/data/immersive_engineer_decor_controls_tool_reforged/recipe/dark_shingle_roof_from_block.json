@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "B  ",
+    "BB ",
+    "BBB"
+  ],
+  "key": {
+    "B": {
+      "item": "immersive_engineer_decor_controls_tool_reforged:dark_shingle_roof_block"
+    }
+  },
+  "result": {
+    "id": "immersive_engineer_decor_controls_tool_reforged:dark_shingle_roof",
+    "count": 8
+  }
+}
+

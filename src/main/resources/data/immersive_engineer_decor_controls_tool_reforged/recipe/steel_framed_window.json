@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WGW",
+    "GGG",
+    "WGW"
+  ],
+  "key": {
+    "W": {
+      "tag": "c:plates/steel"
+    },
+    "G": {
+      "item": "minecraft:glass_pane"
+    }
+  },
+  "result": {
+    "id": "immersive_engineer_decor_controls_tool_reforged:steel_framed_window",
+    "count": 8
+  }
+}
+
+

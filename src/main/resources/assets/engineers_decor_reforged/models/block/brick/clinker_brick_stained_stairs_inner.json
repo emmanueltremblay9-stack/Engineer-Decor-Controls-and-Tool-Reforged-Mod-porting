@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "bottom": "engineers_decor_reforged:block/clinker_brick/clinker_brick_stained_texture3",
-    "top": "engineers_decor_reforged:block/clinker_brick/clinker_brick_stained_texture4",
-    "side": "engineers_decor_reforged:block/clinker_brick/clinker_brick_stained_texture5"
-  }
-}

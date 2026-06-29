@@ -1,7 +1,0 @@
-{
-	"parent": "engineers_decor_reforged:block/ariadne_marker_0",
-	"textures": {
-		"s": "engineers_decor_reforged:block/ariadne_marker_1",
-		"particle": "engineers_decor_reforged:block/ariadne_marker_1"
-	}
-}

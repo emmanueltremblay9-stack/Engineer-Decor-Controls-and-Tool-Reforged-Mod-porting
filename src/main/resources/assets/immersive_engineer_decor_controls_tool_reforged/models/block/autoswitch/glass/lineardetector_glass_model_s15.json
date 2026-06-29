@@ -1,0 +1,7 @@
+{
+  "render_type": "translucent",
+	"parent": "immersive_engineer_decor_controls_tool_reforged:block/autoswitch/glass/lineardetector_glass_model_s00",
+	"textures": {
+    "led": "immersive_engineer_decor_controls_tool_reforged:block/indicator/indicator_fg_red_on_texture"
+	}
+}

@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "immersive_engineer_decor_controls_tool_reforged:block/qube/qube_f_texture",
+    "north": "immersive_engineer_decor_controls_tool_reforged:block/qube/qube_f_texture",
+    "south": "immersive_engineer_decor_controls_tool_reforged:block/qube/qube_b_texture",
+    "east": "immersive_engineer_decor_controls_tool_reforged:block/qube/qube_r_texture",
+    "west": "immersive_engineer_decor_controls_tool_reforged:block/qube/qube_l_texture",
+    "up": "immersive_engineer_decor_controls_tool_reforged:block/qube/qube_u_texture",
+    "down": "immersive_engineer_decor_controls_tool_reforged:block/qube/qube_d_texture"
+  }
+}

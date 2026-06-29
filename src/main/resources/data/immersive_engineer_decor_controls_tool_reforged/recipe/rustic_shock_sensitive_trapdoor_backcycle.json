@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "immersive_engineer_decor_controls_tool_reforged:rustic_fallthrough_detector"
+    }
+  ],
+  "result": {
+    "id": "immersive_engineer_decor_controls_tool_reforged:rustic_shock_sensitive_trapdoor"
+  }
+}
+

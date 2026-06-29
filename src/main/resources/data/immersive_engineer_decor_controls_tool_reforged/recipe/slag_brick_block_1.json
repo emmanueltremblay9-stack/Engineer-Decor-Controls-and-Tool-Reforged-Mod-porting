@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BAB",
+    "ASA",
+    "BAB"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:brick"
+    },
+    "A": {
+      "tag": "immersive_engineer_decor_controls_tool_reforged:brick_ingots"
+    },
+    "S": {
+      "item": "minecraft:nether_bricks"
+    }
+  },
+  "result": {
+    "id": "immersive_engineer_decor_controls_tool_reforged:slag_brick_block",
+    "count": 8
+  }
+}
+

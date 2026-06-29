@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III",
+    "ITI"
+  ],
+  "key": {
+    "T": {
+      "item": "minecraft:iron_trapdoor"
+    },
+    "I": {
+      "tag": "c:plates/steel"
+    }
+  },
+  "result": {
+    "id": "immersive_engineer_decor_controls_tool_reforged:iron_hatch",
+    "count": 1
+  }
+}
+
+

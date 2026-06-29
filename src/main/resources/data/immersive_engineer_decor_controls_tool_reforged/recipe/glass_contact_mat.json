@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "NN",
+    "GP"
+  ],
+  "key": {
+    "N": {
+      "item": "minecraft:iron_nugget"
+    },
+    "G": {
+      "item": "minecraft:glass"
+    },
+    "P": {
+      "tag": "immersive_engineer_decor_controls_tool_reforged:pressure_plates"
+    }
+  },
+  "result": {
+    "id": "immersive_engineer_decor_controls_tool_reforged:glass_contact_mat"
+  }
+}
+

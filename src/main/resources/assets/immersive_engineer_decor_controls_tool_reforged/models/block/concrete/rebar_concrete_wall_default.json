@@ -1,0 +1,7 @@
+{
+  "parent":"immersive_engineer_decor_controls_tool_reforged:block/wall/concrete_wall_default",
+	"textures": {
+    "wall": "immersive_engineer_decor_controls_tool_reforged:block/concrete/rebar_concrete_texture0",
+    "particle": "immersive_engineer_decor_controls_tool_reforged:block/concrete/rebar_concrete_texture0"
+	}
+}

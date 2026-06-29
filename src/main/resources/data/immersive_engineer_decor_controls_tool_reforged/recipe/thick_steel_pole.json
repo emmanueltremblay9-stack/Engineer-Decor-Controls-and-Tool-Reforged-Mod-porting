@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SS ",
+    "SS ",
+    "SS "
+  ],
+  "key": {
+    "S": {
+      "item": "immersive_engineer_decor_controls_tool_reforged:thin_steel_pole"
+    }
+  },
+  "result": {
+    "id": "immersive_engineer_decor_controls_tool_reforged:thick_steel_pole",
+    "count": 6
+  }
+}
+

@@ -1,6 +1,0 @@
-{
-	"parent": "engineers_decor_reforged:block/device/straight_pipe_valve_model",
-	"textures": {
-    "side" : "engineers_decor_reforged:block/pipe/straight_pipe_valve_side_redstone_texture"
-	}
-}

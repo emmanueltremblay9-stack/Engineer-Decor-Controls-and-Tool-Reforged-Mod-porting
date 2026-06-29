@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    "CCC",
+    "CCC"
+  ],
+  "key": {
+    "C": {
+      "item": "immersive_engineer_decor_controls_tool_reforged:clinker_brick_block"
+    }
+  },
+  "result": {
+    "id": "immersive_engineer_decor_controls_tool_reforged:clinker_brick_wall",
+    "count": 6
+  }
+}
+

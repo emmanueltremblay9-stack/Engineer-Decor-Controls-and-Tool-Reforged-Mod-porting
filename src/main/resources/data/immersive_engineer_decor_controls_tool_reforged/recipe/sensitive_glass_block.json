@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "result": {
+    "id": "immersive_engineer_decor_controls_tool_reforged:sensitive_glass_block",
+    "count": 8
+  },
+  "pattern": [
+    "NG",
+    "SR"
+  ],
+  "key": {
+    "N": {
+      "item": "minecraft:iron_nugget"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "G": {
+      "item": "minecraft:glass"
+    },
+    "S": {
+      "item": "minecraft:glowstone"
+    }
+  }
+}
+

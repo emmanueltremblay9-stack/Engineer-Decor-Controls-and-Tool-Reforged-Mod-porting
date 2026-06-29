@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "NN",
+    "RP"
+  ],
+  "key": {
+    "N": {
+      "item": "minecraft:iron_nugget"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "P": {
+      "tag": "minecraft:trapdoors"
+    }
+  },
+  "result": {
+    "id": "immersive_engineer_decor_controls_tool_reforged:industrial_shock_sensitive_trapdoor"
+  }
+}
+

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SS",
+    "SS"
+  ],
+  "key": {
+    "S": {
+      "item": "immersive_engineer_decor_controls_tool_reforged:clinker_brick_slab"
+    }
+  },
+  "result": {
+    "id": "immersive_engineer_decor_controls_tool_reforged:halfslab_clinker_brick",
+    "count": 16
+  }
+}

@@ -1,9 +1,0 @@
-{
-  "render_type": "translucent",
-	"parent": "engineers_decor_reforged:block/contactmat/glass/contactmat_glassxblock_thin",
-	"textures": {
-    "front": "engineers_decor_reforged:block/contactswitch/contactmat_glass1_s15",
-    "side": "engineers_decor_reforged:block/sensitiveglass/clearwhiteglass40",
-		"particle": "engineers_decor_reforged:block/common/cleargrayglass"
-  }
-}

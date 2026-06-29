@@ -1,5 +1,0 @@
-{
-  "render_type": "cutout",
-  "parent": "block/cross",
-  "textures": { "cross": "engineers_decor_reforged:block/plants/powerplant_yellow_s00" }
-}

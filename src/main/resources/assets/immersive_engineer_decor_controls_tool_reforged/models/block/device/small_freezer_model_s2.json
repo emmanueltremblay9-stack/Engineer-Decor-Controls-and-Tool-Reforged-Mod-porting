@@ -1,0 +1,6 @@
+{
+	"parent": "immersive_engineer_decor_controls_tool_reforged:block/device/small_freezer_model",
+	"textures": {
+		"front": "immersive_engineer_decor_controls_tool_reforged:block/furnace/small_freezer_front_s2"
+	}
+}

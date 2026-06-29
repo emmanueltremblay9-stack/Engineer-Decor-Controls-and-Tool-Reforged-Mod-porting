@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "HPP",
+    "PHP",
+    "PLP"
+  ],
+  "key": {
+    "H": {
+      "item": "minecraft:hopper"
+    },
+    "P": {
+      "tag": "c:plates/steel"
+    },
+    "L": {
+      "item": "minecraft:lava_bucket"
+    }
+  },
+  "result": {
+    "id": "immersive_engineer_decor_controls_tool_reforged:small_waste_incinerator",
+    "count": 1
+  }
+}
+
+

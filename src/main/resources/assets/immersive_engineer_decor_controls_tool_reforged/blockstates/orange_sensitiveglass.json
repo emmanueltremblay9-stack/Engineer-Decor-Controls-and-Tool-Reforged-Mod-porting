@@ -1,0 +1,4 @@
+{"variants":{
+ "powered=false": { "model":"immersive_engineer_decor_controls_tool_reforged:block/sensitiveglass/sensitiveglass_stained_model_s00" },
+ "powered=true": { "model":"immersive_engineer_decor_controls_tool_reforged:block/sensitiveglass/sensitiveglass_stained_model_s15" }
+}}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "immersive_engineer_decor_controls_tool_reforged:straight_pipe_valve_redstone"
+    }
+  ],
+  "result": {
+    "id": "immersive_engineer_decor_controls_tool_reforged:straight_pipe_valve_redstone_analog",
+    "count": 1
+  }
+}
+

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "engineers_tools_grit",
+  "ingredients": [
+    {
+      "item": "minecraft:gold_ore"
+    },
+    {
+      "item": "immersive_engineer_decor_controls_tool_reforged:crushing_hammer"
+    }
+  ],
+  "result": {
+    "id": "immersive_engineer_decor_controls_tool_reforged:gold_grit",
+    "count": 2
+  }
+}

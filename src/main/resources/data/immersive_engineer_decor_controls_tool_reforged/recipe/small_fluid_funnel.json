@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "HHH",
+    "PBP",
+    "PPP"
+  ],
+  "key": {
+    "P": {
+      "tag": "c:plates/steel"
+    },
+    "B": {
+      "item": "immersive_engineer_decor_controls_tool_reforged:fluid_barrel"
+    },
+    "H": {
+      "item": "minecraft:hopper"
+    }
+  },
+  "result": {
+    "id": "immersive_engineer_decor_controls_tool_reforged:small_fluid_funnel",
+    "count": 1
+  }
+}
+
+

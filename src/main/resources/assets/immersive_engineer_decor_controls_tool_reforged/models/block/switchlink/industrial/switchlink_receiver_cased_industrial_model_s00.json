@@ -1,0 +1,7 @@
+{
+  "render_type": "cutout",
+	"parent": "immersive_engineer_decor_controls_tool_reforged:block/switchlink/industrial/switchlink_pulsereceiver_cased_industrial_model_s00",
+	"textures": {
+    "side": "immersive_engineer_decor_controls_tool_reforged:block/switchlink/switchlink_receiver_cased_industrial_texture_s00"
+	}
+}

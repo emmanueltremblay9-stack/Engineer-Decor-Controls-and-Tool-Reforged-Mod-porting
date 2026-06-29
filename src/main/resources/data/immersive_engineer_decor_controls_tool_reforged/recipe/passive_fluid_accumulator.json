@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "immersive_engineer_decor_controls_tool_reforged_machines",
+  "pattern": [
+    "CFC",
+    "BCB",
+    "CFC"
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:copper_ingot"
+    },
+    "F": {
+      "item": "immersive_engineer_decor_controls_tool_reforged:small_fluid_funnel"
+    },
+    "B": {
+      "item": "minecraft:bucket"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "immersive_engineer_decor_controls_tool_reforged:passive_fluid_accumulator"
+  }
+}

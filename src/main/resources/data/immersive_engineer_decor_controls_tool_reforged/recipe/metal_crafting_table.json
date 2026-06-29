@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "immersive_engineer_decor_controls_tool_reforged_machines",
+  "pattern": [
+    "IBI",
+    "TCT",
+    "IHI"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:iron_block"
+    },
+    "B": {
+      "item": "minecraft:iron_ingot"
+    },
+    "T": {
+      "tag": "immersiveengineering:treated_wood"
+    },
+    "C": {
+      "item": "minecraft:crafting_table"
+    },
+    "H": {
+      "item": "minecraft:chest"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "immersive_engineer_decor_controls_tool_reforged:metal_crafting_table"
+  }
+}

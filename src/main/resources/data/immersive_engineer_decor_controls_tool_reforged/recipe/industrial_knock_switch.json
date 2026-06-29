@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "NNN",
+    "NSO",
+    "NRN"
+  ],
+  "key": {
+    "O": {
+      "item": "minecraft:observer"
+    },
+    "N": {
+      "item": "minecraft:iron_nugget"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "S": {
+      "item": "minecraft:lever"
+    }
+  },
+  "result": {
+    "id": "immersive_engineer_decor_controls_tool_reforged:industrial_knock_switch"
+  }
+}
+

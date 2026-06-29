@@ -1,0 +1,7 @@
+{
+	"parent": "immersive_engineer_decor_controls_tool_reforged:block/device/small_electrical_furnace_model",
+	"textures": {
+    "front": "immersive_engineer_decor_controls_tool_reforged:block/furnace/small_electrical_furnace_front_lit",
+    "back": "immersive_engineer_decor_controls_tool_reforged:block/furnace/small_electrical_furnace_back_lit"
+	}
+}

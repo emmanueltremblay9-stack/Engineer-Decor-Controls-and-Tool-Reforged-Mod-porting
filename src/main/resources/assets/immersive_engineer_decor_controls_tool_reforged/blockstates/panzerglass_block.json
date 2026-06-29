@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "": [
+      { "model": "immersive_engineer_decor_controls_tool_reforged:block/glass/panzerglass_block_model", "textures": { "all": "immersive_engineer_decor_controls_tool_reforged:block/glass/panzerglass_block_texture0" }},
+      { "model": "immersive_engineer_decor_controls_tool_reforged:block/glass/panzerglass_block_model", "textures": { "all": "immersive_engineer_decor_controls_tool_reforged:block/glass/panzerglass_block_texture1" }},
+      { "model": "immersive_engineer_decor_controls_tool_reforged:block/glass/panzerglass_block_model", "textures": { "all": "immersive_engineer_decor_controls_tool_reforged:block/glass/panzerglass_block_texture2" }},
+      { "model": "immersive_engineer_decor_controls_tool_reforged:block/glass/panzerglass_block_model", "textures": { "all": "immersive_engineer_decor_controls_tool_reforged:block/glass/panzerglass_block_texture3" }}
+    ]
+  }
+}

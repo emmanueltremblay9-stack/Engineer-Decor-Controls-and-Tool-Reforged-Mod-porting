@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "S  ",
+    "SS ",
+    "SSS"
+  ],
+  "key": {
+    "S": {
+      "item": "immersive_engineer_decor_controls_tool_reforged:steel_catwalk"
+    }
+  },
+  "result": {
+    "id": "immersive_engineer_decor_controls_tool_reforged:steel_catwalk_stairs",
+    "count": 6
+  }
+}
+

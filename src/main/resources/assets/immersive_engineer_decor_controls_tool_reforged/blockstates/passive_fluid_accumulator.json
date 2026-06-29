@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "immersive_engineer_decor_controls_tool_reforged:block/device/passive_fluid_accumulator_model"
+    }
+  }
+}

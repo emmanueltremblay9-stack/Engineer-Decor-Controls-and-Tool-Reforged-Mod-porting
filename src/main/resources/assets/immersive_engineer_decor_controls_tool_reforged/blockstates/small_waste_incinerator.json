@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "lit=false": { "model": "immersive_engineer_decor_controls_tool_reforged:block/device/small_waste_incinerator_model" },
+    "lit=true" : { "model": "immersive_engineer_decor_controls_tool_reforged:block/device/small_waste_incinerator_model_lit" }
+  }
+}

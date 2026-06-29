@@ -1,0 +1,5 @@
+{
+  "render_type": "cutout",
+  "parent": "block/cross",
+  "textures": { "cross": "immersive_engineer_decor_controls_tool_reforged:block/plants/powerplant_yellow_s15" }
+}

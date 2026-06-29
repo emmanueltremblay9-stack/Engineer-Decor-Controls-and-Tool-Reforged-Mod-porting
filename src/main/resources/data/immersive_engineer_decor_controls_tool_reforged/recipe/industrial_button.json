@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BN",
+    "RN"
+  ],
+  "key": {
+    "N": {
+      "item": "minecraft:iron_nugget"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "B": {
+      "tag": "immersive_engineer_decor_controls_tool_reforged:buttons"
+    }
+  },
+  "result": {
+    "id": "immersive_engineer_decor_controls_tool_reforged:industrial_button"
+  }
+}
+

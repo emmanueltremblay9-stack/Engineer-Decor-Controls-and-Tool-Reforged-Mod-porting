@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BAB",
+    "ANA",
+    "BAB"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:brick"
+    },
+    "A": {
+      "tag": "immersive_engineer_decor_controls_tool_reforged:brick_ingots"
+    },
+    "N": {
+      "item": "minecraft:bricks"
+    }
+  },
+  "result": {
+    "id": "immersive_engineer_decor_controls_tool_reforged:clinker_brick_block",
+    "count": 8
+  }
+}
+

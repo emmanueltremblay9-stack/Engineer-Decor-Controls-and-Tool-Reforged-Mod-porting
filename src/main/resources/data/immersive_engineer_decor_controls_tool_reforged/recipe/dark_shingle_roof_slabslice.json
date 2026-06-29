@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SS",
+    "SS"
+  ],
+  "key": {
+    "S": {
+      "item": "immersive_engineer_decor_controls_tool_reforged:dark_shingle_roof_slab"
+    }
+  },
+  "result": {
+    "id": "immersive_engineer_decor_controls_tool_reforged:dark_shingle_roof_slabslice",
+    "count": 16
+  }
+}
+

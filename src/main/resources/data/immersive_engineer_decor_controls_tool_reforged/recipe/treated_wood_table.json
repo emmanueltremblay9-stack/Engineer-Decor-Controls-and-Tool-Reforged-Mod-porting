@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "immersive_engineer_decor_controls_tool_reforged_machines",
+  "pattern": [
+    "PPP",
+    " S ",
+    "S S"
+  ],
+  "key": {
+    "P": {
+      "item": "immersive_engineer_decor_controls_tool_reforged:old_industrial_wood_planks"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "immersive_engineer_decor_controls_tool_reforged:treated_wood_table"
+  }
+}

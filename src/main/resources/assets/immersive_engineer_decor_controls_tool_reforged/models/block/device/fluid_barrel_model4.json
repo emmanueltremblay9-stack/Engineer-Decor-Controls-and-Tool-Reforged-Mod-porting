@@ -1,0 +1,4 @@
+{
+	"parent": "immersive_engineer_decor_controls_tool_reforged:block/device/fluid_barrel_model0",
+	"textures": { "s" : "immersive_engineer_decor_controls_tool_reforged:block/pipe/fluid_barrel_side4" }
+}

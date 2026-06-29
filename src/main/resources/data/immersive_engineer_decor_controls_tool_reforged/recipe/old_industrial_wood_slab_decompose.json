@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "B",
+    "B"
+  ],
+  "key": {
+    "B": {
+      "item": "immersive_engineer_decor_controls_tool_reforged:old_industrial_wood_slab"
+    }
+  },
+  "result": {
+    "id": "immersive_engineer_decor_controls_tool_reforged:old_industrial_wood_planks",
+    "count": 1
+  }
+}
+

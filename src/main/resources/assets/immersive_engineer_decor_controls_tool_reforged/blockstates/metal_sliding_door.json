@@ -1,0 +1,39 @@
+{
+  "multipart": [
+    { "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "false" }, "apply": { "model": "immersive_engineer_decor_controls_tool_reforged:block/door/metal_sliding_door_model_bottom_closed", "y": 270 } },
+    { "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "true" }, "apply": { "model": "immersive_engineer_decor_controls_tool_reforged:block/door/metal_sliding_door_model_bottom_open", "y": 270 } },
+    { "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "false" }, "apply": { "model": "immersive_engineer_decor_controls_tool_reforged:block/door/metal_sliding_door_model_bottom_closed", "y": 90 } },
+    { "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "true" }, "apply": { "model": "immersive_engineer_decor_controls_tool_reforged:block/door/metal_sliding_door_model_bottom_open", "y": 90 } },
+    { "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "false" }, "apply": { "model": "immersive_engineer_decor_controls_tool_reforged:block/door/metal_sliding_door_model_top_closed", "y": 270 } },
+    { "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "true" }, "apply": { "model": "immersive_engineer_decor_controls_tool_reforged:block/door/metal_sliding_door_model_top_open", "y": 270 } },
+    { "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "false" }, "apply": { "model": "immersive_engineer_decor_controls_tool_reforged:block/door/metal_sliding_door_model_top_closed", "y": 90 } },
+    { "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "true" }, "apply": { "model": "immersive_engineer_decor_controls_tool_reforged:block/door/metal_sliding_door_model_top_open", "y": 90 } },
+
+    { "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "false" }, "apply": { "model": "immersive_engineer_decor_controls_tool_reforged:block/door/metal_sliding_door_model_bottom_closed", "y": 180 } },
+    { "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "true" }, "apply": { "model": "immersive_engineer_decor_controls_tool_reforged:block/door/metal_sliding_door_model_bottom_open", "y": 180 } },
+    { "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "false" }, "apply": { "model": "immersive_engineer_decor_controls_tool_reforged:block/door/metal_sliding_door_model_bottom_closed", "y": 0 } },
+    { "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "true" }, "apply": { "model": "immersive_engineer_decor_controls_tool_reforged:block/door/metal_sliding_door_model_bottom_open", "y": 0 } },
+    { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "false" }, "apply": { "model": "immersive_engineer_decor_controls_tool_reforged:block/door/metal_sliding_door_model_top_closed", "y": 180 } },
+    { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "true" }, "apply": { "model": "immersive_engineer_decor_controls_tool_reforged:block/door/metal_sliding_door_model_top_open", "y": 180 } },
+    { "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "false" }, "apply": { "model": "immersive_engineer_decor_controls_tool_reforged:block/door/metal_sliding_door_model_top_closed", "y": 0 } },
+    { "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "true" }, "apply": { "model": "immersive_engineer_decor_controls_tool_reforged:block/door/metal_sliding_door_model_top_open", "y": 0 } },
+
+    { "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "false" }, "apply": { "model": "immersive_engineer_decor_controls_tool_reforged:block/door/metal_sliding_door_model_bottom_closed", "y": 0 } },
+    { "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "true" }, "apply": { "model": "immersive_engineer_decor_controls_tool_reforged:block/door/metal_sliding_door_model_bottom_open", "y": 0 } },
+    { "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "false" }, "apply": { "model": "immersive_engineer_decor_controls_tool_reforged:block/door/metal_sliding_door_model_bottom_closed", "y": 180 } },
+    { "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "true" }, "apply": { "model": "immersive_engineer_decor_controls_tool_reforged:block/door/metal_sliding_door_model_bottom_open", "y": 180 } },
+    { "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "false" }, "apply": { "model": "immersive_engineer_decor_controls_tool_reforged:block/door/metal_sliding_door_model_top_closed", "y": 0 } },
+    { "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "true" }, "apply": { "model": "immersive_engineer_decor_controls_tool_reforged:block/door/metal_sliding_door_model_top_open", "y": 0 } },
+    { "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "false" }, "apply": { "model": "immersive_engineer_decor_controls_tool_reforged:block/door/metal_sliding_door_model_top_closed", "y": 180 } },
+    { "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "true" }, "apply": { "model": "immersive_engineer_decor_controls_tool_reforged:block/door/metal_sliding_door_model_top_open", "y": 180 } },
+
+    { "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "false" }, "apply": { "model": "immersive_engineer_decor_controls_tool_reforged:block/door/metal_sliding_door_model_bottom_closed", "y": 90 } },
+    { "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "true" }, "apply": { "model": "immersive_engineer_decor_controls_tool_reforged:block/door/metal_sliding_door_model_bottom_open", "y": 90 } },
+    { "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "false" }, "apply": { "model": "immersive_engineer_decor_controls_tool_reforged:block/door/metal_sliding_door_model_bottom_closed", "y": 270 } },
+    { "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "true" }, "apply": { "model": "immersive_engineer_decor_controls_tool_reforged:block/door/metal_sliding_door_model_bottom_open", "y": 270 } },
+    { "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "false" }, "apply": { "model": "immersive_engineer_decor_controls_tool_reforged:block/door/metal_sliding_door_model_top_closed", "y": 90 } },
+    { "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "true" }, "apply": { "model": "immersive_engineer_decor_controls_tool_reforged:block/door/metal_sliding_door_model_top_open", "y": 90 } },
+    { "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "false" }, "apply": { "model": "immersive_engineer_decor_controls_tool_reforged:block/door/metal_sliding_door_model_top_closed", "y": 270 } },
+    { "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "true" }, "apply": { "model": "immersive_engineer_decor_controls_tool_reforged:block/door/metal_sliding_door_model_top_open", "y": 270 } }
+  ]
+}

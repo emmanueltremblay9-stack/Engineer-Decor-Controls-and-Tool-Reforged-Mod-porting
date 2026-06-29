@@ -1,0 +1,7 @@
+{
+  "render_type": "cutout",
+	"parent": "immersive_engineer_decor_controls_tool_reforged:block/autoswitch/industrial/daytimer_industrial_model_s00",
+	"textures": {
+    "led": "immersive_engineer_decor_controls_tool_reforged:block/indicator/indicator_fg_green_on_texture"
+	}
+}

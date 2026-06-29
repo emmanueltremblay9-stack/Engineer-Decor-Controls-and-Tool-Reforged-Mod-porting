@@ -1,0 +1,6 @@
+{
+	"parent": "immersive_engineer_decor_controls_tool_reforged:block/device/small_mineral_smelter_model",
+	"textures": {
+		"front": "immersive_engineer_decor_controls_tool_reforged:block/furnace/small_mineral_smelter_front_s3"
+	}
+}

@@ -1,7 +1,0 @@
-{
-  "render_type": "cutout",
-  "parent": "engineers_decor_reforged:block/contactmat/industrial/contactmat_sensitive_industrial_model_s00",
-	"textures": {
-    "top": "engineers_decor_reforged:block/contactswitch/contactmat_industrial_shocksensitive_texture_s00"
-	}
-}

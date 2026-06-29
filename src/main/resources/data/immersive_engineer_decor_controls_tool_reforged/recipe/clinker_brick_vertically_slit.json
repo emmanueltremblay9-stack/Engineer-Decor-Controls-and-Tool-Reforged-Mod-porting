@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BS",
+    "BS",
+    "BS"
+  ],
+  "key": {
+    "B": {
+      "item": "immersive_engineer_decor_controls_tool_reforged:clinker_brick_block"
+    },
+    "S": {
+      "item": "immersive_engineer_decor_controls_tool_reforged:clinker_brick_vertical_slab_structured"
+    }
+  },
+  "result": {
+    "id": "immersive_engineer_decor_controls_tool_reforged:clinker_brick_vertically_slit",
+    "count": 3
+  }
+}
+

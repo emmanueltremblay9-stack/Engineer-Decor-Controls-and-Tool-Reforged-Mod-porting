@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " S ",
+    " W ",
+    " W "
+  ],
+  "key": {
+    "W": {
+      "item": "immersive_engineer_decor_controls_tool_reforged:old_industrial_wood_planks"
+    },
+    "S": {
+      "item": "immersive_engineer_decor_controls_tool_reforged:old_industrial_wood_slab"
+    }
+  },
+  "result": {
+    "id": "immersive_engineer_decor_controls_tool_reforged:treated_wood_pole",
+    "count": 6
+  }
+}
+

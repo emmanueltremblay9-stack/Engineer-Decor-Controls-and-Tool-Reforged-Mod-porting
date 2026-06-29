@@ -1,4 +1,0 @@
-{"variants":{
- "powered=false": { "model":"engineers_decor_reforged:block/sensitiveglass/sensitiveglass_stained_model_s00" },
- "powered=true": { "model":"engineers_decor_reforged:block/sensitiveglass/sensitiveglass_stained_model_s15" }
-}}

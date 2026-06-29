@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "immersive_engineer_decor_controls_tool_reforged:industrial_rotary_machine_switch"
+    }
+  ],
+  "result": {
+    "id": "immersive_engineer_decor_controls_tool_reforged:industrial_machine_switch"
+  }
+}
+

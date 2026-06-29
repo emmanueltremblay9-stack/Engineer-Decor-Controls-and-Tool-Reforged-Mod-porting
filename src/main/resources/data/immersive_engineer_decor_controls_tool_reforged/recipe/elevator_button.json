@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "NGN",
+    "NBN",
+    "NRN"
+  ],
+  "key": {
+    "N": {
+      "item": "minecraft:iron_nugget"
+    },
+    "G": {
+      "item": "minecraft:glowstone_dust"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "B": {
+      "tag": "immersive_engineer_decor_controls_tool_reforged:buttons"
+    }
+  },
+  "result": {
+    "id": "immersive_engineer_decor_controls_tool_reforged:elevator_button"
+  }
+}
+

@@ -1,0 +1,12 @@
+{
+	"parent": "block/cube",
+	"textures": {
+		"particle": "immersive_engineer_decor_controls_tool_reforged:block/clinker_brick/clinker_brick_texture0",
+    "down": "immersive_engineer_decor_controls_tool_reforged:block/clinker_brick/clinker_brick_sastor_upplate_top_texture",
+    "up": "immersive_engineer_decor_controls_tool_reforged:block/clinker_brick/clinker_brick_texture0",
+		"north": "immersive_engineer_decor_controls_tool_reforged:block/clinker_brick/clinker_brick_sastor_downplate_side_texture",
+    "south": "immersive_engineer_decor_controls_tool_reforged:block/clinker_brick/clinker_brick_sastor_downplate_side_texture",
+		"west": "immersive_engineer_decor_controls_tool_reforged:block/clinker_brick/clinker_brick_sastor_downplate_side_texture",
+    "east": "immersive_engineer_decor_controls_tool_reforged:block/clinker_brick/clinker_brick_sastor_downplate_side_texture"
+	}
+}

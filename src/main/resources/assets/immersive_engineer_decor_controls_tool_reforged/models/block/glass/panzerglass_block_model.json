@@ -1,0 +1,5 @@
+{
+  "parent": "block/cube_all",
+  "render_type": "translucent",
+  "textures": { "all": "immersive_engineer_decor_controls_tool_reforged:block/glass/panzerglass_block_texture0" }
+}

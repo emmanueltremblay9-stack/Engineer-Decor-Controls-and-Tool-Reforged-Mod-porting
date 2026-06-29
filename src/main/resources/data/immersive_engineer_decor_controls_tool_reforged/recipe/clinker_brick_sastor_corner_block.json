@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BS",
+    "SB"
+  ],
+  "key": {
+    "B": {
+      "item": "immersive_engineer_decor_controls_tool_reforged:clinker_brick_block"
+    },
+    "S": {
+      "item": "minecraft:sandstone_stairs"
+    }
+  },
+  "result": {
+    "id": "immersive_engineer_decor_controls_tool_reforged:clinker_brick_sastor_corner_block",
+    "count": 4
+  }
+}
+

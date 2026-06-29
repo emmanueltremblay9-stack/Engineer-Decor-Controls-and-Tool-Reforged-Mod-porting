@@ -1,0 +1,20 @@
+{
+	"textures": {
+		"wall": "immersive_engineer_decor_controls_tool_reforged:block/clinker_brick/clinker_brick_wall0",
+		"top": "immersive_engineer_decor_controls_tool_reforged:block/clinker_brick/clinker_brick_top",
+		"particle": "immersive_engineer_decor_controls_tool_reforged:block/clinker_brick/clinker_brick_top"
+  },
+	"elements": [
+		{
+			"from": [4.125, 0, 0],
+			"to": [11.875, 15.98, 8],
+			"faces": {
+				"north": {"texture": "#wall"},
+				"east": {"texture": "#wall"},
+				"west": {"texture": "#wall"},
+				"up": {"texture": "#top"},
+				"down": {"texture": "#top"}
+			}
+		}
+	]
+}

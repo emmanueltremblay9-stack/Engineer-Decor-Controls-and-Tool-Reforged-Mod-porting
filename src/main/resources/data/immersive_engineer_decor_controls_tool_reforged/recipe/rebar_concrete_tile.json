@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CC",
+    "CC"
+  ],
+  "key": {
+    "C": {
+      "item": "immersive_engineer_decor_controls_tool_reforged:rebar_concrete"
+    }
+  },
+  "result": {
+    "id": "immersive_engineer_decor_controls_tool_reforged:rebar_concrete_tile",
+    "count": 4
+  }
+}
+

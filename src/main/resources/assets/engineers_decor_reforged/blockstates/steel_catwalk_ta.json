@@ -1,9 +1,0 @@
-{
-  "variants": {
-    "variant=0": { "model": "engineers_decor_reforged:block/furniture/steel_catwalk_ta0_model" },
-    "variant=1": { "model": "engineers_decor_reforged:block/furniture/steel_catwalk_ta1_model" },
-    "variant=2": { "model": "engineers_decor_reforged:block/furniture/steel_catwalk_ta2_model" },
-    "variant=3": { "model": "engineers_decor_reforged:block/furniture/steel_catwalk_ta3_model" },
-    "variant=4": { "model": "engineers_decor_reforged:block/furniture/steel_catwalk_ta4_model" }
-  }
-}

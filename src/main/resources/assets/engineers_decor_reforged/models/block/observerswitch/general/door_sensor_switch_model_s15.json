@@ -1,7 +1,0 @@
-{
-  "render_type": "cutout",
-	"parent": "engineers_decor_reforged:block/observerswitch/general/door_sensor_switch_model_s00",
-	"textures": {
-    "redstone": "engineers_decor_reforged:block/indicator/indicator_fg_red_on_texture"
-	}
-}

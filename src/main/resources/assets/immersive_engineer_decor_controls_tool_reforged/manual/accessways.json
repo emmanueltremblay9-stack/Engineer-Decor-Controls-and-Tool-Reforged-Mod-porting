@@ -1,0 +1,83 @@
+{
+  "thick_steel_pole": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:thick_steel_pole"
+  },
+  "thick_steel_pole_head": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:thick_steel_pole_head"
+  },
+  "thin_steel_pole": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:thin_steel_pole"
+  },
+  "thin_steel_pole_head": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:thin_steel_pole_head"
+  },
+  "treated_wood_pole": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:treated_wood_pole"
+  },
+  "treated_wood_pole_head": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:treated_wood_pole_head"
+  },
+  "treated_wood_pole_support": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:treated_wood_pole_support"
+  },
+  "steel_double_t_support": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:steel_double_t_support"
+  },
+  "steel_floor_grating": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:steel_floor_grating"
+  },
+  "steel_catwalk": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:steel_catwalk"
+  },
+  "steel_catwalk_stairs": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:steel_catwalk_stairs"
+  },
+  "steel_catwalk_ta": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:steel_catwalk_ta"
+  },
+  "steel_railing": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:steel_railing"
+  },
+  "steel_mesh_fence": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:steel_mesh_fence"
+  },
+  "steel_mesh_fence_gate": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:steel_mesh_fence_gate"
+  },
+  "metal_rung_ladder": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:metal_rung_ladder"
+  },
+  "metal_rung_steps": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:metal_rung_steps"
+  },
+  "steel_framed_window": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:steel_framed_window"
+  },
+  "metal_sliding_door": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:metal_sliding_door"
+  },
+  "iron_hatch": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:iron_hatch"
+  }
+}
+

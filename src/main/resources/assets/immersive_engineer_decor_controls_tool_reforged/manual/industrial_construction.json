@@ -1,0 +1,70 @@
+{
+  "iron_bulb_light": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:iron_bulb_light"
+  },
+  "iron_ceiling_edge_light": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:iron_ceiling_edge_light"
+  },
+  "iron_floor_edge_light": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:iron_floor_edge_light"
+  },
+  "iron_inset_light": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:iron_inset_light"
+  },
+  "sign_caution": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:sign_caution"
+  },
+  "sign_danger": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:sign_danger"
+  },
+  "sign_decor": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:sign_decor"
+  },
+  "sign_defense": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:sign_defense"
+  },
+  "sign_exit": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:sign_exit"
+  },
+  "sign_firehazard": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:sign_firehazard"
+  },
+  "sign_frost": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:sign_frost"
+  },
+  "sign_hotsurface": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:sign_hotsurface"
+  },
+  "sign_hotwire": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:sign_hotwire"
+  },
+  "sign_laser": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:sign_laser"
+  },
+  "sign_magichazard": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:sign_magichazard"
+  },
+  "sign_magneticfield": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:sign_magneticfield"
+  },
+  "sign_radioactive": {
+    "type": "crafting",
+    "recipe": "immersive_engineer_decor_controls_tool_reforged:sign_radioactive"
+  }
+}

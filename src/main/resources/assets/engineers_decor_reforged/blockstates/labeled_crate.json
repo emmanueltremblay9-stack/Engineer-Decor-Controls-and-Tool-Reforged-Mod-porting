@@ -1,8 +1,0 @@
-{
-  "variants": {
-    "facing=north": { "model": "engineers_decor_reforged:block/device/labeled_crate_model" },
-    "facing=east": { "model": "engineers_decor_reforged:block/device/labeled_crate_model", "y": 90 },
-    "facing=south": { "model": "engineers_decor_reforged:block/device/labeled_crate_model", "y": 180 },
-    "facing=west": { "model": "engineers_decor_reforged:block/device/labeled_crate_model", "y": 270 }
-  }
-}

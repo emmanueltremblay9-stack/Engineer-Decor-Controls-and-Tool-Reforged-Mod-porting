@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PP",
+    "PP",
+    "PP"
+  ],
+  "key": {
+    "P": {
+      "item": "immersive_engineer_decor_controls_tool_reforged:old_industrial_wood_planks"
+    }
+  },
+  "result": {
+    "id": "immersive_engineer_decor_controls_tool_reforged:old_industrial_wood_door",
+    "count": 2
+  }
+}
+

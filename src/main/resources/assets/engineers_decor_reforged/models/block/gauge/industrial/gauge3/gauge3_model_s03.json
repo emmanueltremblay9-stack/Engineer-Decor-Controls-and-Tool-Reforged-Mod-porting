@@ -1,5 +1,0 @@
-{
-  "render_type": "cutout",
-	"parent": "engineers_decor_reforged:block/gauge/industrial/gauge3/gauge3_model_s00",
-  "textures": { "front": "engineers_decor_reforged:block/gauge/flatgauge3texture_s03" }
-}

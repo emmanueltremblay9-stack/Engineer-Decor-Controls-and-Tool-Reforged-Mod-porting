@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "NNN",
+    "RRR"
+  ],
+  "key": {
+    "N": {
+      "tag": "c:plates/steel"
+    },
+    "R": {
+      "item": "immersive_engineer_decor_controls_tool_reforged:dark_shingle_roof"
+    }
+  },
+  "result": {
+    "id": "immersive_engineer_decor_controls_tool_reforged:dark_shingle_roof_metallized",
+    "count": 4
+  }
+}
+
+

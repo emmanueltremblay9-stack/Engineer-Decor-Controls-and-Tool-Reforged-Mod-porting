@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SSS",
+    "GFS",
+    "SBS"
+  ],
+  "key": {
+    "G": {
+      "item": "immersive_engineer_decor_controls_tool_reforged:panzerglass_block"
+    },
+    "F": {
+      "item": "minecraft:lava_bucket"
+    },
+    "S": {
+      "tag": "c:plates/steel"
+    },
+    "B": {
+      "item": "immersive_engineer_decor_controls_tool_reforged:fluid_barrel"
+    }
+  },
+  "result": {
+    "id": "immersive_engineer_decor_controls_tool_reforged:small_mineral_smelter",
+    "count": 1
+  }
+}
+
+

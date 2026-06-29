@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "C",
+    "C",
+    "C"
+  ],
+  "key": {
+    "C": {
+      "item": "immersive_engineer_decor_controls_tool_reforged:clinker_brick_block"
+    }
+  },
+  "result": {
+    "id": "immersive_engineer_decor_controls_tool_reforged:clinker_brick_vertical_slab_structured",
+    "count": 6
+  }
+}
+

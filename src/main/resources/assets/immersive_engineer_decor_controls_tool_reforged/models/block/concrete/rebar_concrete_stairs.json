@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "immersive_engineer_decor_controls_tool_reforged:block/concrete/rebar_concrete_texture0",
+    "top": "immersive_engineer_decor_controls_tool_reforged:block/concrete/rebar_concrete_texture1",
+    "side": "immersive_engineer_decor_controls_tool_reforged:block/concrete/rebar_concrete_texture2"
+  }
+}

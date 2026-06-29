@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PCP",
+    "HFH",
+    "PPP"
+  ],
+  "key": {
+    "F": {
+      "item": "minecraft:furnace"
+    },
+    "C": {
+      "item": "immersiveengineering:connector_lv"
+    },
+    "H": {
+      "item": "immersiveengineering:conveyor_basic"
+    },
+    "P": {
+      "tag": "c:plates/iron"
+    }
+  },
+  "result": {
+    "id": "immersive_engineer_decor_controls_tool_reforged:small_electrical_furnace",
+    "count": 1
+  }
+}
+

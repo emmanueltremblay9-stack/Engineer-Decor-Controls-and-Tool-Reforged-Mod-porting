@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "": [
+      { "model": "immersive_engineer_decor_controls_tool_reforged:block/wood/old_industrial_planks_model0" },
+      { "model": "immersive_engineer_decor_controls_tool_reforged:block/wood/old_industrial_planks_model1" },
+      { "model": "immersive_engineer_decor_controls_tool_reforged:block/wood/old_industrial_planks_model2" },
+      { "model": "immersive_engineer_decor_controls_tool_reforged:block/wood/old_industrial_planks_model3" }
+    ]
+  }
+}
