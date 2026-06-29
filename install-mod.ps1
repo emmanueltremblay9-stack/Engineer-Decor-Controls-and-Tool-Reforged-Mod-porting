@@ -1,5 +1,6 @@
 param(
    [string]$ModsDir,
+   [string]$TargetJarName,
    [switch]$SkipBuild
 )
 
@@ -151,10 +152,19 @@ if ($matchingRuntimeJars.Count -ne 1) {
 }
 
 $sourceJar = $matchingRuntimeJars[0]
+$targetJarName = if ($TargetJarName) { $TargetJarName } else { $sourceJar.Name }
+if ([System.IO.Path]::GetFileName($targetJarName) -ne $targetJarName) {
+   throw "TargetJarName must be a file name, not a path: $targetJarName"
+}
+
+if (-not $targetJarName.EndsWith(".jar", [System.StringComparison]::OrdinalIgnoreCase)) {
+   throw "TargetJarName must end with .jar: $targetJarName"
+}
+
 $oldJars = @()
 foreach ($jar in Get-ChildItem -LiteralPath $resolvedModsDir -File -Filter "*.jar") {
    $metadata = Read-ModMetadata $jar.FullName
-   if (($metadata -and $metadata.ModId -eq $modId) -or $jar.BaseName -like "$modId*") {
+   if (($metadata -and $metadata.ModId -eq $modId) -or $jar.BaseName -like "$modId*" -or $jar.Name -ieq $targetJarName) {
       $oldJars += $jar
    }
 }
@@ -164,7 +174,7 @@ foreach ($jar in $oldJars) {
    Remove-Item -LiteralPath $jar.FullName
 }
 
-$targetJarPath = Join-Path $resolvedModsDir $sourceJar.Name
+$targetJarPath = Join-Path $resolvedModsDir $targetJarName
 Assert-WithinDirectory $resolvedModsDir $targetJarPath
 Copy-Item -LiteralPath $sourceJar.FullName -Destination $targetJarPath
 
@@ -176,7 +186,7 @@ $targetSize = (Get-Item -LiteralPath $targetJarPath).Length
 $remaining = @()
 foreach ($jar in Get-ChildItem -LiteralPath $resolvedModsDir -File -Filter "*.jar") {
    $metadata = Read-ModMetadata $jar.FullName
-   if (($metadata -and $metadata.ModId -eq $modId) -or $jar.BaseName -like "$modId*") {
+   if (($metadata -and $metadata.ModId -eq $modId) -or $jar.BaseName -like "$modId*" -or $jar.Name -ieq $targetJarName) {
       $remaining += $jar
    }
 }
